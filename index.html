@@ -235,79 +235,79 @@ main{--padx:max(16px,calc((100vw - 948px) / 2));--padtop:calc(var(--sat) + 76px)
 /* Bühne mit Vorhang: Start, Schluss, Generalprobe */
 .cur{position:absolute;z-index:1;top:calc(-1 * var(--padtop));bottom:-40px;width:calc(var(--cw) * 1.7);pointer-events:none;
   -webkit-mask-image:linear-gradient(#000 45%,rgba(0,0,0,0));mask-image:linear-gradient(#000 45%,rgba(0,0,0,0))}
-.cur.l{left:calc(-1 * var(--padx) - var(--exl,0px));transform-origin:left;background:linear-gradient(90deg,rgba(67,36,112,.9),rgba(67,36,112,.35) 55%,rgba(67,36,112,0))}
-.cur.r{right:calc(-1 * var(--padx) - var(--extra));transform-origin:right;background:linear-gradient(270deg,rgba(67,36,112,.9),rgba(67,36,112,.35) 55%,rgba(67,36,112,0))}
+.cur.l{left:calc(-1 * var(--padx) - var(--exl,0px));transform-origin:left;background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 90.0%,transparent),color-mix(in srgb,var(--sd) 35.0%,transparent) 55%,color-mix(in srgb,var(--sd) 0.0%,transparent))}
+.cur.r{right:calc(-1 * var(--padx) - var(--extra));transform-origin:right;background:linear-gradient(270deg,color-mix(in srgb,var(--sd) 90.0%,transparent),color-mix(in srgb,var(--sd) 35.0%,transparent) 55%,color-mix(in srgb,var(--sd) 0.0%,transparent))}
 .val{display:none}
-[data-look="schluss"] > .hero .val{display:block;position:absolute;z-index:1;top:calc(-1 * var(--padtop) + var(--valtop,0px));left:calc(-1 * var(--padx) - var(--exl,0px));right:calc(-1 * var(--padx) - var(--extra));height:70px;pointer-events:none;background:linear-gradient(rgba(67,36,112,.55),rgba(67,36,112,0))}
+[data-look="schluss"] > .hero .val{display:block;position:absolute;z-index:1;top:calc(-1 * var(--padtop) + var(--valtop,0px));left:calc(-1 * var(--padx) - var(--exl,0px));right:calc(-1 * var(--padx) - var(--extra));height:70px;pointer-events:none;background:linear-gradient(color-mix(in srgb,var(--sd) 55.0%,transparent),color-mix(in srgb,var(--sd) 0.0%,transparent))}
 [data-look="buehne"] > .hero,[data-look="probe"] > .hero,[data-look="schluss"] > .hero{--glow:rgba(255,206,140,.30);--accent:#8a55d8}
-[data-look="buehne"] > .hero .deco,[data-look="probe"] > .hero .deco,[data-look="schluss"] > .hero .deco{background:linear-gradient(rgba(67,36,112,.10),rgba(0,0,0,0) 70%)}
+[data-look="buehne"] > .hero .deco,[data-look="probe"] > .hero .deco,[data-look="schluss"] > .hero .deco{background:linear-gradient(color-mix(in srgb,var(--sd) 10.0%,transparent),rgba(0,0,0,0) 70%)}
 [data-look="probe"] > .hero .deco::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:min(760px,90%);transform:translateX(-50%);
-  background:linear-gradient(rgba(255,226,170,.55),rgba(255,226,170,.08) 85%);-webkit-clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%)}
+  background:linear-gradient(color-mix(in srgb,var(--sd) 55.0%,transparent),color-mix(in srgb,var(--sd) 8.0%,transparent) 85%);-webkit-clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%)}
 [data-look="schluss"] > .hero{--hl:#d9c3ff}
 /* Bauplan */
 [data-look="bauplan"] > .hero{--accent:#2f6fb2;--glow:rgba(63,108,160,.12);--hl:#bcd8f5}
-[data-look="bauplan"] > .hero .deco{background-image:linear-gradient(rgba(63,108,160,.20) 1px,rgba(0,0,0,0) 1px),linear-gradient(90deg,rgba(63,108,160,.20) 1px,rgba(0,0,0,0) 1px),linear-gradient(rgba(63,108,160,.08) 1px,rgba(0,0,0,0) 1px),linear-gradient(90deg,rgba(63,108,160,.08) 1px,rgba(0,0,0,0) 1px);background-size:80px 80px,80px 80px,16px 16px,16px 16px}
-[data-look="bauplan"] > .hero .deco::after{content:"";position:absolute;right:12%;top:30%;width:180px;height:180px;border:1.5px dashed rgba(63,108,160,.45);border-radius:50%}
+[data-look="bauplan"] > .hero .deco{background-image:linear-gradient(color-mix(in srgb,var(--sd) 20.0%,transparent) 1px,rgba(0,0,0,0) 1px),linear-gradient(90deg,color-mix(in srgb,var(--sd) 20.0%,transparent) 1px,rgba(0,0,0,0) 1px),linear-gradient(color-mix(in srgb,var(--sd) 8.0%,transparent) 1px,rgba(0,0,0,0) 1px),linear-gradient(90deg,color-mix(in srgb,var(--sd) 8.0%,transparent) 1px,rgba(0,0,0,0) 1px);background-size:80px 80px,80px 80px,16px 16px,16px 16px}
+[data-look="bauplan"] > .hero .deco::after{content:"";position:absolute;right:12%;top:30%;width:180px;height:180px;border:1.5px dashed color-mix(in srgb,var(--sd) 45.0%,transparent);border-radius:50%}
 /* Lineal: Handwerkszeug */
 [data-look="lineal"] > .hero{--accent:#b7791f;--glow:rgba(170,112,60,.12);--hl:#ffd96b}
 [data-look="lineal"] > .hero{--mask:linear-gradient(90deg,rgba(0,0,0,0),#000 14%,#000 86%,rgba(0,0,0,0))}
 [data-look="lineal"] > .hero .deco{background:
-  repeating-linear-gradient(90deg,rgba(170,112,60,.55) 0 1.5px,rgba(0,0,0,0) 1.5px 60px) 0 100%/100% 26px no-repeat,
-  repeating-linear-gradient(90deg,rgba(170,112,60,.35) 0 1px,rgba(0,0,0,0) 1px 12px) 0 100%/100% 12px no-repeat,
-  repeating-linear-gradient(-45deg,rgba(170,112,60,.06) 0 2px,rgba(0,0,0,0) 2px 14px)}
+  repeating-linear-gradient(90deg,color-mix(in srgb,var(--sd) 55.0%,transparent) 0 1.5px,rgba(0,0,0,0) 1.5px 60px) 0 100%/100% 26px no-repeat,
+  repeating-linear-gradient(90deg,color-mix(in srgb,var(--sd) 35.0%,transparent) 0 1px,rgba(0,0,0,0) 1px 12px) 0 100%/100% 12px no-repeat,
+  repeating-linear-gradient(-45deg,color-mix(in srgb,var(--sd) 6.0%,transparent) 0 2px,rgba(0,0,0,0) 2px 14px)}
 /* Schulheft: Einleitung */
 [data-look="papier"] > .hero{--accent:#d24b3e;--glow:rgba(255,228,92,.18);--hl:#ffe45c}
-[data-look="papier"] > .hero .deco{background:linear-gradient(90deg,rgba(0,0,0,0) calc(var(--padx) - 9px),rgba(196,70,52,.55) calc(var(--padx) - 9px),rgba(196,70,52,.55) calc(var(--padx) - 7px),rgba(0,0,0,0) calc(var(--padx) - 7px)),repeating-linear-gradient(rgba(0,0,0,0) 0 31px,rgba(63,108,160,.28) 31px 32px)}
+[data-look="papier"] > .hero .deco{background:linear-gradient(90deg,rgba(0,0,0,0) calc(var(--padx) - 9px),color-mix(in srgb,var(--sd) 55.0%,transparent) calc(var(--padx) - 9px),color-mix(in srgb,var(--sd) 55.0%,transparent) calc(var(--padx) - 7px),rgba(0,0,0,0) calc(var(--padx) - 7px)),repeating-linear-gradient(rgba(0,0,0,0) 0 31px,color-mix(in srgb,var(--sd) 28.0%,transparent) 31px 32px)}
 /* Grundriss: Industrie */
 [data-look="zeitraum"] > .hero{--accent:#1f8a7a;--glow:rgba(44,128,120,.12)}
-[data-look="zeitraum"] > .hero .deco{background:repeating-radial-gradient(ellipse at 50% 135%,rgba(0,0,0,0) 0 38px,rgba(44,128,120,.22) 38px 39.5px)}
+[data-look="zeitraum"] > .hero .deco{background:repeating-radial-gradient(ellipse at 50% 135%,rgba(0,0,0,0) 0 38px,color-mix(in srgb,var(--sd) 22.0%,transparent) 38px 39.5px)}
 [data-look="zeitraum"] > .hero .deco::after{content:"";position:absolute;right:9%;top:calc(var(--padtop) + 14px);width:150px;height:150px;border-radius:50%;
-  background:repeating-conic-gradient(rgba(44,128,120,.6) 0 1.2deg,rgba(0,0,0,0) 1.2deg 30deg);-webkit-mask-image:radial-gradient(circle,rgba(0,0,0,0) 62%,#000 63%);mask-image:radial-gradient(circle,rgba(0,0,0,0) 62%,#000 63%);animation:spin 60s linear infinite}
+  background:repeating-conic-gradient(color-mix(in srgb,var(--sd) 60.0%,transparent) 0 1.2deg,rgba(0,0,0,0) 1.2deg 30deg);-webkit-mask-image:radial-gradient(circle,rgba(0,0,0,0) 62%,#000 63%);mask-image:radial-gradient(circle,rgba(0,0,0,0) 62%,#000 63%);animation:spin 60s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* Antike: hier nicht genutzt */
 [data-look="antike"] > .hero{--accent:#aa703c;--glow:rgba(170,112,60,.13);--hl:#f2c47e}
-[data-look="antike"] > .hero .deco{background:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 22px,rgba(170,112,60,.09) 22px 25px,rgba(0,0,0,0) 25px 30px)}
-.meander,[data-look="antike"] > .hero .deco::before{content:"";position:absolute;left:0;right:0;height:20px;background:#aa703c;opacity:.7;
+[data-look="antike"] > .hero .deco{background:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 22px,color-mix(in srgb,var(--sd) 9.0%,transparent) 22px 25px,rgba(0,0,0,0) 25px 30px)}
+.meander,[data-look="antike"] > .hero .deco::before{content:"";position:absolute;left:0;right:0;height:20px;background:var(--st);opacity:.7;
   -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px;
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px}
 [data-look="antike"] > .hero .deco::before{top:calc(var(--padtop) + 6px)}
 /* Split: offen oder verdeckt */
 [data-look="split"] > .hero{--accent:#3d8a5a;--glow:rgba(0,0,0,0);--hlimg:linear-gradient(90deg,#c6f164 0 50%,#84d9f0 50% 100%)}
 [data-look="split"] > .hero .deco::before,[data-look="split"] > .hero .deco::after{content:"";position:absolute;inset:0}
-[data-look="split"] > .hero .deco::before{background:rgba(198,241,100,.24);-webkit-clip-path:polygon(0 0,62% 0,40% 100%,0 100%);clip-path:polygon(0 0,62% 0,40% 100%,0 100%)}
-[data-look="split"] > .hero .deco::after{background:rgba(132,217,240,.24);-webkit-clip-path:polygon(62% 0,100% 0,100% 100%,40% 100%);clip-path:polygon(62% 0,100% 0,100% 100%,40% 100%)}
+[data-look="split"] > .hero .deco::before{background:color-mix(in srgb,var(--sd) 24.0%,transparent);-webkit-clip-path:polygon(0 0,62% 0,40% 100%,0 100%);clip-path:polygon(0 0,62% 0,40% 100%,0 100%)}
+[data-look="split"] > .hero .deco::after{background:color-mix(in srgb,var(--sd) 24.0%,transparent);-webkit-clip-path:polygon(62% 0,100% 0,100% 100%,40% 100%);clip-path:polygon(62% 0,100% 0,100% 100%,40% 100%)}
 /* Dialog: Gründe für Kolonien */
 [data-look="dialog"] > .hero{--accent:#7440cc;--glow:rgba(107,63,160,.12);--hl:#d9c3ff}
-[data-look="dialog"] > .hero .deco::before,[data-look="dialog"] > .hero .deco::after{content:"";position:absolute;border-radius:22px;border:1.5px solid rgba(107,63,160,.35);background:rgba(107,63,160,.05)}
+[data-look="dialog"] > .hero .deco::before,[data-look="dialog"] > .hero .deco::after{content:"";position:absolute;border-radius:22px;border:1.5px solid color-mix(in srgb,var(--sd) 35.0%,transparent);background:color-mix(in srgb,var(--sd) 5.0%,transparent)}
 [data-look="dialog"] > .hero .deco::before{right:14%;top:calc(var(--padtop) + 10px);width:190px;height:70px;border-bottom-right-radius:4px}
 [data-look="dialog"] > .hero .deco::after{right:5%;top:calc(var(--padtop) + 96px);width:150px;height:56px;border-bottom-left-radius:4px}
 /* Moderne und Vergangenheit */
 [data-look="epochen"] > .hero{--accent:#9a7420;--glow:rgba(170,112,60,.16);--hl:#f3d27a}
-[data-look="epochen"] > .hero .deco{background:linear-gradient(90deg,rgba(170,112,60,.12) 0%,rgba(170,112,60,.09) 22%,rgba(107,63,160,.12) 44%,rgba(107,63,160,.11) 58%,rgba(44,128,120,.16) 80%,rgba(44,128,120,.2) 100%)}
-[data-look="epochen"] > .hero .deco::after{content:"";position:absolute;right:0;top:0;width:45%;height:100%;background:repeating-conic-gradient(from 190deg at 100% 0,rgba(220,160,100,.30) 0 3deg,rgba(0,0,0,0) 3deg 11deg);
+[data-look="epochen"] > .hero .deco{background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 12.0%,transparent) 0%,color-mix(in srgb,var(--sd) 9.0%,transparent) 22%,color-mix(in srgb,var(--sd) 12.0%,transparent) 44%,color-mix(in srgb,var(--sd) 11.0%,transparent) 58%,color-mix(in srgb,var(--sd) 16.0%,transparent) 80%,color-mix(in srgb,var(--sd) 20.0%,transparent) 100%)}
+[data-look="epochen"] > .hero .deco::after{content:"";position:absolute;right:0;top:0;width:45%;height:100%;background:repeating-conic-gradient(from 190deg at 100% 0,color-mix(in srgb,var(--sd) 30.0%,transparent) 0 3deg,rgba(0,0,0,0) 3deg 11deg);
   -webkit-mask-image:radial-gradient(circle at 100% 0,#000,rgba(0,0,0,0) 70%);mask-image:radial-gradient(circle at 100% 0,#000,rgba(0,0,0,0) 70%)}
-[data-look="epochen"] > .hero .deco::before{content:"";position:absolute;left:0;width:33.3%;top:calc(var(--padtop) + 6px);height:20px;background:#aa703c;opacity:.5;
+[data-look="epochen"] > .hero .deco::before{content:"";position:absolute;left:0;width:33.3%;top:calc(var(--padtop) + 6px);height:20px;background:var(--st);opacity:.5;
   -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px;
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px}
 /* Tragik: Kolonialzeit beurteilen */
 [data-look="tragik"] > .hero{--accent:#b8503a;--glow:rgba(196,70,52,.14);--hl:#f6c3ad}
-[data-look="tragik"] > .hero .deco{background:radial-gradient(120% 90% at 50% 125%,rgba(196,70,52,.20),rgba(196,70,52,.05) 55%,rgba(0,0,0,0) 72%)}
+[data-look="tragik"] > .hero .deco{background:radial-gradient(120% 90% at 50% 125%,color-mix(in srgb,var(--sd) 20.0%,transparent),color-mix(in srgb,var(--sd) 5.0%,transparent) 55%,rgba(0,0,0,0) 72%)}
 [data-look="tragik"] > .hero .deco::before{content:"";position:absolute;left:50%;bottom:-62%;width:150%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
-  border:1.5px solid rgba(196,70,52,.32);box-shadow:0 0 0 26px rgba(196,70,52,.035),0 0 0 27.5px rgba(196,70,52,.16)}
-[data-look="tragik"] > .hero .deco::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:20px;background:#aa703c;opacity:.3;
+  border:1.5px solid color-mix(in srgb,var(--sd) 32.0%,transparent);box-shadow:0 0 0 26px color-mix(in srgb,var(--sd) 3.5%,transparent),0 0 0 27.5px color-mix(in srgb,var(--sd) 16.0%,transparent)}
+[data-look="tragik"] > .hero .deco::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:20px;background:var(--st);opacity:.3;
   -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px;
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'><path d='M0 18h18V2H4v12h10V6H8' fill='none' stroke='black' stroke-width='2.2'/><path d='M20 18h18V2H24v12h10V6h-6' fill='none' stroke='black' stroke-width='2.2'/></svg>") repeat-x 0 0/40px 20px}
 /* Zwei: Kongokonferenz */
 [data-look="zwei"] > .hero{--accent:#2c8078;--glow:rgba(0,0,0,0);--hlimg:linear-gradient(90deg,#f0c48a 0 50%,#9fdcd2 50% 100%)}
 [data-look="zwei"] > .hero .deco::before,[data-look="zwei"] > .hero .deco::after{content:"";position:absolute;top:0;bottom:0}
-[data-look="zwei"] > .hero .deco::before{left:0;width:50%;background:linear-gradient(90deg,rgba(170,112,60,.16),rgba(170,112,60,.05))}
-[data-look="zwei"] > .hero .deco::after{right:0;width:50%;background:linear-gradient(270deg,rgba(44,128,120,.20),rgba(44,128,120,.05))}
+[data-look="zwei"] > .hero .deco::before{left:0;width:50%;background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 16.0%,transparent),color-mix(in srgb,var(--sd) 5.0%,transparent))}
+[data-look="zwei"] > .hero .deco::after{right:0;width:50%;background:linear-gradient(270deg,color-mix(in srgb,var(--sd) 20.0%,transparent),color-mix(in srgb,var(--sd) 5.0%,transparent))}
 /* Morgendämmerung: Für morgen */
 [data-look="morgen"] > .hero{--accent:#c44634;--glow:rgba(255,170,90,.18);--hl:#ffd08a}
 [data-look="morgen"] > .hero{--mask:linear-gradient(90deg,rgba(0,0,0,0),#000 18%,#000 82%,rgba(0,0,0,0))}
-[data-look="morgen"] > .hero .deco{background:linear-gradient(to top,rgba(222,120,80,.30),rgba(236,170,130,.10) 45%,rgba(0,0,0,0) 75%)}
-[data-look="morgen"] > .hero .deco::before{content:"";position:absolute;left:50%;bottom:-120px;width:240px;height:240px;margin-left:-120px;border-radius:50%;background:radial-gradient(circle,rgba(222,120,80,.85) 0 40%,rgba(222,120,80,.22) 41% 62%,rgba(0,0,0,0) 63%)}
-[data-look="morgen"] > .hero .deco::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(196,70,52,.5)}
+[data-look="morgen"] > .hero .deco{background:linear-gradient(to top,color-mix(in srgb,var(--sd) 30.0%,transparent),color-mix(in srgb,var(--sd) 10.0%,transparent) 45%,rgba(0,0,0,0) 75%)}
+[data-look="morgen"] > .hero .deco::before{content:"";position:absolute;left:50%;bottom:-120px;width:240px;height:240px;margin-left:-120px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--sd) 85.0%,transparent) 0 40%,color-mix(in srgb,var(--sd) 22.0%,transparent) 41% 62%,rgba(0,0,0,0) 63%)}
+[data-look="morgen"] > .hero .deco::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:color-mix(in srgb,var(--sd) 50.0%,transparent)}
 
 
 /* Dunkelmodus: Akzente kommen aus der Palette */
@@ -324,24 +324,24 @@ main{--padx:max(16px,calc((100vw - 948px) / 2));--padtop:calc(var(--sat) + 76px)
 [data-look="papier"] > .hero,[data-look="morgen"] > .hero{--accent:var(--rust);--hl:var(--rust-t)}
 [data-look="zeitraum"] > .hero{--accent:var(--teal);--hl:var(--teal-t)}
 [data-look="split"] > .hero{--accent:var(--teal)}
-[data-look="morgen"] > .hero .deco::before{background:radial-gradient(circle,rgba(222,120,80,.75) 0 40%,rgba(222,120,80,.18) 41% 62%,rgba(0,0,0,0) 63%)}
-.meander,[data-look="antike"] > .hero .deco::before,[data-look="antike"] .stage::before,[data-look="epochen"] > .hero .deco::before{background:var(--ochre)}
+[data-look="morgen"] > .hero .deco::before{background:radial-gradient(circle,color-mix(in srgb,var(--sd) 75.0%,transparent) 0 40%,color-mix(in srgb,var(--sd) 18.0%,transparent) 41% 62%,rgba(0,0,0,0) 63%)}
+.meander,[data-look="antike"] > .hero .deco::before,[data-look="antike"] .stage::before,[data-look="epochen"] > .hero .deco::before{background:var(--st)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--plum:#b392e6;--ochre:#d9a46e;--teal:#6cc3b8;--slate:#88aee0;--rust:#ee8a78;--pen:#b392e6;--mint:#2f7f73;--thread:#ee6a58}}
 :root[data-theme="dark"]{--plum:#b392e6;--ochre:#d9a46e;--teal:#6cc3b8;--slate:#88aee0;--rust:#ee8a78;--pen:#b392e6;--mint:#2f7f73;--thread:#ee6a58}
 
 /* Akzentfarbe der Station auch im Inhalt */
 .station[data-look] .items{border-top-color:var(--ink)}
 [data-look="antike"] .stage{position:relative;padding-top:50px}
-[data-look="antike"] .stage::before{content:"";position:absolute;top:10px;left:18px;right:18px;height:16px;background:#aa703c;opacity:.6;
+[data-look="antike"] .stage::before{content:"";position:absolute;top:10px;left:18px;right:18px;height:16px;background:var(--st);opacity:.6;
   -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='16'><path d='M0 15h15V1H3v10h8V5H6' fill='none' stroke='black' stroke-width='1.8'/><path d='M16 15h15V1H19v10h8V5h-5' fill='none' stroke='black' stroke-width='1.8'/></svg>") repeat-x 0 0/32px 16px;
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='16'><path d='M0 15h15V1H3v10h8V5H6' fill='none' stroke='black' stroke-width='1.8'/><path d='M16 15h15V1H19v10h8V5h-5' fill='none' stroke='black' stroke-width='1.8'/></svg>") repeat-x 0 0/32px 16px}
-[data-look="papier"] .out{background:linear-gradient(90deg,rgba(0,0,0,0) 34px,rgba(196,70,52,.45) 34px,rgba(196,70,52,.45) 36px,rgba(0,0,0,0) 36px),repeating-linear-gradient(rgba(0,0,0,0) 0 27px,var(--line) 27px 28px) 0 58px/100% auto,var(--sheet);padding-left:50px}
-[data-look="epochen"] table.cmp thead th:nth-child(2){border-bottom-color:#aa703c}
-[data-look="epochen"] table.cmp thead th:nth-child(3){border-bottom-color:#6b3fa0}
-[data-look="epochen"] table.cmp thead th:nth-child(4){border-bottom-color:#2c8078}
-[data-look="morgen"] .rules li::before{color:#c44634}
-[data-look="bauplan"] .glbar i{background:#2f6fb2}
-[data-look="lineal"] .steps4 b::before{background:#b7791f}
+[data-look="papier"] .out{background:linear-gradient(90deg,rgba(0,0,0,0) 34px,color-mix(in srgb,var(--sd) 45.0%,transparent) 34px,color-mix(in srgb,var(--sd) 45.0%,transparent) 36px,rgba(0,0,0,0) 36px),repeating-linear-gradient(rgba(0,0,0,0) 0 27px,var(--line) 27px 28px) 0 58px/100% auto,var(--sheet);padding-left:50px}
+[data-look="epochen"] table.cmp thead th:nth-child(2){border-bottom-color:var(--st)}
+[data-look="epochen"] table.cmp thead th:nth-child(3){border-bottom-color:var(--st)}
+[data-look="epochen"] table.cmp thead th:nth-child(4){border-bottom-color:var(--st)}
+[data-look="morgen"] .rules li::before{color:var(--st)}
+[data-look="bauplan"] .glbar i{background:var(--st)}
+[data-look="lineal"] .steps4 b::before{background:var(--st)}
 
 h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0}
 h1{font-weight:800;letter-spacing:-.025em;line-height:1.03}
@@ -459,7 +459,7 @@ h3{font-size:18px;font-weight:700}
 @keyframes drawThread{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes knot{from{opacity:0;transform:scale(0)}to{opacity:1;transform:none}}
 .fadenline circle{transform-box:fill-box;transform-origin:center}
-[data-look="buehne"] > .hero .deco{background:linear-gradient(rgba(107,63,160,.12),rgba(0,0,0,0) 75%)}
+[data-look="buehne"] > .hero .deco{background:linear-gradient(color-mix(in srgb,var(--sd) 12.0%,transparent),rgba(0,0,0,0) 75%)}
 @media (max-width:699px){.fadenline{height:64px;bottom:3vh}}
 .fadenline{height:11vh;bottom:2vh;max-width:none;overflow:hidden!important}
 /* Ohne non-scaling-stroke, sonst endet der Strich bei breitem Fenster mitten im Bild */
@@ -469,7 +469,7 @@ h3{font-size:18px;font-weight:700}
 .hero::after{display:none}
 .art{position:absolute;z-index:0;right:0;top:50%;width:min(300px,32%);height:auto;transform:translateY(-50%);overflow:visible;pointer-events:none}
 .art path{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.art path.g{stroke:#6f9c26}.art path.b{stroke:#2e8eab}.art path.r{stroke:var(--rust);opacity:.7}
+.art path.g{stroke:#6f9c26}.art path.b{stroke:#2e8eab}.art path.r{stroke:var(--st);opacity:.7}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .art path.g{stroke:#a6d65a}:root:not([data-theme="light"]) .art path.b{stroke:#6cc6e0}}
 :root[data-theme="dark"] .art path.g{stroke:#a6d65a}:root[data-theme="dark"] .art path.b{stroke:#6cc6e0}
 .station.enter .art .d{stroke-dasharray:1;animation:drawThread 1.3s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--d,0) * .1s)}
@@ -1111,12 +1111,12 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 /* ---------- Etappen, Akteure, Streitfragen ---------- */
 .arc{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;align-items:end;height:178px;margin-top:16px;padding:0 2px;border-bottom:1.5px solid var(--ink)}
 .arc-b{all:unset;cursor:pointer;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:6px;position:relative;-webkit-tap-highlight-color:transparent}
-.arc-b i{display:block;height:calc(var(--h) * 128px);border-radius:10px 10px 3px 3px;background:rgba(196,70,52,.22);border:1.5px solid rgba(196,70,52,.5);transform-origin:bottom;
+.arc-b i{display:block;height:calc(var(--h) * 128px);border-radius:10px 10px 3px 3px;background:color-mix(in srgb,var(--sd) 22.0%,transparent);border:1.5px solid color-mix(in srgb,var(--sd) 50.0%,transparent);transform-origin:bottom;
   transition:background-color .3s var(--ease),border-color .3s var(--ease),transform .45s var(--ease)}
 .station.enter .arc-b i{animation:arcGrow .6s var(--ease) both;animation-delay:calc(.12s + var(--k,0) * 45ms)}
 @keyframes arcGrow{from{transform:scaleY(.08)}to{transform:none}}
 .arc-b span{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;text-align:center;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-bottom:6px;transition:color .25s}
-.arc-b[aria-pressed="true"] i{background:#c44634;border-color:#c44634}
+.arc-b[aria-pressed="true"] i{background:var(--st);border-color:var(--st)}
 .arc-b[aria-pressed="true"] span{color:var(--ink);font-weight:500}
 .arc-b:focus-visible i{outline:2px solid var(--pen);outline-offset:2px}
 @media (hover:hover){.arc-b:hover i{transform:translateY(-3px)}}
@@ -1124,14 +1124,14 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 .js .arc-p{display:none}
 .js .arc-p.on{display:block;animation:arcIn .42s var(--ease) both}
 @keyframes arcIn{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
-.arc-p{background:var(--sheet);border:1px solid var(--rule);border-left:3px solid #c44634;border-radius:4px 14px 14px 4px;padding:16px 18px;box-shadow:var(--shadow)}
+.arc-p{background:var(--sheet);border:1px solid var(--rule);border-left:3px solid var(--st);border-radius:4px 14px 14px 4px;padding:16px 18px;box-shadow:var(--shadow)}
 .nojs .arc-p{margin-top:12px}
 .arc-p p{margin:8px 0 0;max-width:68ch}
 .arc-h{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
 .arc-h b{font-family:var(--font-display);font-size:19px}
 .arc-h span{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--muted)}
 .arc-f{font-size:15px;color:var(--muted)}
-.arc-f b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;font-weight:500;color:#c44634;margin-right:6px}
+.arc-f b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;font-weight:500;color:var(--st);margin-right:6px}
 .figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
 .achsen{display:grid;gap:12px;margin-top:14px}
 @media (min-width:700px){.achsen{grid-template-columns:1fr 1fr}.achsen .achse:last-child{grid-column:1 / -1}}
@@ -1140,9 +1140,9 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 .achse small{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}
 .pole{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-family:var(--font-display);font-weight:700;font-size:15.5px}
 .pole span:last-child{text-align:right}
-.pole i{height:2px;border-radius:2px;background:linear-gradient(90deg,#aa703c,#c44634);position:relative}
+.pole i{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--st),var(--st));position:relative}
 .pole i::before,.pole i::after{content:"";position:absolute;top:-3px;width:8px;height:8px;border-radius:50%}
-.pole i::before{left:-2px;background:#aa703c}.pole i::after{right:-2px;background:#c44634}
+.pole i::before{left:-2px;background:var(--st)}.pole i::after{right:-2px;background:var(--st)}
 .ladder{list-style:none;margin:14px 0 0;padding:0;counter-reset:ld;display:grid;gap:0}
 .ladder li{counter-increment:ld;display:grid;grid-template-columns:34px 1fr;column-gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);position:relative}
 .ladder li::before{content:counter(ld);grid-row:1 / span 2;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--paper);background:var(--accent-c,var(--pen))}
@@ -1155,10 +1155,10 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 
 /* ---------- Reißverschluss ---------- */
 .auftrag{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.auftrag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#aa703c 0 50%,#2c8078 50%)}
+.auftrag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--st) 0 50%,var(--st) 50%)}
 .auftrag small{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}
 .auftrag p{margin:6px 0 0;font-size:17px;line-height:1.45}
-.auftrag mark{background:linear-gradient(transparent 55%,rgba(44,128,120,.35) 55%);color:inherit;padding:0 2px}
+.auftrag mark{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--sd) 35.0%,transparent) 55%);color:inherit;padding:0 2px}
 .vtog{display:inline-grid;grid-template-columns:1fr 1fr;background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:4px;position:relative;margin-top:14px}
 .vtog button{all:unset;cursor:pointer;position:relative;z-index:1;min-height:38px;padding:0 18px;border-radius:10px;font-family:var(--font-display);font-weight:600;font-size:15px;display:grid;place-items:center;transition:color .3s}
 .vtog button[aria-pressed="true"]{color:var(--paper)}
@@ -1169,8 +1169,8 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 .vbars{position:relative;height:calc(7 * 30px)}
 .vbars i{position:absolute;left:0;top:0;height:24px;width:100%;border-radius:7px;font-style:normal;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12.5px;line-height:24px;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   transform:translate3d(0,calc(var(--b) * 30px),0);transition:transform .55s var(--ease),width .55s var(--ease);will-change:transform}
-.vbars i.a{background:rgba(170,112,60,.22);border:1px solid rgba(170,112,60,.55)}
-.vbars i.b{background:rgba(44,128,120,.22);border:1px solid rgba(44,128,120,.6)}
+.vbars i.a{background:color-mix(in srgb,var(--sd) 22.0%,transparent);border:1px solid color-mix(in srgb,var(--sd) 55.0%,transparent)}
+.vbars i.b{background:color-mix(in srgb,var(--sd) 22.0%,transparent);border:1px solid color-mix(in srgb,var(--sd) 60.0%,transparent)}
 .vbars i.f{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
 .vmode[data-m="zip"] .vbars{height:136px}
 .vmode[data-m="zip"] .vbars i{width:calc(50% - 4px);transform:translate3d(0,calc(var(--z) * 36px),0)}
@@ -1190,19 +1190,19 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 .zip{margin-top:14px;border-radius:16px;border:1px solid var(--rule);background:var(--sheet);box-shadow:var(--shadow);overflow:hidden}
 .zhead,.zrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .zhead span{padding:10px 14px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12.5px}
-.zhead .za,.zrow .za{background:rgba(170,112,60,.10)}
-.zhead .zb,.zrow .zb{background:rgba(44,128,120,.11)}
-.zhead .za{color:#aa703c}.zhead .zb{color:#2c8078}
+.zhead .za,.zrow .za{background:color-mix(in srgb,var(--sd) 10.0%,transparent)}
+.zhead .zb,.zrow .zb{background:color-mix(in srgb,var(--sd) 11.0%,transparent)}
+.zhead .za{color:var(--st)}.zhead .zb{color:var(--st)}
 .zrow{border-top:1px solid var(--rule)}
 .zrow > .za,.zrow > .zb{margin:0;padding:4px 14px 12px;font-size:14.5px;line-height:1.45}
 .zbtn,.zrow .zl.nj{grid-column:1 / -1}
-.zbtn{all:unset;cursor:pointer;grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px 6px;background:linear-gradient(90deg,rgba(170,112,60,.10) 50%,rgba(44,128,120,.11) 50%);-webkit-tap-highlight-color:transparent}
+.zbtn{all:unset;cursor:pointer;grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px 6px;background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 10.0%,transparent) 50%,color-mix(in srgb,var(--sd) 11.0%,transparent) 50%);-webkit-tap-highlight-color:transparent}
 .zbtn:focus-visible{outline:2px solid var(--pen);outline-offset:-2px}
 .zl{font-family:var(--font-display);font-weight:700;font-size:16px}
-.zrow .zl.nj{padding:10px 14px 6px;display:flex;justify-content:space-between;background:linear-gradient(90deg,rgba(170,112,60,.10) 50%,rgba(44,128,120,.11) 50%)}
+.zrow .zl.nj{padding:10px 14px 6px;display:flex;justify-content:space-between;background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 10.0%,transparent) 50%,color-mix(in srgb,var(--sd) 11.0%,transparent) 50%)}
 .js .zrow .zl.nj{display:none}
 .zt{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;font-weight:500;padding:3px 8px;border-radius:20px;border:1px solid currentColor;color:var(--muted);white-space:nowrap}
-.zrow[data-k="g"] .zt{color:#2c8078}.zrow[data-k="u"] .zt{color:#c44634}.zrow[data-k="e"] .zt{color:#aa703c}
+.zrow[data-k="g"] .zt{color:var(--st)}.zrow[data-k="u"] .zt{color:var(--st)}.zrow[data-k="e"] .zt{color:var(--st)}
 .zbtn .zt::after{content:"＋";margin-left:6px}
 .zrow.open .zbtn .zt::after{content:"−"}
 .zsay{grid-column:1 / -1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
@@ -1283,7 +1283,7 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
   -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 18%,#000 82%,rgba(0,0,0,.35));mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 18%,#000 82%,rgba(0,0,0,.35))}
 .mnd{position:absolute;top:16px;left:22px;width:calc(100% - 44px);height:16px;overflow:hidden;pointer-events:none}
 .mnd path{fill:none;stroke-linecap:square}
-.mnd .mb{stroke:#aa703c;stroke-width:1.8;opacity:.6}
+.mnd .mb{stroke:var(--st);stroke-width:1.8;opacity:.6}
 .mnd .mg{stroke-width:2.2}
 @media (prefers-reduced-motion:reduce){.mnd .mg{display:none}}
 
@@ -1329,14 +1329,14 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 .fill-h b{font-family:var(--font-display);font-size:16.5px}
 .fill-h span{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
 .fill-h i{display:inline-block;width:14px;height:5px;border-radius:3px}
-.fz .k1,.zb .g{background:#2c8078}.fz .k2,.zb .s{background:#9fdcd2}
+.fz .k1,.zb .g{background:var(--st)}.fz .k2,.zb .s{background:var(--st)}
 .zr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:14px;align-items:center;padding:8px 0;border-top:1px dashed var(--rule)}
 .zl b{display:block;font-family:var(--font-display);font-size:15px}
 .zl small{display:block;font-size:13px;color:var(--muted);line-height:1.35}
 .zb{display:grid;gap:5px}
 .zb i{display:block;height:7px;border-radius:4px;width:var(--w);min-width:3px}
 .zb .s[style*="--w:0%"]{width:3px;opacity:.5}
-.zb .g.gap{background:linear-gradient(90deg,#2c8078 0 38%,transparent 38% 62%,#2c8078 62%)}
+.zb .g.gap{background:linear-gradient(90deg,var(--st) 0 38%,transparent 38% 62%,var(--st) 62%)}
 .frg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media (max-width:520px){.frg{grid-template-columns:1fr}}
 .frg div{padding:9px 11px;border-radius:10px;background:color-mix(in srgb,var(--paper) 55%,transparent);border:1px solid var(--rule)}
@@ -1357,7 +1357,7 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 }
 @media (min-width:700px) and (max-width:899px){.asp{grid-template-columns:repeat(3,minmax(0,1fr))}.figs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:699px){.figs{grid-template-columns:1fr 1fr}.asp{grid-template-columns:1fr 1fr}}
-.rules li.luck{counter-increment:none;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,color-mix(in srgb,#c44634 20%,var(--sheet)),var(--sheet));border-color:color-mix(in srgb,#c44634 45%,var(--rule))}
+.rules li.luck{counter-increment:none;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--st) 20%,var(--sheet)),var(--sheet));border-color:color-mix(in srgb,var(--st) 45%,var(--rule))}
 .rules li.luck::before{content:none}
 .luck svg{width:54px;height:36px;flex:none}
 .luck svg path{fill:none;stroke:#e0735f;stroke-width:2.4;stroke-linecap:round}
@@ -1592,34 +1592,34 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 
 /* Gesellschaft: Schichten wie in einer Pyramide, unten breit und dicht */
 [data-look="pyramide"] > .hero{--accent:var(--plum);--hl:var(--plum-t);--glow:rgba(107,63,160,.12)}
-[data-look="pyramide"] > .hero .deco{background:linear-gradient(to top,rgba(107,63,160,.11) 0 16%,rgba(0,0,0,0) 16% 17.5%,rgba(107,63,160,.075) 17.5% 33%,rgba(0,0,0,0) 33% 34.5%,rgba(107,63,160,.045) 34.5% 50%,rgba(0,0,0,0) 50%)}
+[data-look="pyramide"] > .hero .deco{background:linear-gradient(to top,color-mix(in srgb,var(--sd) 11.0%,transparent) 0 16%,rgba(0,0,0,0) 16% 17.5%,color-mix(in srgb,var(--sd) 7.5%,transparent) 17.5% 33%,rgba(0,0,0,0) 33% 34.5%,color-mix(in srgb,var(--sd) 4.5%,transparent) 34.5% 50%,rgba(0,0,0,0) 50%)}
 .station.enter[data-look="pyramide"] > .hero .deco{animation:fadeIn 1s var(--ease) both}
 
 /* Industrie: Schiefer statt Petrol, Eisen und Ruß */
 [data-look="zeitraum"] > .hero{--accent:var(--slate);--hl:var(--slate-t);--glow:rgba(63,108,160,.12)}
-[data-look="zeitraum"] > .hero .deco{background:repeating-radial-gradient(ellipse at 50% 135%,rgba(0,0,0,0) 0 38px,rgba(63,108,160,.20) 38px 39.5px)}
-[data-look="zeitraum"] > .hero .deco::after{background:repeating-conic-gradient(rgba(63,108,160,.55) 0 1.2deg,rgba(0,0,0,0) 1.2deg 30deg)}
+[data-look="zeitraum"] > .hero .deco{background:repeating-radial-gradient(ellipse at 50% 135%,rgba(0,0,0,0) 0 38px,color-mix(in srgb,var(--sd) 20.0%,transparent) 38px 39.5px)}
+[data-look="zeitraum"] > .hero .deco::after{background:repeating-conic-gradient(color-mix(in srgb,var(--sd) 55.0%,transparent) 0 1.2deg,rgba(0,0,0,0) 1.2deg 30deg)}
 [data-look="zeitraum"] .fill{--accent:var(--slate)}
-.fz .k1,.fz .zb .g{background:var(--slate)}.fz .k2,.fz .zb .s{background:var(--slate-t)}
+.fz .k1,.fz .zb .g{background:var(--st)}.fz .k2,.fz .zb .s{background:color-mix(in srgb,var(--st) 28%,var(--sheet))}
 .fz .zb .s{opacity:.9}
 
 /* Moderne und Vergangenheit: links alt (Ocker), rechts neu (Petrol), ohne Mäander */
 [data-look="epochen"] > .hero{--accent:var(--ochre);--hl:var(--ochre-t)}
-[data-look="epochen"] > .hero .deco{background:linear-gradient(90deg,rgba(170,112,60,.13) 0%,rgba(170,112,60,.06) 40%,rgba(44,128,120,.08) 62%,rgba(44,128,120,.18) 100%)}
+[data-look="epochen"] > .hero .deco{background:linear-gradient(90deg,color-mix(in srgb,var(--sd) 13.0%,transparent) 0%,color-mix(in srgb,var(--sd) 6.0%,transparent) 40%,color-mix(in srgb,var(--sd) 8.0%,transparent) 62%,color-mix(in srgb,var(--sd) 18.0%,transparent) 100%)}
 [data-look="epochen"] > .hero .deco::before{display:none!important}
-[data-look="epochen"] table.cmp thead th:nth-child(2){border-bottom-color:var(--teal)}
-[data-look="epochen"] table.cmp thead th:nth-child(3){border-bottom-color:var(--ochre)}
-[data-look="epochen"] table.cmp thead th:nth-child(4){border-bottom-color:var(--plum)}
+[data-look="epochen"] table.cmp thead th:nth-child(2){border-bottom-color:var(--st)}
+[data-look="epochen"] table.cmp thead th:nth-child(3){border-bottom-color:var(--st)}
+[data-look="epochen"] table.cmp thead th:nth-child(4){border-bottom-color:var(--st)}
 .feg div{grid-template-columns:118px 1fr}
 
 /* Kolonien: Stimmen in Rost */
 [data-look="dialog"] > .hero{--accent:var(--rust);--hl:var(--rust-t);--glow:rgba(196,70,52,.12)}
-[data-look="dialog"] > .hero .deco::before,[data-look="dialog"] > .hero .deco::after{border-color:color-mix(in srgb,var(--rust) 34%,transparent);background:color-mix(in srgb,var(--rust) 5%,transparent)}
+[data-look="dialog"] > .hero .deco::before,[data-look="dialog"] > .hero .deco::after{border-color:color-mix(in srgb,var(--st) 34%,transparent);background:color-mix(in srgb,var(--st) 5%,transparent)}
 [data-look="dialog"] .fill{--accent:var(--rust)}
 
 /* Quelle: Protokoll in Pflaume */
 [data-look="akte"] > .hero{--accent:var(--plum);--hl:var(--plum-t);--glow:rgba(107,63,160,.12)}
-[data-look="akte"] > .hero .deco{background:linear-gradient(rgba(107,63,160,.09),rgba(0,0,0,0) 72%)}
+[data-look="akte"] > .hero .deco{background:linear-gradient(color-mix(in srgb,var(--sd) 9.0%,transparent),rgba(0,0,0,0) 72%)}
 .quelltext{font-family:var(--font-body);font-style:normal;font-size:16px;line-height:1.9}
 .quelltext .who{font-family:var(--font-display);font-style:normal;font-weight:650;letter-spacing:0;font-size:15px;margin:0 0 6px;padding-left:2.4rem}
 .quelltext .qz{display:block;position:relative;padding-left:2.4rem}
@@ -1630,7 +1630,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 
 /* Rassismus: nüchternes Schiefer */
 [data-look="stufen"] > .hero{--accent:var(--slate);--hl:var(--slate-t);--glow:rgba(63,108,160,.10)}
-[data-look="stufen"] > .hero .deco{background:linear-gradient(rgba(63,108,160,.10),rgba(0,0,0,0) 70%)}
+[data-look="stufen"] > .hero .deco{background:linear-gradient(color-mix(in srgb,var(--sd) 10.0%,transparent),rgba(0,0,0,0) 70%)}
 [data-look="stufen"] .fill{--accent:var(--slate)}
 .frx .frg{grid-template-columns:1fr 1fr}
 @media (max-width:520px){.frx .frg{grid-template-columns:1fr}}
@@ -1641,8 +1641,8 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 
 /* Urteilen: Waage in Ocker, ohne Mäander */
 [data-look="tragik"] > .hero{--accent:var(--ochre);--hl:var(--ochre-t);--glow:rgba(170,112,60,.14)}
-[data-look="tragik"] > .hero .deco{background:radial-gradient(120% 90% at 50% 125%,rgba(170,112,60,.18),rgba(170,112,60,.05) 55%,rgba(0,0,0,0) 72%)}
-[data-look="tragik"] > .hero .deco::before{border-color:rgba(170,112,60,.32);box-shadow:0 0 0 26px rgba(170,112,60,.035),0 0 0 27.5px rgba(170,112,60,.16)}
+[data-look="tragik"] > .hero .deco{background:radial-gradient(120% 90% at 50% 125%,color-mix(in srgb,var(--sd) 18.0%,transparent),color-mix(in srgb,var(--sd) 5.0%,transparent) 55%,rgba(0,0,0,0) 72%)}
+[data-look="tragik"] > .hero .deco::before{border-color:color-mix(in srgb,var(--sd) 32.0%,transparent);box-shadow:0 0 0 26px color-mix(in srgb,var(--sd) 3.5%,transparent),0 0 0 27.5px color-mix(in srgb,var(--sd) 16.0%,transparent)}
 [data-look="tragik"] > .hero .deco::after{display:none!important}
 
 /* Zeichnungen: Textmarker, leerer Platz am Konferenztisch */
@@ -1659,8 +1659,8 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 /* Kongokonferenz: Sitzplätze */
 .seats{margin-top:14px}
 .seats .chip{cursor:default;font-family:var(--font-display);font-style:normal}
-.seats .chip.host{border-color:color-mix(in srgb,var(--teal) 60%,transparent)}
-.seats .chip.empty{border-style:dashed;border-color:color-mix(in srgb,var(--rust) 70%,transparent);color:var(--rust);background:transparent;font-family:var(--font-body);font-style:italic}
+.seats .chip.host{border-color:color-mix(in srgb,var(--st) 60%,transparent)}
+.seats .chip.empty{border-style:dashed;border-color:color-mix(in srgb,var(--st) 70%,transparent);color:var(--st);background:transparent;font-family:var(--font-body);font-style:italic}
 
 /* Handwerk: Belegen links, Operatoren rechts, Karikatur darunter über die volle Breite */
 @media (min-width:900px){
@@ -1698,6 +1698,29 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 @media (min-width:900px){#s-handwerk .content > .zit:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="handwerk"] .content > .zit:not([data-sid] [data-sid] *){align-self:stretch}}
 @media (max-width:759px){[data-look="akte"] .stage{grid-template-columns:minmax(0,1fr)}.quelltext .stelle{white-space:normal}}
 
+
+/* ===== Farbsystem: eine Farbe pro Station (Licht, Zeichnung, Kopf, Muster, Bausteine) ===== */
+:root{--sd:#c43a2e;--sl:#f06a5c;--st:var(--sd)}
+[data-look="buehne"]{--sd:#6b3fa0;--sl:#b392e6}
+[data-look="bauplan"]{--sd:#2f6fb2;--sl:#88aee0}
+[data-look="lineal"]{--sd:#9a6a1c;--sl:#d9a46e}
+[data-look="papier"]{--sd:#3f7a45;--sl:#8fc48a}
+[data-look="pyramide"]{--sd:#8f3c78;--sl:#df8fc4}
+[data-look="zeitraum"]{--sd:#2a6f86;--sl:#7cbfd6}
+[data-look="split"]{--sd:#2c8078;--sl:#6cc3b8}
+[data-look="epochen"]{--sd:#4a52b4;--sl:#9ea6f2}
+[data-look="dialog"]{--sd:#b8503a;--sl:#ee8a78}
+[data-look="zwei"]{--sd:#7a7020;--sl:#cdbf62}
+[data-look="akte"]{--sd:#a0405e;--sl:#e88fa6}
+[data-look="stufen"]{--sd:#4f6478;--sl:#a2b3c6}
+[data-look="tragik"]{--sd:#c43a2e;--sl:#f06a5c}
+[data-look="probe"]{--sd:#8f6a00;--sl:#e6c157}
+[data-look="morgen"]{--sd:#b85a1e;--sl:#f29c62}
+[data-look]{--st:var(--sd);--pen:var(--st);--pen-soft:color-mix(in srgb,var(--st) 14%,transparent);--pen-mid:color-mix(in srgb,var(--st) 28%,transparent);--accent-c:var(--st);--sh1:var(--st);--sh2:color-mix(in srgb,var(--st) 55%,var(--ink));--sh3:color-mix(in srgb,var(--st) 50%,var(--muted));--sh4:color-mix(in srgb,var(--st) 40%,var(--rule))}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) [data-look]{--st:var(--sl)}:root:not([data-theme="light"]){--st:var(--sl)}}
+:root[data-theme="dark"] [data-look],:root[data-theme="dark"]{--st:var(--sl)}
+[data-look] > .hero{--accent:var(--st)!important;--hl:color-mix(in srgb,var(--st) 30%,var(--sheet))!important;--glow:color-mix(in srgb,var(--sd) 14%,transparent)!important}
+[data-look] .fill{--accent:var(--st)!important}
 </style>
 </head>
 <body>
@@ -1732,7 +1755,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
         <li><small class="lb">Stand</small><small>alles recherchiert, deine Unterlagen fehlen noch</small></li>
       </ul>
     </section>
-    <p class="buildtag">Stand: 19.11.2026, 14:10</p>
+    <p class="buildtag">Stand: 19.11.2026, 15:10</p>
   </div>
 </nav>
 
@@ -1887,10 +1910,10 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
     <h2>Kartenstapel</h2>
     <div class="deck" data-cats="Industrialisierung,Soziale Frage"><p class="sub">Karte antippen zum Aufdecken</p><div class="s-deck"><details class="s-card"><summary><small>Industrialisierung</small><b>Hochindustrialisierung</b></summary><p>Phase etwa ab 1870 bis 1914: Schwer-, Chemie- und Elektroindustrie wachsen, Deutschland wird vom Agrar- zum Industriestaat.</p><p class="merk"><b>Beispiel</b>Ruhrgebiet, Siemens, BASF.</p></details><details class="s-card"><summary><small>Industrialisierung</small><b>Urbanisierung</b></summary><p>Verstädterung: Immer mehr Menschen leben in Städten, besonders in Großstädten mit über 100.000 Einwohnern.</p><p class="merk"><b>Beispiel</b>8 Großstädte 1871, 48 im Jahr 1910.</p></details><details class="s-card"><summary><small>Industrialisierung</small><b>Binnenwanderung</b></summary><p>Millionen ziehen innerhalb Deutschlands vom Land in die Industriegebiete, vor allem aus den preußischen Ostprovinzen ins Ruhrgebiet und nach Berlin.</p><p class="merk"><b>Beispiel</b>„Ruhrpolen“ im Ruhrgebiet.</p></details><details class="s-card"><summary><small>Industrialisierung</small><b>Mietskaserne</b></summary><p>Dicht bebaute Wohnblöcke mit mehreren Hinterhöfen und kleinen, dunklen, überbelegten Wohnungen.</p><p class="merk"><b>Beispiel</b>Berlin um 1900.</p></details><details class="s-card"><summary><small>Industrialisierung</small><b>Schlafgänger</b></summary><p>Menschen, die in einer fremden Wohnung nur stundenweise ein Bett mieten. Zeichen der Wohnungsnot.</p></details><details class="s-card"><summary><small>Industrialisierung</small><b>Gründerkrach</b></summary><p>Börsenkrach von 1873 nach dem Boom der Gründerjahre. Leitet eine lange Phase schwächeren Wachstums ein.</p><p class="merk"><b>Beispiel</b>Danach Schutzzölle ab 1879.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Soziale Frage</b></summary><p>Sammelbegriff für die Not der Arbeiter im 19. Jahrhundert: niedrige Löhne, lange Arbeitszeit, Wohnungsnot, keine Absicherung bei Krankheit, Unfall und Alter.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Proletariat</b></summary><p>Lohnarbeiter, die nichts besitzen außer ihrer Arbeitskraft und vom täglichen Lohn abhängen. Begriff aus dem Marxismus.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Arbeiterbewegung</b></summary><p>Selbstorganisation der Arbeiter in Parteien, Gewerkschaften, Genossenschaften und Bildungsvereinen.</p><p class="merk"><b>Beispiel</b>SPD und Freie Gewerkschaften.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>SPD</b></summary><p>1875 in Gotha als Sozialistische Arbeiterpartei gegründet, seit 1890 Sozialdemokratische Partei Deutschlands. 1912 stärkste Fraktion im Reichstag.</p><p class="merk"><b>Beispiel</b>34,8 Prozent, 110 Sitze.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Sozialistengesetz</b></summary><p>Gesetz von 1878 gegen die Sozialdemokratie: Vereine, Versammlungen und Schriften verboten, Ausweisungen möglich. Gilt bis 1890.</p><p class="merk"><b>Beispiel</b>Anlass: zwei Attentate auf Wilhelm I. 1878.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Sozialversicherung</b></summary><p>Bismarcks Gesetze: Krankenversicherung 1883, Unfallversicherung 1884, Alters- und Invaliditätsversicherung 1889. Weltweit die erste staatliche Pflichtversicherung dieser Art.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Kaiserliche Botschaft</b></summary><p>Erklärung Wilhelms I. vom 17. November 1881, von Bismarck im Reichstag verlesen. Kündigt die Sozialversicherung an.</p><p class="merk"><b>Beispiel</b>Soziale Schäden auch durch „positive Förderung des Wohles der Arbeiter“ heilen.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Arbeiterschutzgesetz</b></summary><p>1891 unter Wilhelm II.: Sonntagsruhe, Fabrikarbeit für Kinder unter 13 Jahren verboten, Höchstarbeitszeiten für Jugendliche und Frauen.</p><p class="merk"><b>Beispiel</b>Nach Bismarcks Entlassung.</p></details><details class="s-card"><summary><small>Soziale Frage</small><b>Kirchliche Antworten</b></summary><p>Katholische Soziallehre (Bischof Ketteler, Kolpings Gesellenvereine) und evangelische Innere Mission (Wichern) helfen mit Vereinen, Heimen und Fürsorge.</p></details></div></div>
     <aside class="fill fs fx"><div class="fill-h"><b>Wer antwortet auf die soziale Frage?</b><span>Vier Antworten im Vergleich</span></div>
-      <div class="fsr"><i style="background:var(--slate)"></i><p><b>Staat</b>: Sozialversicherung von oben, zugleich Verbot der Sozialdemokratie.</p></div>
-      <div class="fsr"><i style="background:var(--ochre)"></i><p><b>Kirchen</b>: katholische Soziallehre (Ketteler, Kolping), evangelische Innere Mission (Wichern). Hilfe vor Ort, keine Systemfrage.</p></div>
-      <div class="fsr"><i style="background:var(--rust)"></i><p><b>Arbeiterbewegung</b>: Selbsthilfe durch Gewerkschaften, Genossenschaften und die SPD.</p></div>
-      <div class="fsr"><i style="background:var(--teal)"></i><p><b>Unternehmer</b>: manche bauen Werkssiedlungen und Betriebskassen, etwa Krupp in Essen, erwarten dafür aber Gehorsam.</p></div>
+      <div class="fsr"><i style="background:var(--sh2)"></i><p><b>Staat</b>: Sozialversicherung von oben, zugleich Verbot der Sozialdemokratie.</p></div>
+      <div class="fsr"><i style="background:var(--sh3)"></i><p><b>Kirchen</b>: katholische Soziallehre (Ketteler, Kolping), evangelische Innere Mission (Wichern). Hilfe vor Ort, keine Systemfrage.</p></div>
+      <div class="fsr"><i style="background:var(--sh1)"></i><p><b>Arbeiterbewegung</b>: Selbsthilfe durch Gewerkschaften, Genossenschaften und die SPD.</p></div>
+      <div class="fsr"><i style="background:var(--sh4)"></i><p><b>Unternehmer</b>: manche bauen Werkssiedlungen und Betriebskassen, etwa Krupp in Essen, erwarten dafür aber Gehorsam.</p></div>
     </aside>
   </div>
 </section>
@@ -1923,7 +1946,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
     <h1>Moderne und Vergangenheit</h1>
     <p class="lede">Das Kaiserreich war beides: Weltspitze in Technik und Wissenschaft, politisch und gesellschaftlich oft rückständig. Historiker sprechen vom Janusgesicht. Deck die Tabelle ab und frag dich selbst ab, tippen deckt ein Feld wieder auf.</p></header>
   <div class="content">
-    <div class="timeline" id="tl"><div class="bar" style="left:8.93%;width:calc(33.93% - 3px);background:var(--ochre);--j:0"></div><div class="lab" style="left:8.93%">Bismarck-Ära</div><div class="bar" style="left:42.86%;width:calc(42.86% - 3px);background:var(--teal);--j:1"></div><div class="lab" style="left:42.86%">Wilhelminische Zeit</div><div class="bar" style="left:85.71%;width:calc(7.14% - 3px);background:var(--rust);--j:2"></div><div class="lab" style="left:85.71%">Krieg</div><div class="yr" style="left:8.93%">1871</div><div class="yr" style="left:42.86%">1890</div><div class="yr" style="left:85.71%">1914</div><div class="yr" style="left:92.86%">1918</div></div>
+    <div class="timeline" id="tl"><div class="bar" style="left:8.93%;width:calc(33.93% - 3px);background:var(--sh3);--j:0"></div><div class="lab" style="left:8.93%">Bismarck-Ära</div><div class="bar" style="left:42.86%;width:calc(42.86% - 3px);background:var(--sh4);--j:1"></div><div class="lab" style="left:42.86%">Wilhelminische Zeit</div><div class="bar" style="left:85.71%;width:calc(7.14% - 3px);background:var(--sh1);--j:2"></div><div class="lab" style="left:85.71%">Krieg</div><div class="yr" style="left:8.93%">1871</div><div class="yr" style="left:42.86%">1890</div><div class="yr" style="left:85.71%">1914</div><div class="yr" style="left:92.86%">1918</div></div>
     <div class="epo-ctl">
       <div class="segctl epo-seg js-only" id="eposeg" role="group" aria-label="Spalte"><span class="pill"></span><button data-c="1" aria-pressed="true">Modern</button><button data-c="2" aria-pressed="false">Rückständig</button><button data-c="3" aria-pressed="false">Zum Merken</button></div>
       <button class="chip js-only" id="cover" aria-pressed="false">Abdecken</button>
@@ -1958,9 +1981,9 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
     <p class="note">Der letzte Satz bringt die Punkte im Anforderungsbereich III: Entscheide dich und begründe, warum eine Seite schwerer wiegt.</p>
     <aside class="fill fe"><div class="fill-h"><b>Signalwörter in Quellen</b><span>Woran du die Haltung erkennst</span></div>
       <div class="feg">
-        <div><b style="--c:#2c8078">Modern</b><span>Fortschritt, Technik, Verkehr, Wahl, Verein, Masse, Reform</span></div>
-        <div><b style="--c:#aa703c">Beharrend</b><span>Thron, Gott, Pflicht, Gehorsam, Ehre, Stand, Ordnung</span></div>
-        <div><b style="--c:#c44634">Kampfbegriffe</b><span>Reichsfeinde, Umsturz, vaterlandslose Gesellen</span></div>
+        <div><b style="--c:var(--sh1)">Modern</b><span>Fortschritt, Technik, Verkehr, Wahl, Verein, Masse, Reform</span></div>
+        <div><b style="--c:var(--sh3)">Beharrend</b><span>Thron, Gott, Pflicht, Gehorsam, Ehre, Stand, Ordnung</span></div>
+        <div><b style="--c:var(--sh2)">Kampfbegriffe</b><span>Reichsfeinde, Umsturz, vaterlandslose Gesellen</span></div>
       </div></aside>
     </div><div>
     <h2>Kartenstapel Staat und Gesellschaft</h2>
@@ -1979,12 +2002,12 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
     <div class="lcol"><div data-items="2" data-range="0-5"><div class="items-head"><h2>Sechs Motive</h2><span class="sub">6 Punkte</span></div><div class="items"><details class="s-item"><summary>Wirtschaftliche Motive</summary><div class="body"><p>Kolonien sollen Rohstoffe liefern (Baumwolle, Kautschuk, Kaffee, Kakao) und neue Absatzmärkte für die Industrie öffnen. Gerade nach dem Börsenkrach von 1873 hoffen Kaufleute und Industrielle auf Wachstum in Übersee. Tatsächlich brachten die Kolonien dem Reich kaum Gewinn.</p><div class="baustein"><b>Satzbaustein</b>Wirtschaftlich erhofften sich Industrie und Handel Rohstoffe und Absatzmärkte, tatsächlich blieben die Kolonien für das Reich jedoch ein Zuschussgeschäft.</div><p class="merk"><b>Merke</b>1880 wickelten Hamburger Kaufleute ein Drittel des westlichen Handels mit Westafrika ab.</p></div></details><details class="s-item"><summary>Innenpolitische Motive</summary><div class="body"><p>Erfolge in Übersee sollen von inneren Konflikten ablenken, die Nation zusammenschweißen und Wahlen gewinnen. Der Historiker Hans-Ulrich Wehler nennt das Sozialimperialismus. Beispiel sind die „Hottentottenwahlen“ von 1907.</p><div class="baustein"><b>Satzbaustein</b>Die Kolonialpolitik diente auch innenpolitischen Zwecken, indem sie nationale Begeisterung weckte und von sozialen Spannungen ablenkte.</div><p class="merk"><b>Merke</b>Wehler: Sozialimperialismus.</p></div></details><details class="s-item"><summary>Prestige und Weltgeltung</summary><div class="body"><p>Eine Großmacht braucht Kolonien, so die verbreitete Überzeugung. Deutschland sei zu spät gekommen und müsse aufholen. Unter Wilhelm II. wird daraus die Weltpolitik mit Flotte, Stützpunkten und dem „Platz an der Sonne“ (Bülow 1897).</p><div class="baustein"><b>Satzbaustein</b>Für viele Zeitgenossen war Kolonialbesitz eine Frage des nationalen Ansehens, weil nur Kolonialmächte als Weltmächte galten.</div><p class="merk"><b>Merke</b>„Platz an der Sonne“: Bülow 1897.</p></div></details><details class="s-item"><summary>Siedlung und Auswanderung</summary><div class="body"><p>Kolonien sollen Auswanderer aufnehmen, die sonst nach Amerika gehen und für Deutschland „verloren“ wären. Das scheitert: Bis 1914 lassen sich nur etwa 23.000 Deutsche in den Kolonien nieder, allein von 1887 bis 1906 wandert rund eine Million in die USA aus.</p><div class="baustein"><b>Satzbaustein</b>Die Hoffnung auf Siedlungskolonien erwies sich als Illusion, da die Auswanderer weiterhin vor allem nach Nordamerika gingen.</div><p class="merk"><b>Merke</b>23.000 in die Kolonien, eine Million in die USA.</p></div></details><details class="s-item"><summary>Zivilisierungsmission und Mission</summary><div class="body"><p>Kolonisatoren behaupten, sie brächten Christentum, Bildung und „Kultur“ zu angeblich unterentwickelten Völkern. Dahinter steht die rassistische Vorstellung europäischer Überlegenheit. Missionare waren oft Wegbereiter, manche aber auch Kritiker der Gewalt.</p><div class="baustein"><b>Satzbaustein</b>Die sogenannte Zivilisierungsmission diente als moralische Rechtfertigung der Herrschaft und beruhte auf der Annahme europäischer Überlegenheit.</div><p class="merk"><b>Merke</b>Fabri 1879: „Bedarf Deutschland der Colonien?“</p></div></details><details class="s-item"><summary>Druck von Kaufleuten und Verbänden</summary><div class="body"><p>Private Akteure schaffen Fakten: Kaufleute wie Adolf Lüderitz erwerben Land, Abenteurer wie Carl Peters schließen fragwürdige Verträge. Der Deutsche Kolonialverein (1882) macht öffentlich Stimmung. Bismarck, eigentlich skeptisch, stellt die Gebiete 1884/85 unter den „Schutz“ des Reiches.</p><div class="baustein"><b>Satzbaustein</b>Den Anstoß gaben weniger staatliche Pläne als private Kolonialpioniere und Verbände, denen Bismarck 1884/85 nachgab.</div><p class="merk"><b>Merke</b>Kolonialverein 1882, Schutzbriefe 1884/85.</p></div></details></div></div>
     <aside class="fill fe"><div class="fill-h"><b>Die Kolonien auf einen Blick</b><span>Erwerb, heutige Staaten</span></div>
       <div class="feg">
-        <div><b style="--c:var(--rust)">Südwestafrika</b><span>1884, heute Namibia</span></div>
-        <div><b style="--c:var(--rust)">Togo</b><span>1884, heute Togo und Teile Ghanas</span></div>
-        <div><b style="--c:var(--rust)">Kamerun</b><span>1884, heute Kamerun und Teile Nigerias</span></div>
-        <div><b style="--c:var(--rust)">Ostafrika</b><span>1885, größte Kolonie, heute Tansania, Ruanda, Burundi</span></div>
-        <div><b style="--c:var(--slate)">Pazifik</b><span>ab 1884/85 Neuguinea, 1899 Samoa und Inselgruppen</span></div>
-        <div><b style="--c:var(--ochre)">Kiautschou</b><span>1898 von China gepachtet, Hafen Tsingtau</span></div>
+        <div><b style="--c:var(--sh1)">Südwestafrika</b><span>1884, heute Namibia</span></div>
+        <div><b style="--c:var(--sh1)">Togo</b><span>1884, heute Togo und Teile Ghanas</span></div>
+        <div><b style="--c:var(--sh1)">Kamerun</b><span>1884, heute Kamerun und Teile Nigerias</span></div>
+        <div><b style="--c:var(--sh1)">Ostafrika</b><span>1885, größte Kolonie, heute Tansania, Ruanda, Burundi</span></div>
+        <div><b style="--c:var(--sh2)">Pazifik</b><span>ab 1884/85 Neuguinea, 1899 Samoa und Inselgruppen</span></div>
+        <div><b style="--c:var(--sh3)">Kiautschou</b><span>1898 von China gepachtet, Hafen Tsingtau</span></div>
       </div>
       <p class="note" style="margin:10px 0 0">Der Fläche nach das drittgrößte europäische Kolonialreich, etwa fünfmal so groß wie das Reich selbst.</p>
     </aside></div>
@@ -2176,7 +2199,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 
 <!-- 13 URTEILEN -->
 <section class="station" id="s-urteilen" data-look="tragik" data-title="Kolonialzeit beurteilen" data-min="14">
-  <header class="hero" data-n="13"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M120 146V32M90 146h60"/><path pathLength="1" class="d" style="--d:1" d="M114 32h12"/><g><path pathLength="1" class="d" style="--d:2" d="M60 40h120"/><circle cx="120" cy="40" r="3" class="hub"/><animateTransform attributeName="transform" type="rotate" values="0 120 40;-7 120 40;0 120 40;5 120 40;0 120 40" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M60 40l-16 40M60 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M42 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 -7.3;0 0;0 5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M180 40l-16 40M180 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M162 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 7.3;0 0;0 -5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g></svg>
+  <header class="hero" data-n="13"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M120 146V32M90 146h60"/><path pathLength="1" class="d" style="--d:1" d="M114 32h12"/><g><path pathLength="1" class="d" style="--d:2" d="M60 40h120"/><circle cx="120" cy="40" r="3" class="hub"/><animateTransform attributeName="transform" type="rotate" values="0 120 40;-7 120 40;0 120 40;5 120 40;0 120 40" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M60 40l-16 40M60 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M42 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 7.3;0 0;0 -5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M180 40l-16 40M180 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M162 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 -7.3;0 0;0 5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g></svg>
     <div class="kicker">Für Aufgabe 3, das Urteil</div>
     <h1>Kolonialzeit beurteilen</h1>
     <p class="lede">Für ein gutes Urteil brauchst du den Überblick: was wann passierte, wer handelte und worüber Historiker bis heute streiten.</p></header>
@@ -2444,7 +2467,7 @@ var CMP=[
  ["Frauen","Frauenbewegung, ab 1908 Frauenstudium in Preußen und Recht auf Mitgliedschaft in politischen Vereinen.","Kein Wahlrecht. Nach dem BGB von 1900 entscheidet der Ehemann in Ehefragen.","Frauenwahlrecht erst im November 1918."],
  ["Alltag","Elektrisches Licht, Straßenbahn, Kanalisation, Warenhäuser. Die Lebenserwartung steigt von 37 auf 47 Jahre.","Gehorsam gegenüber Obrigkeit und Uniform, Kirche und Militär prägen Schule und Erziehung.","Heinrich Manns Roman „Der Untertan“ (1918) als Satire darauf."]
 ];
-var TL={min:1866,max:1922,bars:[["Bismarck-Ära",1871,1890,"var(--ochre)"],["Wilhelminische Zeit",1890,1914,"var(--teal)"],["Krieg",1914,1918,"var(--rust)"]],years:[1871,1890,1914,1918]};
+var TL={min:1866,max:1922,bars:[["Bismarck-Ära",1871,1890,"var(--sh3)"],["Wilhelminische Zeit",1890,1914,"var(--sh4)"],["Krieg",1914,1918,"var(--sh1)"]],years:[1871,1890,1914,1918]};
 var EX={
  buelow:{art:"eine Rede",autor:"Bernhard von Bülow",funktion:"damals Staatssekretär des Auswärtigen Amtes",datum:"6. Dezember 1897",ort:"während der Reichstagsdebatte über die Besetzung der Kiautschou-Bucht in Berlin",adressat:"die Abgeordneten, über das Protokoll und die Presse auch die Öffentlichkeit und das Ausland",thema:"die Begründung der deutschen Politik in Ostasien",kontext:"Kurz zuvor hatten deutsche Truppen die Kiautschou-Bucht in China besetzt, nachdem dort zwei deutsche Missionare ermordet worden waren. Unter Wilhelm II. löste die Weltpolitik Bismarcks zurückhaltende Kolonialpolitik ab.",inhalt:"Bülow betont, Deutschland wolle sich nicht überall einmischen, dürfe aber von zukunftsreichen Ländern nicht ausgeschlossen werden. Die Zeit deutscher Zurückhaltung sei vorbei. Deutschland verlange denselben Respekt wie andere Mächte und seinen „Platz an der Sonne“.",absicht:"die Abgeordneten für eine aktive Weltpolitik zu gewinnen und zugleich die anderen Großmächte zu beruhigen"},
  botschaft:{art:"eine kaiserliche Botschaft",autor:"Kaiser Wilhelm I.",funktion:"gegengezeichnet von Reichskanzler Otto von Bismarck",datum:"17. November 1881",ort:"zur Eröffnung des Reichstags im Berliner Schloss, wo Bismarck sie verlas",adressat:"die Abgeordneten des Reichstags",thema:"die Ankündigung einer staatlichen Sozialversicherung für Arbeiter",kontext:"Trotz des Sozialistengesetzes von 1878 gewann die Sozialdemokratie weiter Anhänger, wie die Reichstagswahl 1881 zeigte. Die Not der Arbeiter war das große innenpolitische Problem der Zeit.",inhalt:"Der Kaiser erklärt, die sozialen Schäden seien nicht allein durch Unterdrückung sozialdemokratischer Ausschreitungen zu heilen, sondern auch durch die Förderung des Wohles der Arbeiter. Er kündigt Gesetze zur Absicherung bei Unfall, Krankheit, Alter und Invalidität an.",absicht:"die Arbeiter an Staat und Monarchie zu binden und der Sozialdemokratie Anhänger zu entziehen"},
