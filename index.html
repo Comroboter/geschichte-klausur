@@ -111,8 +111,8 @@ main{--padx:max(16px,calc((100vw - 948px) / 2));--padtop:calc(var(--sat) + 76px)
 .tb-title{min-width:0;flex:1;display:flex;flex-direction:column;line-height:1.15}
 .tb-title .n{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--muted)}
 .tb-title .t{font-family:var(--font-display);font-weight:700;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tb-thread{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:transparent}
-.tb-thread i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--thread);border-radius:0 3px 3px 0;transition:width .6s var(--ease)}
+.tb-thread{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:transparent;clip-path:inset(-14px -14px -14px 0)}
+.tb-thread i{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--thread);border-radius:0 3px 3px 0;transform:translate3d(-100%,0,0);will-change:transform}
 .tb-thread i::after{content:"";position:absolute;right:-4px;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--thread)}
 
 /* Pfad (Sidebar am PC, Bottom-Sheet auf Handy und iPad) */
@@ -1221,7 +1221,10 @@ footer.src{margin-top:40px;font-family:var(--font-mono);font-variant-numeric:tab
 @media (min-width:900px){[data-look="antike"] > .hero,[data-look="epochen"] > .hero{padding-top:46px!important}}
 
 /* Zurück-Blatt und Hinweis beim Ziehen oben */
-.back-ov{position:fixed;inset:0;z-index:27;overflow:hidden;background-color:var(--paper);border-radius:26px 26px 0 0;border-top:1px solid var(--rule);pointer-events:none;will-change:transform;box-shadow:0 -30px 70px -10px rgba(0,0,0,.55)}
+.back-ov{position:fixed;inset:0;z-index:27;overflow:hidden;background-color:var(--paper);border-radius:28px 28px 0 0;border-top:2px solid var(--rule);pointer-events:none;will-change:transform;box-shadow:none}
+.bp-edge{position:fixed;z-index:26;height:40px;pointer-events:none;border-top:2px solid var(--rule);border-radius:28px 28px 0 0}
+.bp-edge::before{content:"";position:absolute;top:10px;left:50%;width:44px;height:5px;margin-left:-22px;border-radius:5px;background:var(--bpk,var(--rule));opacity:.8}
+
 @media (min-width:1100px){.back-ov{left:var(--side)}}
 .back-ov > .station{margin:0;display:block}
 .back-ov.sink{border-top-width:2px}
@@ -1812,15 +1815,32 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
   .fill.more .more-l{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-style:normal;font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--st);padding:6px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--st) 45%,transparent)}
   .fill.more.open .more-l{display:none}
 
-  /* Weiter am Ende jedes Schritts: die Schwelle wird zum großen Knopf */
-  .schwelle .sw-row{min-height:66px;padding:12px 18px 12px 22px!important;border-radius:18px;background:var(--st);color:var(--paper);gap:14px!important;justify-content:space-between}
-  .schwelle .sw-row .sw-txt{order:0}
-  .schwelle .sw-row .sw-ring{order:1;width:30px!important;height:30px!important;transform:none!important}
-  .schwelle .sw-ring .bg,.schwelle .sw-ring .fg{display:none}
-  .schwelle .sw-ring .ar{stroke:var(--paper)!important}
-  .schwelle .sw-txt small{color:inherit!important;opacity:.85;font-style:normal!important;font-family:var(--font-display);font-size:15px!important;text-shadow:none!important}
-  .schwelle .sw-txt b{color:inherit!important;font-size:20px!important}
+  /* Weiter am Ende jedes Schritts: großer Knopf im Stil der Seite.
+     Dunkle Fläche mit Haarlinie in Stationsfarbe, links der Ring, der sich beim Hochziehen rot füllt (roter Faden).
+     Keine Skalier-Animation am ganzen Knopf, nur Ring, Rand und Licht antworten auf den Finger. */
+  .schwelle{margin-top:36px;padding:8px 0 4px}
+  .schwelle .sw-line{display:none}
+  .schwelle .sw-row{position:relative;isolation:isolate;min-height:84px;padding:14px 18px 14px 14px!important;gap:14px!important;border-radius:20px;
+    background:color-mix(in srgb,var(--st) 7%,var(--sheet));
+    border:1px solid color-mix(in srgb,var(--st) calc(34% + var(--pull) * 50%),var(--rule));
+    box-shadow:0 14px 34px -22px color-mix(in srgb,var(--st) calc(var(--nz) * 70%),transparent);
+    transition:border-color .3s var(--ease),background-color .3s var(--ease),transform .2s var(--ease);-webkit-tap-highlight-color:transparent}
+  /* weiches Licht von oben in Stationsfarbe, wird beim Ziehen stärker */
+  .schwelle .sw-row::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%,color-mix(in srgb,var(--st) calc(var(--nz) * (10% + var(--pull) * 14%)),transparent),transparent 70%)}
+  .schwelle .sw-row .sw-ring{width:50px!important;height:50px!important}
+  .schwelle .sw-ring .bg{stroke:color-mix(in srgb,var(--st) 40%,var(--rule));fill:color-mix(in srgb,var(--st) 10%,transparent)}
+  .schwelle .sw-ring .fg{opacity:min(1,calc(var(--pull) * 25))}
+  .schwelle .sw-ring .ar{stroke:var(--st)!important;animation:none}
+  .schwelle .sw-txt{flex:1}
+  .schwelle .sw-txt small{color:var(--st)!important;font-family:var(--font-body)!important;font-style:italic!important;font-size:15px!important}
+  .schwelle .sw-txt b{color:var(--ink)!important;font-size:20px!important;line-height:1.2}
   .schwelle .sw-hint{display:none!important}
+  .schwelle.ready .sw-row{animation:none;border-color:var(--st)}
+  .schwelle.ready .sw-ring .bg{fill:var(--thread);stroke:var(--thread)}
+  .schwelle.ready .sw-ring .ar{stroke:#fff!important}
+  .schwelle:active .sw-row{transform:scale(.985);background:color-mix(in srgb,var(--st) 13%,var(--sheet))}
+  .schwelle:active .sw-ring{transform:rotate(-90deg)}
 
   /* Obere Leiste: Zurück statt Menü */
   #menu{display:none!important}
@@ -1868,6 +1888,49 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 .panel.urt b{color:var(--st)}
 #s-aufgaben .baustein:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="aufgaben"] .baustein:not([data-sid] [data-sid] *){margin-top:16px}
 #s-aufgaben .vs:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="aufgaben"] .vs:not([data-sid] [data-sid] *){margin-top:14px}
+.spick[hidden]{display:none!important}
+/* Unter der unteren Leiste nie ein Spalt: Manche Android-WebViews (auch in der Claude-App) runden die Höhe
+   des Bildschirms anders als die feste Leiste, dann blitzt unten ein schmaler Streifen Inhalt durch. */
+.bottombar::after{content:"";position:absolute;left:0;right:0;top:100%;height:80px;background:inherit;pointer-events:none}
+/* Touch-Geräte: keine backdrop-filter-Ebenen über scrollendem Inhalt. Jede davon muss auf dem Handy pro Frame
+   den Hintergrund neu weichzeichnen (5 Ebenen inklusive Masken), das kostet beim Scrollen und bei den Wechseln
+   die meiste GPU-Zeit. Die Leisten werden fast deckend, der Auslauf unten bleibt als reiner Farbverlauf. */
+@media (hover:none){
+  .topbar,.bottombar,.narr-cap{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .topbar,.bottombar{background:rgba(241,242,238,.97)!important}
+  :root[data-theme="dark"] .topbar,:root[data-theme="dark"] .bottombar{background:rgba(18,20,24,.97)!important}
+  .bfade i{display:none}
+  .bfade::after{background:linear-gradient(rgba(18,20,24,0),rgba(18,20,24,.3) 35%,rgba(18,20,24,.7) 75%,rgba(18,20,24,.94))}
+  :root[data-theme="light"] .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}
+}
+@media (hover:none) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .topbar,:root:not([data-theme="light"]) .bottombar{background:rgba(18,20,24,.97)!important}}
+@media (hover:none) and (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}}
+/* Während man eine Seite oben zurückzieht: keine Textauswahl und kein Callout, sonst löst langes Festhalten einen Langdruck aus */
+html.bpull,html.bpull *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+/* ===== Start-Intro „Zündung“ (gehört zu intro.js): Elemente zünden wie Leuchtröhren, sobald das Dunkel sie freigibt ===== */
+html.ig .ig-el{animation:igOn .56s cubic-bezier(.2,.7,.2,1) var(--igd,0s) both!important;animation-play-state:running!important}
+html.ig-soft .ig-el{animation:igSoft .45s ease-out var(--igd,0s) both!important}
+@keyframes igOn{0%{opacity:0;filter:brightness(1.9) blur(3px)}22%{opacity:.85}30%{opacity:.5}46%{opacity:1;filter:brightness(1.25) blur(.5px)}100%{opacity:1;filter:none}}
+@keyframes igSoft{from{opacity:0;filter:blur(2px)}to{opacity:1;filter:none}}
+/* JS übernimmt Vorhang, Linie und Lichthof: CSS-Animationen dafür aus, Startzustand wie nach dem Zünden */
+.curtain.hand .hz{animation:none!important;transform:scaleX(1);opacity:1}
+.curtain.hand .nc-top,.curtain.hand .nc-bot{animation:none!important}
+.curtain.hand .bloom{animation:none!important;opacity:1}
+/* weiche Kanten des Dunkels, liegen außerhalb der Hälften und überdecken sich, solange der Vorhang zu ist */
+.curtain .nf{position:absolute;left:0;right:0;height:170px;pointer-events:none}
+.curtain .nc-top .nf{top:100%;background:linear-gradient(#120a0c,rgba(18,10,12,.82) 30%,rgba(18,10,12,.38) 65%,rgba(18,10,12,0))}
+.curtain .nc-bot .nf{bottom:100%;background:linear-gradient(rgba(18,10,12,0),rgba(18,10,12,.38) 35%,rgba(18,10,12,.82) 70%,#120a0c)}
+/* Der Faden wird nach dem Intro nicht noch einmal gezeichnet */
+.fadenline.ig-thr path:not(.glint){animation:none!important;stroke-dashoffset:0!important}
+@media (prefers-reduced-motion:reduce){html.ig .ig-el{animation:none!important}}
+/* Lichtkanten: laufen an der Innenkante der beiden Hälften mit */
+.curtain .ne{position:absolute;left:6%;right:6%;height:2px;z-index:3;pointer-events:none;opacity:0;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,106,90,0),#ff6a5a 16%,#ffd9d2 50%,#ff6a5a 84%,rgba(255,106,90,0));
+  box-shadow:0 0 10px #ff6a5a,0 0 28px rgba(255,106,90,.55)}
+.curtain .nc-top .ne{bottom:-1px}
+.curtain .nc-bot .ne{top:-1px}
+/* Linie und Lichthof warten mit dem Zünden, bis introPrime sie auf die Fadenhöhe gesetzt hat */
+.vh .curtain:not(.lit) .hz,.vh .curtain:not(.lit) .bloom{animation-play-state:paused!important}
 
 
 /* ===== Farbsystem: eine Farbe pro Station (Licht, Zeichnung, Kopf, Muster, Bausteine) ===== */
@@ -1925,7 +1988,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
         <li><small class="lb">Stand</small><small>nach eurer Lernansicht ab 1c, kleine Lücken ergänzt</small></li>
       </ul>
     </section>
-    <p class="buildtag">Stand: 19.11.2026, 17:53</p>
+    <p class="buildtag">Stand: 19.11.2026, 21:45</p>
   </div>
 </nav>
 
@@ -2169,29 +2232,25 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
   <header class="hero" data-n="15"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M10 120h220"/><path pathLength="1" class="ghost d" style="--d:1" d="M76 120a44 44 0 0 1 88 0"/><path pathLength="1" class="ghost d" style="--d:2" d="M120 60v-22M154 72l15-15M86 72l-15-15M178 104h22M40 104h22"/><g class="inks"><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M76 120a44 44 0 0 1 88 0"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="5s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="5s" begin="0s" repeatCount="indefinite"/></path><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M120 60v-22M154 72l15-15M86 72l-15-15M178 104h22M40 104h22"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="3.2s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="3.2s" begin="0.8s" repeatCount="indefinite"/></path></g></svg>
     <div class="kicker">Für kurz vor der Klausur, in zwei Minuten durch</div>
     <h1>Das Wichtigste auf einen Blick</h1>
-    <p class="lede">Alle sechs Themen mit je einem Merkpunkt pro Zeile, die drei Aufgaben in Kurzform und die wichtigsten Daten. Darunter dein Stand und sieben Regeln für die Klausur.</p></header>
+    <p class="lede">Pro Thema die drei Sachen, die du sicher wissen solltest, dazu die drei Aufgaben und die wichtigsten Daten.</p></header>
   <div class="content">
-    <div class="glance" id="glance"><section class="gl-t"><h3>Revolution 1848 und Reichsgründung</h3><ul><li><b>Revolution 1848/49: Ursachen</b> <span>Vorbild: Revolution in Paris, Februar 1848.</span></li><li><b>Was die Revolutionäre forderten</b> <span>Freiheit und Einheit.</span></li><li><b>Die Paulskirche in Frankfurt</b> <span>Verfassung 1849.</span></li><li><b>Warum die Revolution scheiterte</b> <span>Friedrich Wilhelm IV. lehnt die Krone 1849 ab.</span></li><li><b>Bismarck und die Einigungskriege</b> <span>Kriege 1864, 1866, 1870/71.</span></li><li><b>Reichsgründung 1871</b> <span>18. Januar 1871, Spiegelsaal von Versailles.</span></li></ul></section><section class="gl-t"><h3>Gesellschaft im Kaiserreich</h3><ul><li><b>Alter Adel</b> <span>Junker = adlige Großgrundbesitzer östlich der Elbe.</span></li><li><b>Moderner Bürger</b> <span>Statussymbol: Reserveoffizier.</span></li><li><b>Arbeiter</b> <span>Gewerkschaften und SPD.</span></li><li><b>Obrigkeitsstaat und Militarismus</b> <span>Kaiser und Kanzler vor Parlament.</span></li><li><b>Dreiklassenwahlrecht in Preußen</b> <span>Preußen: Reiche bevorzugt.</span></li><li><b>Kulturkampf und Sozialistengesetz</b> <span>Sozialistengesetz 1878 bis 1890.</span></li><li><b>Moderne gegen Vergangenheit</b> <span>Modern: Industrie, Wissenschaft, Großstadt.</span></li></ul></section><section class="gl-t"><h3>Industrialisierung und soziale Frage</h3><ul><li><b>Antreiber: Erfindungen</b> <span>Eisenbahn ab 1835.</span></li><li><b>Antreiber: Rohstoffe, Markt und Geld</b> <span>Ruhrgebiet: Kohle und Eisen.</span></li><li><b>Antreiber: Menschen und Wissen</b> <span>Viele Arbeitskräfte.</span></li><li><b>Landflucht und Wohnungsnot</b> <span>Mietskasernen in den Großstädten.</span></li><li><b>Arbeit in der Fabrik</b> <span>12 bis 16 Stunden am Tag.</span></li><li><b>Krisen und Umwelt</b> <span>Gründerkrach 1873.</span></li><li><b>Antworten auf die soziale Frage</b> <span>Gewerkschaften, SPD, Werkswohnungen.</span></li><li><b>Bismarcks Sozialversicherung</b> <span>1883, 1884, 1889.</span></li></ul></section><section class="gl-t"><h3>Gründe für Kolonialismus</h3><ul><li><b>Wirtschaftliche Gründe</b> <span>Rohstoffe, Absatzmärkte, Geldanlagen.</span></li><li><b>Politische Gründe</b> <span>„Platz an der Sonne“, Bülow 1897.</span></li><li><b>Nationalismus und Konkurrenz</b> <span>Vorbild und Rivale: England.</span></li><li><b>Auswanderung und Mission</b> <span>Siedlung und Missionierung.</span></li><li><b>Rassismus und Sozialdarwinismus</b> <span>Menschliche „Rassen“ gibt es biologisch nicht.</span></li><li><b>Folgen: Ausbeutung und Gewalt</b> <span>Herero und Nama, 1904 bis 1908.</span></li><li><b>Die deutschen Kolonien</b> <span>Schutzbriefe ab 1884.</span></li></ul></section><section class="gl-t"><h3>Kongokonferenz 1884/85</h3><ul><li><b>Eckdaten</b> <span>14 Staaten, kein Afrikaner.</span></li><li><b>Anlass und Ziel</b> <span>Streit um das Kongobecken.</span></li><li><b>Freihandel und freie Schifffahrt</b> <span>Flüsse Kongo und Niger.</span></li><li><b>Effektive Besetzung und Anzeigepflicht</b> <span>Nur echte Verwaltung zählt.</span></li><li><b>Leopold II. und der Sklavenhandel</b> <span>Kongo als Privatbesitz Leopolds II.</span></li><li><b>Folgen</b> <span>Willkürliche Grenzen, Konflikte bis heute.</span></li></ul></section><section class="gl-t"><h3>Personen</h3><ul><li><b>Otto von Bismarck</b> <span>Kanzler 1871 bis 1890.</span></li><li><b>Bismarck und die Kolonien</b> <span>Schutzgebiete ab 1884.</span></li><li><b>Wilhelm I.</b> <span>Kaiser 1871 bis 1888.</span></li><li><b>Wilhelm II.</b> <span>Kaiser 1888 bis 1918.</span></li><li><b>Warum doch Kolonien? Wirtschaft und Stimmung</b> <span>Lüderitz und Woermann.</span></li><li><b>Warum doch Kolonien? Prestige und Taktik</b> <span>Schutzbriefe statt Staatskolonien.</span></li></ul></section><section class="gl-t"><h3>Die drei Aufgaben</h3><ul><li><b>Aufgabe 1, Eckdaten</b> <span>Autor und Rolle, Titel und Textart, Ort und Datum, Adressat, Anlass und Thema.</span></li><li><b>Aufgabe 2, Zusammenfassung</b> <span>Kernaussage in einem Satz, dann die Argumente in Textreihenfolge. Eigene Worte, Präsens, keine Zitate, keine Meinung.</span></li><li><b>Aufgabe 3, Sachurteil</b> <span>Nach damaligen Maßstäben: einordnen, prüfen, abwägen, urteilen. Das Werturteil urteilt nach heutigen Maßstäben.</span></li></ul></section><section class="gl-t gl-d"><h3>Daten auf einen Blick</h3><ol><li><b>1834</b> <span>Zollverein</span></li><li><b>1848/49</b> <span>Revolution, Paulskirche, Verfassung 1849</span></li><li><b>1862</b> <span>Bismarck preußischer Ministerpräsident</span></li><li><b>1864, 1866, 1870/71</b> <span>Einigungskriege gegen Dänemark, Österreich, Frankreich</span></li><li><b>18. Januar 1871</b> <span>Reichsgründung, Kaiserproklamation in Versailles</span></li><li><b>1873</b> <span>Gründerkrach</span></li><li><b>1878 bis 1890</b> <span>Sozialistengesetz</span></li><li><b>1883 bis 1889</b> <span>Sozialversicherung</span></li><li><b>1884</b> <span>Erste Schutzgebiete</span></li><li><b>1884/85</b> <span>Kongokonferenz in Berlin</span></li><li><b>1888</b> <span>Wilhelm II. wird Kaiser</span></li><li><b>1890</b> <span>Entlassung Bismarcks</span></li><li><b>1897</b> <span>Bülow: „Platz an der Sonne“</span></li><li><b>1904 bis 1908</b> <span>Völkermord an Herero und Nama</span></li><li><b>1918</b> <span>Abdankung Wilhelms II.</span></li></ol></section></div>
-    <h2 class="gl-more">Dein Stand bei allen Punkten</h2>
-    <div class="spick" id="spick"><div class="glb"><h3>Revolution 1848 und Reichsgründung<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Revolution 1848/49: Ursachen</li><li>Was die Revolutionäre forderten</li><li>Die Paulskirche in Frankfurt</li><li>Warum die Revolution scheiterte</li><li>Bismarck und die Einigungskriege</li><li>Reichsgründung 1871</li></ul></div><div class="glb"><h3>Gesellschaft im Kaiserreich<span class="sub">7 Punkte</span></h3><ul style="margin-top:12px"><li>Alter Adel</li><li>Moderner Bürger</li><li>Arbeiter</li><li>Obrigkeitsstaat und Militarismus</li><li>Dreiklassenwahlrecht in Preußen</li><li>Kulturkampf und Sozialistengesetz</li><li>Moderne gegen Vergangenheit</li></ul></div><div class="glb"><h3>Industrialisierung und soziale Frage<span class="sub">8 Punkte</span></h3><ul style="margin-top:12px"><li>Antreiber: Erfindungen</li><li>Antreiber: Rohstoffe, Markt und Geld</li><li>Antreiber: Menschen und Wissen</li><li>Landflucht und Wohnungsnot</li><li>Arbeit in der Fabrik</li><li>Krisen und Umwelt</li><li>Antworten auf die soziale Frage</li><li>Bismarcks Sozialversicherung</li></ul></div><div class="glb"><h3>Gründe für Kolonialismus<span class="sub">7 Punkte</span></h3><ul style="margin-top:12px"><li>Wirtschaftliche Gründe</li><li>Politische Gründe</li><li>Nationalismus und Konkurrenz</li><li>Auswanderung und Mission</li><li>Rassismus und Sozialdarwinismus</li><li>Folgen: Ausbeutung und Gewalt</li><li>Die deutschen Kolonien</li></ul></div><div class="glb"><h3>Kongokonferenz 1884/85<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Eckdaten</li><li>Anlass und Ziel</li><li>Freihandel und freie Schifffahrt</li><li>Effektive Besetzung und Anzeigepflicht</li><li>Leopold II. und der Sklavenhandel</li><li>Folgen</li></ul></div><div class="glb"><h3>Personen<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Otto von Bismarck</li><li>Bismarck und die Kolonien</li><li>Wilhelm I.</li><li>Wilhelm II.</li><li>Warum doch Kolonien? Wirtschaft und Stimmung</li><li>Warum doch Kolonien? Prestige und Taktik</li></ul></div></div>
+    <div class="glance" id="glance"><section class="gl-t"><h3>Revolution 1848 und Reichsgründung</h3><ul><li><b>1848/49</b> <span>Bürger fordern Einheit und Freiheit, die Paulskirche schreibt eine Verfassung.</span></li><li><b>Scheitern</b> <span>1849 lehnt Friedrich Wilhelm IV. die Kaiserkrone ab.</span></li><li><b>Einheit von oben</b> <span>Bismarck führt drei Kriege, am 18. Januar 1871 wird in Versailles das Reich gegründet.</span></li></ul></section><section class="gl-t"><h3>Gesellschaft im Kaiserreich</h3><ul><li><b>Oben und unten</b> <span>Adel und Militär geben den Ton an, Bürger streben nach oben, Arbeiter organisieren sich in Gewerkschaften und SPD.</span></li><li><b>Obrigkeitsstaat</b> <span>Kaiser und Kanzler stehen über dem Parlament, in Preußen gilt das Dreiklassenwahlrecht.</span></li><li><b>„Reichsfeinde“</b> <span>Kulturkampf gegen die Katholiken, Sozialistengesetz 1878 bis 1890 gegen die SPD.</span></li></ul></section><section class="gl-t"><h3>Industrialisierung und soziale Frage</h3><ul><li><b>Antreiber</b> <span>Eisenbahn ab 1835, Kohle und Eisen im Ruhrgebiet, viele Arbeitskräfte.</span></li><li><b>Soziale Frage</b> <span>Landflucht, Mietskasernen, 12 bis 16 Stunden Fabrikarbeit am Tag.</span></li><li><b>Antworten</b> <span>Gewerkschaften, SPD, Werkswohnungen und Bismarcks Sozialversicherung 1883 bis 1889.</span></li></ul></section><section class="gl-t"><h3>Gründe für Kolonialismus</h3><ul><li><b>Gründe</b> <span>Rohstoffe und Absatzmärkte, Prestige („Platz an der Sonne“, Bülow 1897), Konkurrenz mit England.</span></li><li><b>Rechtfertigung</b> <span>Rassismus und Sozialdarwinismus, dabei gibt es menschliche „Rassen“ biologisch nicht.</span></li><li><b>Folgen</b> <span>Ausbeutung und Gewalt, Völkermord an Herero und Nama 1904 bis 1908.</span></li></ul></section><section class="gl-t"><h3>Kongokonferenz 1884/85</h3><ul><li><b>Wer</b> <span>14 Staaten in Berlin, kein Afrikaner am Tisch, Anlass ist der Streit um das Kongobecken.</span></li><li><b>Beschlüsse</b> <span>Freihandel und freie Schifffahrt auf Kongo und Niger, Anspruch nur bei effektiver Besetzung.</span></li><li><b>Folgen</b> <span>Der Kongo wird Privatbesitz Leopolds II., willkürliche Grenzen wirken bis heute.</span></li></ul></section><section class="gl-t"><h3>Bismarck und die Kaiser</h3><ul><li><b>Bismarck</b> <span>Kanzler 1871 bis 1890, erst gegen Kolonien, ab 1884 doch Schutzgebiete.</span></li><li><b>Die Kaiser</b> <span>Wilhelm I. regiert 1871 bis 1888, Wilhelm II. 1888 bis 1918.</span></li><li><b>Warum doch Kolonien</b> <span>Kaufleute wie Lüderitz drängen, dazu Prestige, Schutzbriefe statt teurer Staatskolonien.</span></li></ul></section><section class="gl-t"><h3>Die drei Aufgaben</h3><ul><li><b>Aufgabe 1, Eckdaten</b> <span>Autor und Rolle, Titel und Textart, Ort und Datum, Adressat, Anlass und Thema.</span></li><li><b>Aufgabe 2, Zusammenfassung</b> <span>Kernaussage in einem Satz, dann die Argumente in Textreihenfolge, eigene Worte, Präsens.</span></li><li><b>Aufgabe 3, Sachurteil</b> <span>Nach damaligen Maßstäben einordnen, prüfen, abwägen, klar urteilen.</span></li></ul></section><section class="gl-t gl-d"><h3>Die wichtigsten Daten</h3><ol><li><b>1848/49</b> <span>Revolution und Paulskirche</span></li><li><b>1862</b> <span>Bismarck wird preußischer Ministerpräsident</span></li><li><b>1864 bis 1871</b> <span>Drei Einigungskriege</span></li><li><b>18. Januar 1871</b> <span>Reichsgründung in Versailles</span></li><li><b>1878 bis 1890</b> <span>Sozialistengesetz</span></li><li><b>1883 bis 1889</b> <span>Sozialversicherung</span></li><li><b>1884/85</b> <span>Kongokonferenz, erste Schutzgebiete</span></li><li><b>1888</b> <span>Wilhelm II. wird Kaiser</span></li><li><b>1890</b> <span>Bismarck wird entlassen</span></li><li><b>1897</b> <span>Bülow: „Platz an der Sonne“</span></li><li><b>1904 bis 1908</b> <span>Völkermord an Herero und Nama</span></li></ol></section></div>
+    <div class="spick" id="spick" hidden><div class="glb"><h3>Revolution 1848 und Reichsgründung<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Revolution 1848/49: Ursachen</li><li>Was die Revolutionäre forderten</li><li>Die Paulskirche in Frankfurt</li><li>Warum die Revolution scheiterte</li><li>Bismarck und die Einigungskriege</li><li>Reichsgründung 1871</li></ul></div><div class="glb"><h3>Gesellschaft im Kaiserreich<span class="sub">7 Punkte</span></h3><ul style="margin-top:12px"><li>Alter Adel</li><li>Moderner Bürger</li><li>Arbeiter</li><li>Obrigkeitsstaat und Militarismus</li><li>Dreiklassenwahlrecht in Preußen</li><li>Kulturkampf und Sozialistengesetz</li><li>Moderne gegen Vergangenheit</li></ul></div><div class="glb"><h3>Industrialisierung und soziale Frage<span class="sub">8 Punkte</span></h3><ul style="margin-top:12px"><li>Antreiber: Erfindungen</li><li>Antreiber: Rohstoffe, Markt und Geld</li><li>Antreiber: Menschen und Wissen</li><li>Landflucht und Wohnungsnot</li><li>Arbeit in der Fabrik</li><li>Krisen und Umwelt</li><li>Antworten auf die soziale Frage</li><li>Bismarcks Sozialversicherung</li></ul></div><div class="glb"><h3>Gründe für Kolonialismus<span class="sub">7 Punkte</span></h3><ul style="margin-top:12px"><li>Wirtschaftliche Gründe</li><li>Politische Gründe</li><li>Nationalismus und Konkurrenz</li><li>Auswanderung und Mission</li><li>Rassismus und Sozialdarwinismus</li><li>Folgen: Ausbeutung und Gewalt</li><li>Die deutschen Kolonien</li></ul></div><div class="glb"><h3>Kongokonferenz 1884/85<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Eckdaten</li><li>Anlass und Ziel</li><li>Freihandel und freie Schifffahrt</li><li>Effektive Besetzung und Anzeigepflicht</li><li>Leopold II. und der Sklavenhandel</li><li>Folgen</li></ul></div><div class="glb"><h3>Personen<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Otto von Bismarck</li><li>Bismarck und die Kolonien</li><li>Wilhelm I.</li><li>Wilhelm II.</li><li>Warum doch Kolonien? Wirtschaft und Stimmung</li><li>Warum doch Kolonien? Prestige und Taktik</li></ul></div></div>
     <div id="todo"></div>
-    <h2>Sieben Regeln, die Punkte bringen</h2>
+    <h2>Vier Regeln für die Klausur</h2>
     <ol class="rules" style="margin-top:14px">
-      <li>Aufgabe 1: alle Eckdaten nennen, Autor und Rolle, Titel und Textart, Ort und Datum, Adressat, Anlass und Thema.</li>
-      <li>Aufgabe 2: erst die Kernaussage in einem Satz, dann die Argumente in der Reihenfolge des Textes.</li>
-      <li>In der Zusammenfassung eigene Worte und Präsens, keine Zitate und keine eigene Meinung.</li>
-      <li>Aufgabe 3: Sachurteil nach den Maßstäben der damaligen Zeit, nicht mit dem Werturteil verwechseln.</li>
-      <li>Im Urteil vier Schritte: einordnen, prüfen, abwägen, klare Aussage mit Begründung.</li>
+      <li>Erst die Aufgaben lesen, dann den Text zweimal, dann markieren.</li>
+      <li>Zusammenfassung ohne Zitate und ohne eigene Meinung, die gehört erst in Aufgabe 3.</li>
       <li>Daten und Namen nur nennen, wenn du sie sicher weißt, sonst lieber allgemein bleiben.</li>
       <li>Begriffe wie „weiße Rasse“ oder „Reichsfeinde“ in Anführungszeichen, nie als eigene Wörter.</li>
-      <li class="luck" aria-label="Viel Erfolg"><svg viewBox="0 0 60 40" aria-hidden="true"><path d="M4 34h52M16 34a14 14 0 0 1 28 0M30 12V4M44 18l5-5M16 18l-5-5"/></svg><span><b id="luckt">Viel Erfolg!</b><small id="lucks">Erst die Aufgaben lesen, dann den Text zweimal, dann markieren.</small></span></li>
+      <li class="luck" aria-label="Viel Erfolg"><svg viewBox="0 0 60 40" aria-hidden="true"><path d="M4 34h52M16 34a14 14 0 0 1 28 0M30 12V4M44 18l5-5M16 18l-5-5"/></svg><span><b id="luckt">Viel Erfolg!</b><small id="lucks">Behalte die Uhr im Blick, der Zeitplan steht in Schritt 1.</small></span></li>
     </ol>
     <p class="sub js-only" id="stats2" style="margin-top:26px"></p>
     <div class="chips js-only" style="margin-top:18px">
-      <button class="chip" id="resetpath">Pfad von vorn</button>
+      <button class="chip" id="resetpath">Fortschritt zurücksetzen</button>
       <button class="chip ghost" id="resetall">Häkchen und Stempel löschen</button>
     </div>
-    <footer class="src">Inoffizielle Lernhilfe zur Geschichtsklausur, ohne Gewähr. Grundlage ist die Lernansicht aus dem Unterricht ab Schritt 1c, wenige Lücken sind mit gängigem Schulstoff gefüllt. Wenn die Lehrkraft etwas anders darstellt, gilt ihre Version. Der Fortschritt bleibt nur auf deinem Gerät.</footer>
+    <footer class="src">Inoffizielle Lernhilfe zur Geschichtsklausur, ohne Gewähr. Grundlage ist eine selbst erstellte Lernübersicht zur Klausur ab Punkt 1c, wenige Lücken sind mit gängigem Schulstoff gefüllt. Im Zweifel gilt, was im Unterricht besprochen wurde. Der Fortschritt bleibt nur auf deinem Gerät.</footer>
   </div>
 </section>
 
@@ -2661,7 +2720,7 @@ var hooks={
     t.textContent=diff>1?"Noch "+diff+" Tage":diff===1?"Morgen ist es so weit":diff===0?"Heute: viel Erfolg!":"Geschafft!";if(diff<0)u.textContent="Die Klausur ist geschrieben. Die Seite bleibt zum Nachschlagen."})();var sp=document.getElementById("spick");
     sp.innerHTML=PARTS.map(function(p,pi){return'<div class="glb"><h3>'+p.name+'<span class="sub">'+p.sub+'</span></h3><ul style="margin-top:12px">'+p.items.map(function(it,ii){return'<li class="'+(chk["c"+pi+"_"+ii]?"ok":"")+'">'+esc(it.t)+'</li>'}).join("")+'</ul></div>'}).join("");
     var open=[];PARTS.forEach(function(p,pi){p.items.forEach(function(it,ii){if(!chk["c"+pi+"_"+ii])open.push([stationOfItem(pi,ii),it.t])})});
-    document.getElementById("todo").innerHTML=open.length?'<h2>Noch nicht abgehakt</h2><div class="chips todo-chips" style="margin-top:12px">'+open.map(function(o){return'<a class="chip" href="#'+o[0]+'">'+esc(o[1])+'</a>'}).join("")+'</div>':'<h2>Alle '+TOTAL_ITEMS+' Punkte abgehakt</h2><p class="note">Dann jetzt noch eine Runde Quiz und gut ist.</p>';
+    document.getElementById("todo").innerHTML=open.length?'<h2>Noch offen: '+open.length+(open.length===1?' Punkt':' Punkte')+'</h2><div class="chips todo-chips" style="margin-top:12px">'+open.slice(0,6).map(function(o){return'<a class="chip" href="#'+o[0]+'">'+esc(o[1])+'</a>'}).join("")+(open.length>6?'<span class="chip ghost" style="cursor:default">und '+(open.length-6)+' weitere</span>':'')+'</div>':'<h2>Alle '+TOTAL_ITEMS+' Punkte abgehakt</h2><p class="note">Dann jetzt noch eine Runde Quiz und gut ist.</p>';
     document.getElementById("stats2").textContent=statsLine()}
 };
 
@@ -2672,15 +2731,17 @@ var hooks={
 /* Kongo: Mythos oder Tatsache, Reißverschluss-Zeilen */
 (function(){[].forEach.call(document.querySelectorAll("#zip .zbtn"),function(b){b.addEventListener("click",function(){var r=b.parentNode,o=!r.classList.contains("open");r.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false")})})})();
 /* Zurück: die aktuelle Seite rutscht als Blatt nach unten weg und gibt die vorherige frei */
-function backTo(t,atEnd){if(t<0||t>=N||t===cur)return;if(peekBusy)return;var old=stations[cur];
+function backTo(t,atEnd){var ho=BHO;BHO=null;if(ho)ho.a.forEach(function(x){if(x)x.cancel()});if(t<0||t>=N||t===cur)return;if(peekBusy)return;var old=stations[cur];
   if(!old||RM||!old.animate){show(t);if(location.hash!=="#"+ids[t]){try{history.pushState(null,"","#"+ids[t])}catch(e){}}return}
   peekBusy=true;lockScroll(true);moreEl.classList.remove("on");updateNav(t);var H=innerHeight,r=old.getBoundingClientRect();
   var ov=document.createElement("div");ov.className="back-ov";ov.setAttribute("aria-hidden","true");mainEl.appendChild(ov);var ob=ov.getBoundingClientRect();
-  var cl=old.cloneNode(true);cl.removeAttribute("id");cl.querySelectorAll("[id]").forEach(function(n){n.removeAttribute("id")});
+  var _cc=old.querySelector(":scope > .content"),_cut=[];if(_cc)[].forEach.call(_cc.children,function(n,k){if(n.getBoundingClientRect().top>H+60)_cut.push(k)});
+  if(bpE&&bpE.style.borderTopColor)ov.style.borderTopColor=bpE.style.borderTopColor;ov.style.top=r.top.toFixed(1)+"px";ob=ov.getBoundingClientRect();
+  var cl=old.cloneNode(false);[].forEach.call(old.children,function(x){if(x!==_cc){cl.appendChild(x.cloneNode(true));return}var kc=x.cloneNode(false);[].forEach.call(x.children,function(n,k){if(_cut.indexOf(k)<0)kc.appendChild(n.cloneNode(true))});cl.appendChild(kc)});cl.style.clipPath="";cl.removeAttribute("id");cl.querySelectorAll("[id]").forEach(function(n){n.removeAttribute("id")});
   cl.classList.remove("enter","fwd","back","first","via-peek");cl.setAttribute("data-sid",ids[cur]);cl.setAttribute("data-look",old.getAttribute("data-look"));cl.classList.add("on");cl.style.transform="";cl.style.opacity="";cl.style.transition="";
-  cl.style.position="absolute";cl.style.left=(r.left-ob.left)+"px";cl.style.top=r.top+"px";cl.style.width=r.width+"px";ov.appendChild(cl);syncSvg(old,cl);fixInk(cl);
-  old.style.transform="";
-  FILLNOW=true;try{swapTo(t,-1,true)}finally{FILLNOW=false}if(location.hash!=="#"+ids[t]){try{history.pushState(null,"","#"+ids[t])}catch(e){}}
+  cl.style.position="absolute";cl.style.left=(r.left-ob.left)+"px";cl.style.top=(-ov.clientTop)+"px";cl.style.width=r.width+"px";ov.appendChild(cl);syncSvg(old,cl);fixInk(cl);
+  old.style.transform="";bpOff(old);var _oc=old.querySelector(":scope > .content"),_or=old.getBoundingClientRect().top,_keep=[];if(_oc)[].forEach.call(_oc.children,function(n,ix){if(n.getBoundingClientRect().top-_or<H*1.25)_keep.push(ix)});
+  FILLPART={t:cur,keep:_keep};FILLNOW=true;try{swapTo(t,-1,true)}finally{FILLNOW=false;FILLPART=null}pendFill=t;quietIdle(function(){if(pendFill===cur){pendFill=-1;refill(cur)}},300);if(location.hash!=="#"+ids[t]){try{history.pushState(null,"","#"+ids[t])}catch(e){}}
   if(atEnd){fixRest();var ry=restY();if(isFinite(ry)&&ry>0){window.scrollTo(0,ry);lastSY=scrollY;arm()}}
   /* Zeigt die neue Seite unten genau diese Station als Vorschau, sinkt das Blatt passgenau dort hinein statt doppelt vorbeizugleiten */
   var oldId=cl.getAttribute("data-sid"),rs=stations[t].querySelector(":scope > .content > .runway .rw-sheet"),a;
@@ -2688,31 +2749,36 @@ function backTo(t,atEnd){if(t<0||t>=N||t===cur)return;if(peekBusy)return;var old
     var pk=rs.querySelector(".rw-in .hero > .kicker"),ck=cl.querySelector(".hero > .kicker"),dy=pk&&ck?pk.getBoundingClientRect().top-ck.getBoundingClientRect().top:rs.getBoundingClientRect().top;
     ov.classList.add("sink");ov.style.setProperty("--pk",rs.style.getPropertyValue("--pk"));
     var gl=document.createElement("div");gl.className="pk-glow";gl.style.setProperty("--pk-a",rs.style.getPropertyValue("--pk-a"));ov.insertBefore(gl,ov.firstChild);
-    var ez="cubic-bezier(.22,1,.36,1)",du=Math.round(420+260*Math.min(1,dy/H));
-    a=ov.animate([{transform:"translate3d(0,0,0)",borderTopLeftRadius:"0px",borderTopRightRadius:"0px",borderTopColor:"rgba(0,0,0,0)",boxShadow:"0 -30px 70px -10px rgba(0,0,0,.55)"},{transform:"translate3d(0,"+dy+"px,0)",borderTopLeftRadius:"28px",borderTopRightRadius:"28px",borderTopColor:getComputedStyle(rs).borderTopColor,boxShadow:"0 -30px 70px -10px rgba(0,0,0,0)"}],{duration:du,easing:ez,fill:"forwards"});
-    gl.animate([{opacity:0},{opacity:1}],{duration:du,easing:"ease-in",fill:"forwards"});
+    var ez=ho?ho.ez:"cubic-bezier(.22,1,.36,1)",du=ho?ho.du:Math.round(420+260*Math.min(1,dy/H));
+    ov.style.borderTopColor=getComputedStyle(rs).borderTopColor;a=ov.animate([{transform:"translate3d(0,0,0)"},{transform:"translate3d(0,"+dy+"px,0)"}],{duration:du,easing:ez,fill:"forwards"});
+    var ga=gl.animate([{opacity:0},{opacity:1}],{duration:du,easing:"ease-in",fill:"forwards"});if(ho&&ho.t0!=null){try{a.startTime=ho.t0;ga.startTime=ho.t0}catch(e){}}
   }else a=ov.animate([{transform:"translate3d(0,0,0)"},{transform:"translate3d(0,"+(H+60)+"px,0)"}],{duration:720,easing:"cubic-bezier(.3,.75,.35,1)",fill:"forwards"});
   var bdone=false;function bfin(){if(bdone)return;bdone=true;ov.remove();lockScroll(false);peekBusy=false;setTimeout(reqMore,200)}a.onfinish=bfin;setTimeout(bfin,1700)}
 /* Oben weiterziehen = eine Station zurück (Finger), oder ein Mausrad-Raster nach oben nach kurzer Pause */
 var bh=document.createElement("div");bh.className="backhint";bh.setAttribute("aria-hidden","true");
 bh.innerHTML='<span class="bh-ring"><svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="16" class="bh-bg"/><circle cx="18" cy="18" r="16" class="bh-fg" pathLength="1"/><path d="M18 11v14M12 19l6 6 6-6" class="bh-ar"/></svg></span><span class="bh-tx"><small></small><b></b></span>';
 document.body.appendChild(bh);
-var tY0=null,tPull=0,BTH=96;
+var BHO=null,SHC={},tY0=null,tPull=0,BTH=72,bSm=[],bpE=null;
+function bpOn(st){if(bpE)return;document.documentElement.classList.add("bpull");var r=st.getBoundingClientRect(),_L=matchMedia("(min-width:1100px)").matches?(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--side"))||0):0,m={left:_L,right:document.documentElement.clientWidth,width:document.documentElement.clientWidth-_L},hh=st.querySelector(".hero"),ac=(hh&&getComputedStyle(hh).getPropertyValue("--accent").trim())||"";st.style.clipPath="inset(0 "+(-(m.right-r.right)).toFixed(1)+"px -100000px "+(-(r.left-m.left)).toFixed(1)+"px round 28px 28px 0 0)";bpE=document.createElement("div");bpE.className="bp-edge";bpE.setAttribute("aria-hidden","true");bpE.style.left=m.left+"px";bpE.style.width=m.width+"px";bpE.style.top=r.top+"px";if(ac){bpE.style.borderTopColor=ac;bpE.style.setProperty("--bpk",ac)}document.body.appendChild(bpE)}
+function bpOff(st){document.documentElement.classList.remove("bpull");if(st)st.style.clipPath="";if(bpE){bpE.remove();bpE=null}}
 function setBack(px){tPull=px;var st=stations[cur];if(!st)return;var k=Math.min(1,px/BTH);
-  st.style.transform=px>0?"translate3d(0,"+px.toFixed(1)+"px,0)":"";
+  if(px>0)bpOn(st);else bpOff(st);st.style.transform=px>0?"translate3d(0,"+px.toFixed(1)+"px,0)":"";if(bpE)bpE.style.transform=st.style.transform;
   bh.style.opacity=String(Math.min(1,px/40));bh.style.transform="translate3d(-50%,"+(Math.min(px,BTH)*.35-14).toFixed(1)+"px,0)";
   bh.style.setProperty("--k",k.toFixed(3));bh.classList.toggle("ready",k>=1)}
 function fillBack(){var t=cur-1;if(t<0)return false;bh.querySelector("small").textContent=t?"Zurück zu Schritt "+t:"Zurück zur Übersicht";bh.querySelector("b").textContent=stations[t].dataset.title;return true}
-document.addEventListener("touchstart",function(e){tY0=null;if(peekBusy||cur<1||e.touches.length!==1)return;if(pathEl.classList.contains("open")||(e.target.closest&&e.target.closest(".deck-stage,textarea,input,select,.path")))return;if(scrollY<=0)tY0=e.touches[0].clientY},{passive:true});
+document.addEventListener("touchstart",function(e){tY0=null;bSm=[];if(bA){try{if(bA.playState==="running"){var _st=stations[cur],_m=getComputedStyle(_st).transform;bA.cancel();if(_m&&_m!=="none"&&_st.animate)_st.animate([{transform:_m},{transform:"translate3d(0,0,0)"}],{duration:140,easing:"cubic-bezier(.2,.7,.3,1)"})}else bA.cancel()}catch(_){}bA=null;bounceUntil=0}if(peekBusy||cur<1||e.touches.length!==1)return;if(pathEl.classList.contains("open")||(e.target.closest&&e.target.closest(".deck-stage,textarea,input,select,.path")))return;if(scrollY<=0)tY0=e.touches[0].clientY},{passive:true});
 document.addEventListener("touchmove",function(e){if(peekBusy||cur<1||e.touches.length!==1)return;if(pathEl.classList.contains("open")||(e.target.closest&&e.target.closest(".deck-stage,textarea,input,select,.path")))return;var y=e.touches[0].clientY;
   if(tY0===null){if(scrollY<=0)tY0=y;return}
   var dy=y-tY0;if(dy<=0||scrollY>0){if(tPull)setBack(0);if(scrollY>0)tY0=null;return}
-  if(!tPull)fillBack();setBack(Math.min(150,dy*.5))},{passive:true});
-function endBack(){if(!tPull)return;var st=stations[cur],px=tPull;tPull=0;
-  if(px>=BTH){bh.classList.remove("ready");bh.style.opacity="0";backTo(cur-1,true);return}
+  bSm.push([performance.now(),y]);if(bSm.length>6)bSm.shift();if(!tPull)fillBack();setBack(Math.min(150,dy*.6))},{passive:true});
+var tmBlock=false;function tmGuard(e){if(tPull>0&&e.cancelable)e.preventDefault()}
+function tmSync(){var want=scrollY<=1&&cur>0&&touchUI;if(want!==tmBlock){tmBlock=want;if(want)document.addEventListener("touchmove",tmGuard,{passive:false});else document.removeEventListener("touchmove",tmGuard,{passive:false})}}
+addEventListener("scroll",tmSync,{passive:true});setInterval(tmSync,700);
+function endBack(cn){if(!tPull)return;var st=stations[cur],px=tPull;tPull=0;var bv=0;if(bSm.length>1){var b0=bSm[0],b1=bSm[bSm.length-1];if(performance.now()-b1[0]<90)bv=(b1[1]-b0[1])/Math.max(8,b1[0]-b0[0])}bSm=[];
+  if(!cn&&(px>=BTH||(px>=30&&bv>.45))){bh.classList.remove("ready");bh.style.opacity="0";var bt=cur-1,bc=SHC[ids[bt]],bk=st.querySelector(":scope > .hero > .kicker");if(bc&&bk&&st.animate&&!RM){var dyE=bc.p-bk.getBoundingClientRect().top,bdu=Math.round(420+260*Math.min(1,dyE/innerHeight)),kf=[{transform:"translate3d(0,"+px+"px,0)"},{transform:"translate3d(0,"+(px+dyE)+"px,0)"}],_r=Math.max(.6,Math.min(6,Math.max(0,bv)*.6*bdu/Math.max(1,dyE))),bez=_r>3.33?"cubic-bezier("+(1/_r).toFixed(3)+",1,.36,1)":"cubic-bezier(.3,"+(.3*_r).toFixed(3)+",.36,1)",op={duration:bdu,easing:bez,fill:"forwards"};var _t0=document.timeline.currentTime;BHO={a:[st.animate(kf,op),bpE?bpE.animate(kf,op):null],du:bdu,ez:bez,t0:_t0};BHO.a.forEach(function(x){if(x)try{x.startTime=_t0}catch(e){}});requestAnimationFrame(function(){setTimeout(function(){backTo(bt,true)},0)})}else backTo(bt,true);return}
   bh.style.opacity="0";bh.classList.remove("ready");
-  if(st&&st.animate){var a=st.animate([{transform:"translate3d(0,"+px+"px,0)"},{transform:"translate3d(0,0,0)"}],{duration:320,easing:"cubic-bezier(.16,1,.3,1)"});st.style.transform="";}else if(st)st.style.transform=""}
-document.addEventListener("touchend",function(){tY0=null;endBack()},{passive:true});document.addEventListener("touchcancel",function(){tY0=null;endBack()},{passive:true});
+  if(st&&st.animate){var kf=[{transform:"translate3d(0,"+px+"px,0)"},{transform:"translate3d(0,0,0)"}],op={duration:320,easing:"cubic-bezier(.16,1,.3,1)"},a=st.animate(kf,op);if(bpE){bpE.animate(kf,op);bpE.style.transform=""}st.style.transform="";a.onfinish=function(){if(!tPull)bpOff(st)}}else if(st){st.style.transform="";bpOff(st)}}
+document.addEventListener("touchend",function(){tY0=null;endBack()},{passive:true});document.addEventListener("touchcancel",function(){tY0=null;endBack(true)},{passive:true});document.addEventListener("contextmenu",function(e){if(tPull||document.documentElement.classList.contains("bpull"))e.preventDefault()});
 var lastWheelT=0,lastScrollT=0;window.addEventListener("scroll",function(){lastScrollT=performance.now()},{passive:true});
 window.addEventListener("wheel",function(e){var now=performance.now(),gap=now-lastWheelT;lastWheelT=now;
   if(peekBusy||cur<1||e.deltaY>=0||e.ctrlKey||scrollY>0)return;if(!(e.deltaMode===1||Math.abs(e.deltaY)>=50))return;
@@ -2744,15 +2810,17 @@ var NARR=/*NARRDATA*/null;
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&on)stop()})})();
 function setRing(i){var fg=document.getElementById("ringfg"),C=100.5;fg.style.strokeDashoffset=String(C-C*i/(N-1));document.getElementById("ringtx").textContent=i?i:""}
 function scrollFrac(){var run=cur>=0?stations[cur].querySelector('.runway'):null,H=document.documentElement.scrollHeight-(run?run.offsetHeight:0),bb=document.querySelector('.bottombar').offsetHeight||0;return H<=innerHeight+4?1:Math.min(1,Math.max(0,(scrollY+innerHeight-bb)/(H-bb)))}
-function progF(){return .9*scrollFrac()+.1*Math.min(1,pull||0)}
-function setProg(i,f){if(!pathY)measurePath();if(pathY&&stLis[i]){f=Math.min(1,f);var y=pathY[i],y2=stLis[i+1]?pathY[i+1]:y;pathThr.style.height=Math.max(0,y+(y2-y)*f-pathY.y0)+"px";stLis[i].firstChild.style.setProperty("--f",f.toFixed(3))}document.getElementById("tbfill").style.width=((i+f)/N*100)+"%"}
+function progF(){var r=restY();if(!isFinite(r)){var m=document.documentElement.scrollHeight-innerHeight;return m<=4?1:Math.min(1,Math.max(0,scrollY/m))}return r<=4?1:Math.min(1,Math.max(0,scrollY/r))}
+var tbV=-1,tbA=null,tbEl=null;function tbTf(x){return"translate3d("+((x-1)*100).toFixed(3)+"%,0,0)"}
+function tbSet(v){tbEl=tbEl||document.getElementById("tbfill");if(!tbEl)return;v=Math.max(0,Math.min(1,v));if(Math.abs(v-tbV)<5e-5)return;if(tbV>=0&&Math.abs(v-tbV)>.2/N&&tbEl.animate&&!RM){var from=tbA?getComputedStyle(tbEl).transform:tbTf(tbV);if(tbA)tbA.cancel();tbEl.style.transform=tbTf(v);tbA=tbEl.animate([{transform:from},{transform:tbTf(v)}],{duration:520,easing:"cubic-bezier(.22,1,.36,1)"});tbA.onfinish=function(){tbA=null}}else tbEl.style.transform=tbTf(v);tbV=v}
+var _spK="";function setProg(i,f){f=Math.min(1,f);var showP=DESK.matches||pathEl.classList.contains("open"),k=i+":"+f.toFixed(3)+":"+showP;if(k===_spK)return;_spK=k;if(showP){if(!pathY)measurePath();if(pathY&&stLis[i]){var y=pathY[i],y2=stLis[i+1]?pathY[i+1]:y;pathThr.style.height=Math.max(0,y+(y2-y)*f-pathY.y0).toFixed(1)+"px";stLis[i].firstChild.style.setProperty("--f",f.toFixed(3))}}tbSet((i+f)/N)}
 var moreEl=document.getElementById("more"),moreTxt=document.getElementById("moretxt"),moreTarget=null,ticking=false;
-function updateMore(){ticking=false;if(cur<0)return;if(pendFill===cur){var _r=stations[cur].querySelector(".runway");if(_r&&_r.getBoundingClientRect().top<innerHeight*1.4){pendFill=-1;refill(cur)}}var pf=progF();
+function updateMore(){ticking=false;if(cur<0)return;if(peekBusy){clearTimeout(updateMore._t);updateMore._t=setTimeout(reqMore,120);return}if(pendFill===cur){var _r=stations[cur].querySelector(".runway");if(_r&&_r.getBoundingClientRect().top<innerHeight*1.4){pendFill=-1;refill(cur)}}var pf=progF();
   var s=stations[cur],limit=innerHeight-(document.querySelector(".bottombar").offsetHeight||70)-30,next=null,left=0;
-  s.querySelectorAll(".content h2").forEach(function(h){var t=h.getBoundingClientRect().top;if(t>limit&&h.offsetParent&&!h.closest(".runway")){if(!next)next=h;left++}});
-  var sw0=curSw(),nearEnd=sw0?sw0.getBoundingClientRect().top<innerHeight:document.documentElement.scrollHeight-innerHeight-scrollY<60;
-  if(next&&!nearEnd&&!pathEl.classList.contains("open")){moreTarget=next;moreTxt.textContent=next.textContent.replace(/\s+/g," ").trim()+(left>1?"  +"+(left-1):"");moreEl.classList.add("on")}
-  else{moreEl.classList.remove("on");moreTarget=null}
+  if(!s._h2||s._h2v!==GEO.v){s._h2=[].filter.call(s.querySelectorAll(".content h2"),function(h){return !h.closest(".runway")});s._h2v=GEO.v}s._h2.forEach(function(h){var t=docTop(h)-scrollY;if(t>limit&&(h.offsetWidth||h.offsetHeight)){if(!next)next=h;left++}});
+  var sw0=curSw(),nearEnd=sw0?docTop(sw0)-scrollY<innerHeight:maxScroll()-scrollY<60;
+  if(next&&!nearEnd&&!pathEl.classList.contains("open")){moreTarget=next;var _mt=next.textContent.replace(/\s+/g," ").trim()+(left>1?"  +"+(left-1):"");if(moreTxt.textContent!==_mt)moreTxt.textContent=_mt;if(!moreEl.classList.contains("on"))moreEl.classList.add("on")}
+  else{if(moreEl.classList.contains("on"))moreEl.classList.remove("on");moreTarget=null}
   setProg(cur,pf)}
 function reqMore(){if(!ticking){ticking=true;requestAnimationFrame(updateMore)}}
 window.addEventListener("scroll",reqMore,{passive:true});window.addEventListener("resize",reqMore);
@@ -2770,10 +2838,11 @@ function updateNav(i){
   var prev=document.getElementById("prev"),next=document.getElementById("next");prev.disabled=i===0;
   document.getElementById("nexttxt").textContent=i===0?"Starten":i<N-1?"Weiter":"Übersicht";
   document.getElementById("nt").textContent=i<N-1?stations[i+1].dataset.title:"";
-  next.classList.toggle("nudge",i===0);measurePath();setProg(i,0);try{updTabs(i)}catch(e){}}
+  next.classList.toggle("nudge",i===0);measurePath();reqMore();try{updTabs(i)}catch(e){}}
 var leaveAnim=null,viaPeek=false;
 var BBAR=document.querySelector(".bottombar"),lastInput=0,pendFill=-1,FILLNOW=false;["wheel","touchstart","touchmove","keydown","pointerdown","scroll"].forEach(function(ty){window.addEventListener(ty,function(){lastInput=performance.now()},{passive:true,capture:true})});
-function quiet(ms){return !peekBusy&&!document.querySelector(".back-ov")&&performance.now()-lastInput>=(ms||800)}
+var PDOWN=0;["pointerdown"].forEach(function(t){addEventListener(t,function(){PDOWN++},{passive:true,capture:true})});["pointerup","pointercancel"].forEach(function(t){addEventListener(t,function(){PDOWN=Math.max(0,PDOWN-1)},{passive:true,capture:true})});addEventListener("blur",function(){PDOWN=0});
+function quiet(ms){return !peekBusy&&!PDOWN&&!touching&&!document.querySelector(".back-ov")&&performance.now()-lastInput>=(ms||800)}
 function quietIdle(f,ms){function go(){if(!quiet(ms)){setTimeout(go,350);return}if(window.requestIdleCallback)requestIdleCallback(function(){if(!quiet(ms)){setTimeout(go,350);return}f()},{timeout:1200});else f()}setTimeout(go,ms||800)}
 /* 3. Overlay für den nächsten Wechsel schon in Ruhephasen bauen statt beim ersten Mausrad-Schritt (25 bis 45 ms) */
 function schedPrep(){var c=cur;quietIdle(function(){if(cur===c&&!peekBusy&&c+1<N&&pFor!==c+1){try{preparePeek(c+1)}catch(e){}}})}
@@ -2790,8 +2859,7 @@ function show(i){if(i===cur&&!leaveAnim)return;
   swapTo(i,cur<0?0:(i>cur?1:-1))}
 function swapTo(i,dir,pk){var old=stations[cur];stations.forEach(function(x){x.classList.remove("via-peek")});
   if(old){old.classList.remove("on","enter","fwd","back","first");old.style.transform="";old.style.opacity="";old.style.transition=""}
-  var s=stations[i];s.classList.remove("enter","fwd","back","first");if(pk)s.classList.add("via-peek");void s.offsetWidth;
-  s.classList.add("on","enter",dir>0?"fwd":dir<0?"back":"first");
+  var s=stations[i];s.classList.remove("enter","fwd","back","first");if(pk)s.classList.add("on");else{void s.offsetWidth;s.classList.add("on","enter",dir>0?"fwd":dir<0?"back":"first")}
   function pick(a){return a[Math.floor(Math.random()*a.length)]}
   if(!pk){s.setAttribute("data-in",pick(["slide","blur","drop","wipe"]));s.setAttribute("data-anim",pick(["rise","zoom","drift","cascade"]));s.setAttribute("data-art",pick(["seq","together","reverse"]));
   s.querySelectorAll(".content > *").forEach(function(c,k){c.style.setProperty("--i",Math.min(k,5))})}
@@ -2799,7 +2867,7 @@ function swapTo(i,dir,pk){var old=stations[cur];stations.forEach(function(x){x.c
   if(old&&i===cur+1){try{markDone(ids[cur])}catch(e){}}cur=i;visited[ids[i]]=1;store.set("visited",visited);if(i>0)store.set("last",ids[i]);
   updateNav(i);closeSheet();window.scrollTo(0,0);
   if(hooks[ids[i]])hooks[ids[i]]();
-  stations.forEach(function(x){var rr=x.querySelector('.runway');if(rr)rr.classList.remove('armed')});resetSw();fixRest();lastSY=scrollY;lastT=performance.now();flung=false;buildMeander(stations[i]);var _rn=stations[i].querySelector(".runway"),_tp=_rn?_rn.getBoundingClientRect().top:0,_ri=_rn&&_rn.querySelector(".rw-in"),_sc=_ri&&_ri.children.length&&_ri.querySelector(":scope > .content"),_far=_tp>innerHeight+40,_soft=!_far&&!!_sc&&(!!_sc.querySelector(".schwelle")||_sc.getBoundingClientRect().bottom>innerHeight+40);if(!FILLNOW&&_rn&&(_far||_soft)){pendFill=i;var _ff=function(){if(pendFill===cur){pendFill=-1;refill(cur)}};if(_tp>innerHeight*1.6)quietIdle(_ff,300);else requestAnimationFrame(function(){setTimeout(_ff,0)})}else{pendFill=-1;fillPreview(i,true)}fixInk(stations[i]);shownAt=performance.now();if(restY()<=4)arm();else disarm();
+  stations.forEach(function(x){var rr=x.querySelector('.runway');if(rr)rr.classList.remove('armed')});resetSw();fixRest();lastSY=scrollY;lastT=performance.now();flung=false;buildMeander(stations[i]);var _rn=stations[i].querySelector(".runway"),_tp=_rn?_rn.getBoundingClientRect().top:0,_ri=_rn&&_rn.querySelector(".rw-in"),_sc=_ri&&_ri.children.length&&_ri.querySelector(":scope > .content"),_far=_tp>innerHeight+40,_soft=!_far&&!!_sc&&(!!_sc.querySelector(".schwelle")||_sc.getBoundingClientRect().bottom>innerHeight+40);if(!FILLNOW&&_rn&&(_far||_soft)){pendFill=i;var _ff=function(){if(pendFill===cur){pendFill=-1;refill(cur)}};if(_tp>innerHeight*1.6||_soft)quietIdle(_ff,300);else requestAnimationFrame(function(){setTimeout(_ff,0)})}else{pendFill=-1;fillPreview(i,true)}fixInk(stations[i]);shownAt=performance.now();if(restY()<=4)arm();else disarm();
   moreEl.classList.remove("on");setTimeout(reqMore,350);if(window.narrOnStation)window.narrOnStation(i);if(window.vvUpdate)window.vvUpdate();schedPrep()}
 function fromHash(){var h=(location.hash||"").replace("#",""),i=ids.indexOf(h);if(i<0)i=0;if(i===cur)return;if(cur>=0&&!RM&&!peekBusy){if(i<cur){backTo(i,false);return}if(i>0){peekTo(i,i===cur+1);return}}show(i)}
 function go(i){if(i<0||i>=N)return;if(peekBusy)return;
@@ -2817,12 +2885,12 @@ function prepStation(t){var id=ids[t];try{if(id==="einleitung"){var pa=compose()
 /* Strich-Animationen laufen nur, solange sie zu sehen sind (pausieren statt neu starten) */
 var svgIO=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target,st=v.closest(".station"),ok=e.isIntersecting&&e.boundingClientRect.width>0&&(!st||st.classList.contains("on")||!!v.closest(".back-ov"));try{if(ok)v.unpauseAnimations();else v.pauseAnimations()}catch(x){}})},{rootMargin:"120px 0px"}):null;
 function watchSvgs(root){if(!svgIO||!root)return;root.querySelectorAll("svg").forEach(function(v){if(!v.querySelector("animate,animateTransform,animateMotion,set"))return;svgIO.unobserve(v);svgIO.observe(v)})}
-function cloneStation(t,into,deep){var st=stations[t];prepStation(t);if(deep)fillPreview(t,false);into.innerHTML="";var h=st.querySelector(".hero"),c=st.querySelector(".content");
-  [h,c].forEach(function(x){if(!x)return;var k=x.cloneNode(true);k.removeAttribute("id");k.querySelectorAll("[id]:not(.keepid)").forEach(function(n){n.setAttribute("data-cid",n.id);n.removeAttribute("id")});
+var FILLPART=null;function cloneStation(t,into,deep){var st=stations[t],part=FILLPART&&FILLPART.t===t?FILLPART.keep:null;prepStation(t);if(deep&&!part)fillPreview(t,false);into.innerHTML="";var h=st.querySelector(".hero"),c=st.querySelector(".content");
+  [h,c].forEach(function(x){if(!x)return;var k;if(part&&x===c){k=x.cloneNode(false);[].forEach.call(x.children,function(n,ix){if(part.indexOf(ix)>=0)k.appendChild(n.cloneNode(true))})}else k=x.cloneNode(true);k.removeAttribute("id");k.querySelectorAll("[id]:not(.keepid)").forEach(function(n){n.setAttribute("data-cid",n.id);n.removeAttribute("id")});
     if(!deep)k.querySelectorAll(".runway,.schwelle").forEach(function(n){n.remove()});else k.querySelectorAll(".schwelle").forEach(function(n){n.classList.remove("ready","armed");n.style.removeProperty("--pull");var h=n.querySelector(".sw-hint");if(h)h.textContent=hintTxt()});if(deep)k.querySelectorAll(".runway").forEach(function(n){n.classList.remove("armed");n.style.marginTop="";n.style.removeProperty("--rw-up")});into.appendChild(k)});
   into.setAttribute("data-look",st.getAttribute("data-look"));into.setAttribute("data-sid",ids[t]);syncSvg(h,into);if(into.closest&&into.closest(".station:not(.on)"))into.querySelectorAll("svg").forEach(function(v){try{v.pauseAnimations()}catch(e){}});fixInk(into);watchSvgs(into);if(deep)fixCloneRest(into)}
 function fixCloneRest(into){try{var run=into.querySelector(":scope > .content > .runway"),h0=into.querySelector(":scope > .hero"),hc=cur>=0&&stations[cur]?stations[cur].querySelector(".hero"):null;if(!run||!h0||!hc)return;var r=into.getBoundingClientRect(),sc=into.offsetWidth?r.width/into.offsetWidth:1;if(!(sc>0))sc=1;var rel=(run.getBoundingClientRect().top-h0.getBoundingClientRect().top)/sc,abs=hc.getBoundingClientRect().top+scrollY+rel,need=innerHeight-padB()-abs;if(need>0){run.style.marginTop=need+"px";run.style.setProperty("--rw-up",Math.max(0,need-14)+"px")}else run.style.setProperty("--rw-up","0px")}catch(e){}}
-function refill(i){var ri=stations[i]&&stations[i].querySelector(":scope > .content > .runway .rw-in");if(!ri){fillPreview(i,true);return}var tm=[];ri.querySelectorAll(":scope > .hero svg").forEach(function(v){try{tm.push(v.getCurrentTime())}catch(e){tm.push(null)}});fillPreview(i,true);ri.querySelectorAll(":scope > .hero svg").forEach(function(v,k){try{if(tm[k]!=null)v.setCurrentTime(tm[k])}catch(e){}})}
+function refill(i){setTimeout(function(){if(i===cur&&!peekBusy)cacheRest()},60);var ri=stations[i]&&stations[i].querySelector(":scope > .content > .runway .rw-in");if(!ri){fillPreview(i,true);return}var tm=[];ri.querySelectorAll(":scope > .hero svg").forEach(function(v){try{tm.push(v.getCurrentTime())}catch(e){tm.push(null)}});fillPreview(i,true);ri.querySelectorAll(":scope > .hero svg").forEach(function(v,k){try{if(tm[k]!=null)v.setCurrentTime(tm[k])}catch(e){}})}
 function fillPreview(i,deep){var st=stations[i];if(!st||!stations[i+1])return;var ri=st.querySelector(".rw-in");if(ri)cloneStation(i+1,ri,deep)}
 function preparePeek(t){if(pFor===t){syncSvg(stations[t].querySelector(".hero"),pIn);return}var src=stations[t].querySelector(".hero");if(!src)return;
   cloneStation(t,pIn,true);pIn.inert=true;
@@ -2879,7 +2947,7 @@ document.getElementById("prev").addEventListener("click",function(){if(cur>0)bac
 document.getElementById("next").addEventListener("click",function(){go(cur<N-1?cur+1:0)});
 
 /* Bottom-Sheet */
-function openSheet(){if(DESK.matches)return;pathEl.classList.add("open");scrim.classList.add("open");menuBtn.setAttribute("aria-expanded","true");var a=pathList.querySelector('[aria-current="page"]');if(a)setTimeout(function(){a.scrollIntoView({block:"center"})},60)}
+function openSheet(){if(DESK.matches)return;pathEl.classList.add("open");_spK="";try{reqMore()}catch(e){}scrim.classList.add("open");menuBtn.setAttribute("aria-expanded","true");var a=pathList.querySelector('[aria-current="page"]');if(a)setTimeout(function(){a.scrollIntoView({block:"center"})},60)}
 function closeSheet(){pathEl.classList.remove("open");scrim.classList.remove("open");menuBtn.setAttribute("aria-expanded","false")}
 menuBtn.addEventListener("click",openSheet);document.getElementById("where").addEventListener("click",function(){if(DESK.matches)window.scrollTo({top:0,behavior:RM?"auto":"smooth"});else openSheet()});
 scrim.addEventListener("click",closeSheet);
@@ -2892,8 +2960,11 @@ var pull=0,pullReady=false,touchUI=window.matchMedia&&matchMedia("(hover:none)")
 var RUNWAY=Math.round(PEEK_TH*1.75),touching=0,idleT=null,pausedAtRest=false,backing=false,lastSY=0;
 function curSw(){return cur>=0?stations[cur].querySelector(".schwelle"):null}
 function curRun(){return cur>=0?stations[cur].querySelector(".runway"):null}
-function padB(){return parseFloat(getComputedStyle(mainEl).paddingBottom)||0}
-function restY(){var r=curRun();if(!r)return Infinity;return Math.max(0,r.getBoundingClientRect().top+scrollY+padB()-innerHeight)}
+var GEO={v:0};function geoDirty(){GEO.v++}window.addEventListener("resize",geoDirty,{passive:true});try{var _ro=new ResizeObserver(geoDirty);document.querySelectorAll(".station").forEach(function(x){_ro.observe(x)})}catch(e){}
+var _pb=null,_pbV=-1;function padB(){if(_pbV!==GEO.v){_pb=parseFloat(getComputedStyle(mainEl).paddingBottom)||0;_pbV=GEO.v}return _pb}
+function docTop(el){var st=el.closest&&el.closest(".station");if(st&&(st.style.transform||(bA&&bA.playState==="running")))return el.getBoundingClientRect().top+scrollY;var c=el._gt;if(c&&c.v===GEO.v&&c.c===cur)return c.t;var t=el.getBoundingClientRect().top+scrollY;el._gt={v:GEO.v,c:cur,t:t};return t}
+var _mx=0,_mxV=-1,_mxC=-2;function maxScroll(){if(_mxV!==GEO.v||_mxC!==cur){_mx=document.documentElement.scrollHeight-innerHeight;_mxV=GEO.v;_mxC=cur}return _mx}
+function restY(){var r=curRun();if(!r)return Infinity;return Math.max(0,docTop(r)+padB()-innerHeight)}
 function atBottom(){return scrollY+innerHeight>=document.documentElement.scrollHeight-3}
 function hintTxt(){return touchUI?"Weiter nach oben schieben oder antippen":"Weiterscrollen oder klicken"}
 function setPull(v){pull=Math.max(0,v);var sw=curSw();if(!sw)return;
@@ -2903,17 +2974,24 @@ function setPull(v){pull=Math.max(0,v);var sw=curSw();if(!sw)return;
 function resetSw(){pull=0;pullReady=false;var sw=curSw();if(sw){sw.style.setProperty("--pull","0");sw.classList.remove("ready");sw.querySelector(".sw-hint").textContent=hintTxt()}}
 function fixRest(){var sw=curSw(),run=curRun();if(!sw||!run)return;sw.style.marginTop="";run.style.marginTop="";var top=run.getBoundingClientRect().top+scrollY,need=innerHeight-padB()-top;if(need>0){run.style.marginTop=need+"px";run.style.setProperty("--rw-up",Math.max(0,need-14)+"px")}else run.style.setProperty("--rw-up","0px")}
 function armed(){var r=curRun();return !!(r&&r.classList.contains("armed"))}
-function arm(){var r=curRun(),sw=curSw();if(!r||armed())return;r.classList.add("armed");pausedAtRest=true;syncWG();if(sw&&!RM){sw.classList.remove("armed");void sw.offsetWidth;sw.classList.add("armed")}}
+function cacheRest(){try{var r=curRun(),_rs=r&&r.querySelector(".rw-sheet"),_pk=_rs&&_rs.querySelector(".rw-in .hero > .kicker");if(_pk&&Math.abs(scrollY-restY())<=4){var q=_pk.getBoundingClientRect().top;if(q>0&&q<innerHeight*1.5)SHC[ids[cur]]={p:q}}}catch(e){}}
+function warmSt(i){var s=stations[i];if(!s||i===cur||s._wv===GEO.v)return;quietIdle(function(){if(s.classList.contains("on")||peekBusy)return;s._wv=GEO.v;s.classList.add("warm");void s.offsetHeight;requestAnimationFrame(function(){s.classList.remove("warm")})},400)}
+function arm(){var r=curRun(),sw=curSw();if(!r||armed())return;cacheRest();warmSt(cur+1);r.classList.add("armed");pausedAtRest=true;syncWG();if(sw&&!RM){sw.classList.remove("armed");void sw.offsetWidth;sw.classList.add("armed")}}
 function disarm(){var r=curRun();if(r)r.classList.remove("instant");if(r&&armed()){r.classList.remove("armed");var sw=curSw();if(sw)sw.classList.remove("armed")}pausedAtRest=false;syncWG()}
 function backToRest(){var r=restY();if(!isFinite(r))return;backing=true;window.scrollTo({top:r,behavior:RM?"auto":"smooth"});setTimeout(function(){backing=false},450)}
 function crossSw(){var tgt=cur===N-1?0:cur+1;pullReady=false;if(tgt>0&&!RM&&stations[cur].querySelector(".rw-sheet")){peekTo(tgt,true)}else go(tgt)}
 var lastT=0,flung=false;
-function onScrollPull(){if(peekBusy||cur<0||!curRun())return;var r=restY(),over=scrollY-r,prev=lastSY-r,now=performance.now(),v=Math.abs(scrollY-lastSY)/Math.max(1,now-lastT);lastSY=scrollY;lastT=now;
+var eSV=0,bounceUntil=0,bA=null;
+function wcZone(){var st=stations[cur];if(!st)return;var H=innerHeight,near=scrollY<H*1.2||maxScroll()-scrollY<H*1.2;if(near&&!st._wc){st.style.willChange="transform";st._wc=1}return near}
+function wcIdle(){stations.forEach(function(x,k){if(x._wc&&(k!==cur||!wcZone())){x.style.willChange="";x._wc=0}})}
+function edgeBounce(now){if(Math.abs(scrollY-lastSY)>2)wcZone();var dt=Math.max(1,now-lastT),sv=(scrollY-lastSY)/dt,vv=Math.abs(sv)>Math.abs(eSV)?sv:eSV;eSV=dt>120?0:sv;if(!touchUI||touching||RM||now<bounceUntil||peekBusy||Math.abs(vv)<.7)return;var mx=maxScroll();if(mx>40&&scrollY>=mx-1&&lastSY<mx-1&&vv>.7&&!armed())bounce(-1,vv);else if(scrollY<=1&&lastSY>1&&vv<-.7)bounce(1,-vv)}
+function bounce(d,v){var st=stations[cur];if(!st||!st.animate||st.style.transform)return;var A=Math.round(Math.min(34,Math.max(10,v*15)));bounceUntil=performance.now()+500;if(d<0)setTimeout(function(){try{if(!peekBusy){arm();flung=false}}catch(e){}},170);bA=st.animate([{transform:"translate3d(0,0,0)",easing:"cubic-bezier(.12,.85,.3,1)"},{transform:"translate3d(0,"+(d*A)+"px,0)",offset:.3,easing:"cubic-bezier(.45,0,.2,1)"},{transform:"translate3d(0,0,0)"}],{duration:480})}
+function onScrollPull(){if(peekBusy||cur<0)return;edgeBounce(performance.now());if(!curRun()){lastSY=scrollY;lastT=performance.now();return}var r=restY(),over=scrollY-r,prev=lastSY-r,now=performance.now(),v=Math.abs(scrollY-lastSY)/Math.max(1,now-lastT);lastSY=scrollY;lastT=now;
   if(armed()&&over<-(padB()+20))disarm();
   if(over>0&&prev<=0&&v>3.2)flung=true;
   setPull(armed()&&over>0?over/PEEK_TH:0);if(!touching&&pullReady&&now-tEndAt<1200&&scrollY>lastSY0)touchGo(Math.max(0,(scrollY-lastSY0)/Math.max(8,now-lastT0)));lastSY0=scrollY;lastT0=now}
 var lastSY0=0,lastT0=0;
-function onIdle(){if(peekBusy||cur<0||!curRun()||touching)return;var r=restY(),over=scrollY-r;
+function onIdle(){if(performance.now()<bounceUntil){clearTimeout(idleT);idleT=setTimeout(onIdle,bounceUntil-performance.now()+20);return}if(peekBusy||cur<0||!curRun()||touching)return;try{wcIdle();wcZone()}catch(e){}var r=restY(),over=scrollY-r;if(Math.abs(over)<=4)cacheRest();if(scrollY<=4&&cur>0)warmSt(cur-1);
   if(!armed()){if(Math.abs(over)<=4){arm();flung=false}return}
   if(over<=4){flung=false;return}
   if(pullReady&&!flung&&!backing&&performance.now()-lastUser<1500&&performance.now()-shownAt>900){crossSw()}else{flung=false;backToRest()}}
@@ -2934,7 +3012,7 @@ function fingerV(){var n=performance.now();if(tSm.length<2||n-tSm[tSm.length-1][
 function touchGo(v){if(peekBusy||cur<0||!armed()||!pullReady||flung||backing||performance.now()-shownAt<900)return false;clearTimeout(idleT);relV=v;zeroRoom();lastUser=performance.now();crossSw();if(!peekBusy){relV=null;freeRoom()}return true}
 var roomRun=null;function zeroRoom(){var run=curRun();if(!run)return;mainEl.style.overflowY="clip";var extra=document.documentElement.scrollHeight-innerHeight-scrollY;if(extra>0){run.style.height=Math.max(0,run.offsetHeight-extra)+"px";roomRun=run}}
 function freeRoom(){if(roomRun){roomRun.style.height="";roomRun=null}mainEl.style.overflowY=""}
-function tEnd(e){touching=e.touches?e.touches.length:0;if(!touching){tEndAt=performance.now();if(touchGo(fingerV()))return;clearTimeout(idleT);idleT=setTimeout(onIdle,200)}}
+function tEnd(e){touching=e.touches?e.touches.length:0;if(!touching){tEndAt=performance.now();if(e.type!=="touchcancel"&&touchGo(fingerV()))return;clearTimeout(idleT);idleT=setTimeout(onIdle,200)}}
 document.addEventListener("touchend",tEnd,{passive:true});document.addEventListener("touchcancel",tEnd,{passive:true});
 
 /* Tastatur */
@@ -2954,9 +3032,9 @@ document.querySelectorAll(".share").forEach(function(b){b.addEventListener("clic
   copy()})});
 
 /* Zurücksetzen */
-document.getElementById("resetpath").addEventListener("click",function(){visited={};store.set("visited",visited);store.set("last","start");go(0)});
+document.getElementById("resetpath").addEventListener("click",function(){visited={};store.set("visited",visited);store.set("last","start");DONE={};store.set("done",DONE);go(0);refreshDone()});
 (function(){var b=document.getElementById("resetall"),armed=false,tm;b.addEventListener("click",function(){if(!armed){armed=true;b.textContent="Wirklich löschen? Nochmal tippen";tm=setTimeout(function(){armed=false;b.textContent="Häkchen und Stempel löschen"},3500);return}
-  clearTimeout(tm);chk={};known={};store.set("chk",chk);store.set("known",known);store.set("best",0);location.reload()})})();
+  clearTimeout(tm);chk={};known={};store.set("chk",chk);store.set("known",known);store.set("best",0);store.set("done",{});location.reload()})})();
 
 if(DESK.addEventListener)DESK.addEventListener("change",function(){closeSheet();placeEpo();placeGen()});
 
@@ -3045,6 +3123,102 @@ document.getElementById("next").addEventListener("click",function(e){if(cur===0)
 var _un=updTabs;updTabs=function(i){_un(i);if(i===0&&stepsDone()>0)document.getElementById("nexttxt").textContent="Weiter"};
 refreshDone();renderMini();
 
+/* ================= START-INTRO „ZÜNDUNG“ (wiederverwendbar) =================
+   Ablauf beim ersten Besuch pro Sitzung (html.vh):
+   1. Sobald Schriften und Layout stehen, zündet die Neonlinie direkt auf der Höhe des roten Fadens im Kopf
+      der Startseite (.fadenline), dort, wo er gleich liegen wird (introPrime). Vorher bleibt der Schirm dunkel.
+   2. Beim Startsignal teilt sich der Schirm genau dort mit weichen Kanten. Die Linie wird zum Faden: erst gerade, dann biegt sie
+      sich in ihre Welle.
+   4. Jedes Startelement zündet wie eine Leuchtröhre in dem Moment, in dem die Kante des Dunkels es freigibt.
+      Nichts gleitet herein, es gibt nur Licht (opacity und filter).
+   Ohne Intro (spätere Ladevorgänge) läuft dieselbe Welle weich von oben, ohne Flackern.
+   Einbinden: intro.css ans CSS hängen, diese Datei vor fromHash() einsetzen. In go2 direkt vor openStage()
+   introPrime() aufrufen, in openStage() die Wartezeit 480-performance.now() durch
+   (INTRO.litAt||0)+480-performance.now() ersetzen, vor d.classList.add("vh-open") introPlan(vh) aufrufen und
+   die 700 im Timer, der "vh" entfernt, durch Math.max(700,INTRO.end||0) ersetzen. Anpassen: nur INTRO. */
+var INTRO={
+  thread:":scope > .hero > .fadenline",          /* Faden im Kopf der Startseite, fehlt er, teilt sich der Schirm unter dem Titel */
+  skip:".deco,.sg,.fadenline,.cur,.val,script",  /* Deko, die nicht einzeln zündet */
+  bars:[".topbar",".bottombar"],                 /* feste Leisten */
+  side:".path .brand,.path h2,.path ol > li,.side-extra > *", /* Seitenleiste ab 1100 px */
+  glide:70,           /* ms, kurzer Moment zwischen fertig gezündeter Linie und Teilung */
+  split:860,          /* ms, Schirm öffnet sich vom Faden aus, zwei Lichtkanten laufen nach außen */
+  feather:190,        /* px, weiche Kante des Dunkels */
+  bend:620,           /* ms, gerade Linie biegt sich in die Welle */
+  lead:.06,           /* s, so viel früher als die Kante zündet ein Element */
+  softBase:.02, softSpread:.3,
+  end:0, litAt:0, fy:null  /* werden gesetzt */
+};
+function introBez(x1,y1,x2,y2){function c(a,b,t){return((1-3*b+3*a)*t+(3*b-6*a))*t*t+3*a*t}   /* cubic-bezier als Funktion t→y */
+  return function(x){var lo=0,hi=1,t=x;for(var i=0;i<22;i++){var v=c(x1,x2,t);if(v<x)lo=t;else hi=t;t=(lo+hi)/2}return c(y1,y2,t)}}
+function introFy(st){var H=innerHeight,thr=st.querySelector(INTRO.thread),tr=thr&&thr.getBoundingClientRect();
+  if(tr&&tr.height>0&&tr.bottom>0&&tr.top<H)return{fy:Math.round(tr.top+tr.height/2),thr:thr,tr:tr};
+  var h1=st.querySelector(".hero h1"),hr=h1&&h1.getBoundingClientRect();return{fy:Math.round(hr?Math.min(H*.7,hr.bottom+14):H*.35),thr:null,tr:null}}
+/* Die Linie zündet gleich dort, wo der Faden liegen wird: Vorhang dort teilen, Linie und Lichthof dorthin, dann erst zünden */
+function introPrime(){var d=document.documentElement;if(!d.classList.contains("vh")||RM)return;var cu=document.querySelector(".curtain"),st=cur>=0?stations[cur]:null;if(!cu||!st)return;
+  var H=innerHeight,f=introFy(st).fy,hz=cu.querySelector(".hz"),bl=cu.querySelector(".bloom"),top=cu.querySelector(".nc-top"),bot=cu.querySelector(".nc-bot");
+  if(hz)hz.style.top=f+"px";if(bl)bl.style.top=f+"px";if(top)top.style.height=(f+1)+"px";if(bot){bot.style.top=f+"px";bot.style.height=(H-f)+"px";bot.style.bottom="auto"}
+  INTRO.fy=f;INTRO.litAt=performance.now();cu.classList.add("lit")}
+function introPlan(vh){
+  var d=document.documentElement;if(RM||!Element.prototype.animate)return;
+  var H=innerHeight,st=cur>=0?stations[cur]:null;if(!st)return;
+  var _f=introFy(st),thr=_f.thr,tr=_f.tr,fy=_f.fy;
+  /* Was zündet? Große Blöcke werden in ihre Kinder zerlegt, damit die Welle sichtbar läuft */
+  var els=[];
+  function vis(r){return r.width>0&&r.height>0&&r.bottom>0&&r.top<H}
+  function add(n,depth){if(!n||n.nodeType!==1||n.matches(INTRO.skip)||n.hidden)return;var r=n.getBoundingClientRect();if(!vis(r))return;
+    if(depth<3&&r.height>H*.4&&n.children.length>1){[].forEach.call(n.children,function(k){add(k,depth+1)});return}els.push([n,r])}
+  [].forEach.call(st.querySelectorAll(":scope > .hero > *"),function(n){add(n,9)});
+  [].forEach.call(st.querySelectorAll(":scope > .content > *"),function(n){add(n,0)});
+  document.querySelectorAll(INTRO.side).forEach(function(n){add(n,9)});
+  INTRO.bars.forEach(function(s){add(document.querySelector(s),9)});
+  var cu=document.querySelector(".curtain"),hz=cu&&cu.querySelector(".hz"),top=cu&&cu.querySelector(".nc-top"),bot=cu&&cu.querySelector(".nc-bot"),bl=cu&&cu.querySelector(".bloom");
+  var full=vh&&cu&&hz&&top&&bot,F=INTRO.feather,EZ=[.42,0,.22,1],E=introBez(EZ[0],EZ[1],EZ[2],EZ[3]);
+  /* Zündzeit je Element: wann gibt die Kante des Dunkels seine Mitte frei? */
+  function edgeTime(c){var need=c<fy?(fy-c)/(fy+F+4):(c-fy)/(H-fy+F+4);need=Math.min(1,Math.max(0,need));var lo=0,hi=1;for(var i=0;i<20;i++){var m=(lo+hi)/2;if(E(m)<need)lo=m;else hi=m}return hi}
+  var last=0;
+  els.forEach(function(e){var c=e[1].top+e[1].height/2,dl;
+    if(full)dl=Math.max(0,(INTRO.glide+edgeTime(c)*INTRO.split)/1000-INTRO.lead);
+    else dl=INTRO.softBase+Math.min(1,Math.max(0,c)/H)*INTRO.softSpread;
+    last=Math.max(last,dl);e[0].classList.add("ig-el");e[0].style.setProperty("--igd",dl.toFixed(3)+"s")});
+  d.classList.add("ig");if(!vh)d.classList.add("ig-soft");
+  if(full){
+    cu.classList.add("hand");
+    /* Vorhang an der Fadenhöhe teilen: Hälften neu zuschneiden (beide noch schwarz, unsichtbar), weiche Kanten anhängen */
+    top.style.height=(fy+1)+"px";bot.style.top=fy+"px";bot.style.height=(H-fy)+"px";bot.style.bottom="auto";
+    [top,bot].forEach(function(h){if(!h.querySelector(".nf")){var f=document.createElement("i");f.className="nf";h.appendChild(f);var l=document.createElement("i");l.className="ne";h.appendChild(l)}});
+    var G=INTRO.glide,S=INTRO.split,ez="cubic-bezier("+EZ.join(",")+")";
+    top.animate([{transform:"translate3d(0,0,0)"},{transform:"translate3d(0,"+(-(fy+F+4))+"px,0)"}],{duration:S,delay:G,easing:ez,fill:"both"});
+    bot.animate([{transform:"translate3d(0,0,0)"},{transform:"translate3d(0,"+(H-fy+F+4)+"px,0)"}],{duration:S,delay:G,easing:ez,fill:"both"});
+    /* Aus der einen Linie werden beim Teilen drei: der Faden bleibt, zwei Lichtkanten laufen mit dem Dunkel nach außen */
+    cu.querySelectorAll(".ne").forEach(function(l){l.animate([{opacity:0,transform:"scaleX(.55)"},{opacity:.95,transform:"scaleX(.9)",offset:.1},{opacity:.55,transform:"scaleX(1.1)",offset:.55},{opacity:0,transform:"scaleX(1.25)"}],{duration:S,delay:G-20,easing:"ease-out",fill:"both"})});
+    /* Linie: gleitet auf den Faden, wird beim Teilen zum Faden und verlischt */
+    var r=hz.getBoundingClientRect(),cy=r.top+r.height/2,dy=fy-cy;
+    var sx=thr?Math.max(.2,tr.width/Math.max(1,r.width)):1.15,dx=thr?(tr.left+tr.width/2)-(r.left+r.width/2):0;
+    hz.animate([{transform:"translate3d(0,"+dy.toFixed(1)+"px,0) scaleX(1)",opacity:1,easing:"ease-out"},{transform:"translate3d("+dx.toFixed(1)+"px,"+dy.toFixed(1)+"px,0) scaleX("+sx.toFixed(3)+")",opacity:0}],
+      {duration:300,delay:G,fill:"both"});
+    if(bl)bl.animate([{transform:"translate3d(0,"+dy.toFixed(1)+"px,0) scale(1)",opacity:1,easing:"ease-out"},{transform:"translate3d(0,"+dy.toFixed(1)+"px,0) scale(1.9,3)",opacity:0}],
+      {duration:S,delay:G,fill:"both"});
+    if(thr){
+      thr.classList.add("ig-thr");
+      thr.animate([{opacity:0},{opacity:1}],{duration:200,delay:G,fill:"backwards"});
+      var vb=(thr.getAttribute("viewBox")||"0 0 0 140").split(/[\s,]+/),mid=(+vb[3]||140)/2,NUM=/-?\d*\.?\d+/g;
+      var jobs=[].map.call(thr.querySelectorAll("path"),function(p){var w=p.getAttribute("d")||"",fl=w.replace(/(-?\d*\.?\d+)([\s,]+)(-?\d*\.?\d+)/g,function(m,x,s){return x+s+mid});
+        p.setAttribute("d",fl);return{p:p,w:w,a:(w.match(NUM)||[]).map(Number),b:(fl.match(NUM)||[]).map(Number)}});
+      var bend=introBez(.3,0,.15,1);
+      setTimeout(function(){var t0=performance.now();(function step(now){var k=Math.min(1,(now-t0)/INTRO.bend),e=bend(k);
+        jobs.forEach(function(j){var i=0;j.p.setAttribute("d",j.a.length!==j.b.length?j.w:j.w.replace(NUM,function(){var v=j.b[i]+(j.a[i]-j.b[i])*e;i++;return v.toFixed(2)}))});
+        if(k<1)requestAnimationFrame(step);else jobs.forEach(function(j){j.p.setAttribute("d",j.w)})})(t0)},G+40);
+    }
+    INTRO.end=G+S+60;
+  }
+  /* Aufräumen: Die Elemente behalten ihren Endzustand. animation:none verhindert, dass ihre alten
+     Einstiegsanimationen (boot, .station.first) beim Entfernen der Klasse neu starten und aufblitzen. */
+  setTimeout(function(){els.forEach(function(e){e[0].style.animation="none";e[0].classList.remove("ig-el");e[0].style.removeProperty("--igd")});d.classList.remove("ig","ig-soft");
+    if(cu){cu.classList.remove("hand");[top,bot].forEach(function(h){if(h){h.removeAttribute("style");h.getAnimations().forEach(function(a){a.cancel()})}});[hz,bl].forEach(function(x){if(x)x.getAnimations().forEach(function(a){a.cancel()})})}},
+    Math.round((last+.7)*1000)+60);
+}
+
 fromHash();
 /* Erstes Laden: Schriften abwarten, dann Schwelle und Vorschau einmal richtig setzen und erst dann zeigen */
 /* Alle Stationen im Leerlauf einmal durchrechnen lassen, damit beim Öffnen und Scrollen nichts mehr nachgebaut wird */
@@ -3067,12 +3241,12 @@ fromHash();
   window.vvUpdate=function(){req();setTimeout(req,120);setTimeout(req,500)};req()})();
 /* Erster Auftritt: Vorhang auf (einmal pro Sitzung), dahinter baut sich die Seite in fester Reihenfolge auf */
 function openStage(){var d=document.documentElement;if(!d.classList.contains("hold")&&!d.classList.contains("vh"))return;
-  var vh=d.classList.contains("vh"),w=vh?Math.max(0,480-performance.now()):0;
-  setTimeout(function(){if(vh)d.classList.add("vh-open");setTimeout(function(){d.classList.remove("hold")},vh?200:0);
+  var vh=d.classList.contains("vh"),w=vh?Math.max(0,((window.INTRO&&INTRO.litAt)||0)+480-performance.now()):0;
+  setTimeout(function(){try{introPlan(vh)}catch(e){}if(vh)d.classList.add("vh-open");setTimeout(function(){d.classList.remove("hold")},vh?200:0);
     setTimeout(function(){d.classList.remove("fl")},vh?700:520);
     setTimeout(function(){d.classList.remove("boot")},vh?2700:2500);
-    if(vh)setTimeout(function(){d.classList.remove("vh","vh-open")},700)},w)}
-(function(){var done=false;try{performance.mark("js-end")}catch(e){}function go2(){if(done)return;done=true;try{performance.mark("go2")}catch(e){}fixRest();if(cur>=0){fillPreview(cur,true);fixInk(stations[cur])}requestAnimationFrame(function(){var d=document.documentElement;if(d.classList.contains("hold"))openStage();else d.classList.remove("fl")})}
+    if(vh)setTimeout(function(){d.classList.remove("vh","vh-open")},Math.max(700,(window.INTRO&&INTRO.end)||0))},w)}
+(function(){var done=false;try{performance.mark("js-end")}catch(e){}function go2(){if(done)return;done=true;try{performance.mark("go2")}catch(e){}fixRest();if(cur>=0){fillPreview(cur,true);fixInk(stations[cur])}requestAnimationFrame(function(){var d=document.documentElement;try{introPrime()}catch(e){}if(d.classList.contains("hold"))openStage();else d.classList.remove("fl")})}
   try{document.fonts.ready.then(go2)}catch(e){}setTimeout(go2,1500)})();
 /* Wenn sich die Höhe der aktuellen Seite ändert (Aufklappen, Bilder, Schriften), Schwelle nachziehen */
 if(window.ResizeObserver){var roT=0,ro=new ResizeObserver(function(){cancelAnimationFrame(roT);roT=requestAnimationFrame(function(){if(!peekBusy)fixRest()})});stations.forEach(function(st){var c=st.querySelector(".content");if(c)ro.observe(c)})}
