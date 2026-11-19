@@ -1698,12 +1698,6 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 @media (min-width:900px){#s-handwerk .content > .zit:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="handwerk"] .content > .zit:not([data-sid] [data-sid] *){align-self:stretch}}
 @media (max-width:759px){[data-look="akte"] .stage{grid-template-columns:minmax(0,1fr)}.quelltext .stelle{white-space:normal}}
 
-/* Vorschau-Inhalt liegt schon vor dem Wechsel auf eigener Ebene: beim Start muss nichts neu gerastert werden */
-.station.on > .content > .runway > .rw-sheet > .rw-in{will-change:transform}
-
-/* Während eines Wechsels nach dem Hochwischen: nativer Schwung steht still, damit nur das Blatt fährt */
-html.nomo{overflow:hidden}
-
 </style>
 </head>
 <body>
@@ -1738,7 +1732,7 @@ html.nomo{overflow:hidden}
         <li><small class="lb">Stand</small><small>alles recherchiert, deine Unterlagen fehlen noch</small></li>
       </ul>
     </section>
-    <p class="buildtag">Stand: 19.11.2026, 13:41</p>
+    <p class="buildtag">Stand: 19.11.2026, 14:10</p>
   </div>
 </nav>
 
@@ -2941,7 +2935,7 @@ var PEEK_TH=Math.max(110,Math.min(150,innerHeight*.18));document.documentElement
 /* SMIL-Zeit von einer Kopie auf das Original übertragen (und umgekehrt), damit Schleifen nicht neu starten */
 function fixInk(root){if(!root)return;root.querySelectorAll("svg.art").forEach(function(sv){var w=sv.getBoundingClientRect().width;if(w>0)sv.style.setProperty("--inv",(240/w).toFixed(3))})}
 function syncSvg(from,to){if(!from||!to)return;if(to.closest&&to.closest(".station:not(.on)"))return;var a=from.querySelectorAll("svg"),b=to.querySelectorAll("svg");for(var k=0;k<a.length&&k<b.length;k++){try{if(b[k].setCurrentTime&&a[k].getCurrentTime)b[k].setCurrentTime(a[k].getCurrentTime())}catch(e){}}}
-function lockScroll(on){if(!on){document.documentElement.classList.remove("nomo");frzY=null}var f=lockScroll.f||(lockScroll.f=function(e){e.preventDefault()});["touchmove","wheel"].forEach(function(ty){if(on)window.addEventListener(ty,f,{passive:false});else window.removeEventListener(ty,f,{passive:false})})}
+function lockScroll(on){if(!on)freeRoom();var f=lockScroll.f||(lockScroll.f=function(e){e.preventDefault()});["touchmove","wheel"].forEach(function(ty){if(on)window.addEventListener(ty,f,{passive:false});else window.removeEventListener(ty,f,{passive:false})})}
 function tyOf(el){var m=getComputedStyle(el).transform;if(!m||m==="none")return 0;var v=m.match(/matrix(3d)?\(([^)]+)\)/);if(!v)return 0;var q=v[2].split(",").map(parseFloat);return v[1]?q[13]:q[5]}
 /* Nächste Station hochfahren: das Blatt in der Seite (nach dem Ziehen) oder das Overlay (Weiter-Knopf).
    Die Zeichnung startet schon im Blatt und läuft auf der echten Station nahtlos weiter. */
@@ -2962,7 +2956,7 @@ function peekTo(t,inflow){if(peekBusy)return;peekBusy=true;updateNav(t);moreEl.c
   var _btc=getComputedStyle(sheet).borderTopColor;anims.push(sheet.animate([{borderTopLeftRadius:"28px",borderTopRightRadius:"28px",borderTopColor:_btc,offset:0},{borderTopLeftRadius:"28px",borderTopRightRadius:"28px",borderTopColor:_btc,offset:.55},{borderTopLeftRadius:"0px",borderTopRightRadius:"0px",borderTopColor:"rgba(0,0,0,0)",offset:1}],{duration:dur,easing:"ease-out",fill:"forwards"}));var grb=sheet.querySelector(".peek-grab");if(grb)anims.push(grb.animate([{opacity:.8},{opacity:0}],{duration:dur*.6,easing:"ease-out",fill:"forwards"}));
   if(ov)anims.push(pDim.animate([{opacity:0},{opacity:.3}],{duration:dur,easing:ez,fill:"forwards"}));
   var fin=false,safe=setTimeout(function(){if(!fin&&anims[0].onfinish)anims[0].onfinish()},dur+900);
-  anims[0].onfinish=function(){if(fin)return;fin=true;frzY=null;clearTimeout(safe);var F=kc?kc.getBoundingClientRect():null;
+  anims[0].onfinish=function(){if(fin)return;fin=true;clearTimeout(safe);var F=kc?kc.getBoundingClientRect():null;
     if(cur!==c0){anims.forEach(function(x){x.cancel()});inner.classList.remove("go");inner.style.transform="";sheet.style.height="";sheet.style.transform="";if(ov){peek.classList.remove("on");sheet.style.borderRadius=""}pFor=-1;lockScroll(false);peekBusy=false;return}
     stations[t].style.setProperty("--pk-t",Math.round(performance.now()-tStart)+"ms");
     try{resetSw();pull=0;viaPeek=true;show(t);syncSvg(inner,stations[t].querySelector(".hero"));syncSvg(inner.querySelector(":scope > .content .runway .rw-in > .hero"),stations[t].querySelector(":scope > .content > .runway .rw-in"));if(location.hash!=="#"+ids[t]){try{history.pushState(null,"","#"+ids[t])}catch(e){location.hash=ids[t]}}
@@ -3020,7 +3014,7 @@ function onIdle(){if(peekBusy||cur<0||!curRun()||touching)return;var r=restY(),o
 var lastUser=0;function markUser(){lastUser=performance.now()}
 ["wheel","touchstart","touchmove","touchend","keydown"].forEach(function(t){window.addEventListener(t,markUser,{passive:true})});
 window.addEventListener("mousedown",function(e){if(e.target===document.documentElement)markUser()},{passive:true});
-var spTick=false;window.addEventListener("scroll",function(){if(peekBusy&&frzY!=null&&Math.abs(scrollY-frzY)>1)window.scrollTo(0,frzY);if(!peekBusy){if(peek.classList.contains("on")){peek.classList.remove("on");pSheet.getAnimations().forEach(function(x){x.cancel()});pSheet.style.transform="";pFor=-1}var bo=document.querySelector(".back-ov");if(bo)bo.remove()}if(!spTick){spTick=true;requestAnimationFrame(function(){spTick=false;onScrollPull()})}clearTimeout(idleT);idleT=setTimeout(onIdle,240)},{passive:true});
+var spTick=false;window.addEventListener("scroll",function(){if(!peekBusy){if(peek.classList.contains("on")){peek.classList.remove("on");pSheet.getAnimations().forEach(function(x){x.cancel()});pSheet.style.transform="";pFor=-1}var bo=document.querySelector(".back-ov");if(bo)bo.remove()}if(!spTick){spTick=true;requestAnimationFrame(function(){spTick=false;onScrollPull()})}clearTimeout(idleT);idleT=setTimeout(onIdle,240)},{passive:true});
 if("onscrollend" in window)window.addEventListener("scrollend",function(){clearTimeout(idleT);idleT=setTimeout(onIdle,200)});
 window.addEventListener("wheel",function(){clearTimeout(idleT);idleT=setTimeout(onIdle,300)},{passive:true});
 var wdPrev=0,wdGap=1e9,shownAt=0,wgOn=false;window.addEventListener("wheel",function(e){if(e.deltaY>0){var nw=performance.now();wdGap=nw-wdPrev;wdPrev=nw}},{passive:true});
@@ -3030,8 +3024,9 @@ function wheelFwd(e){var nw=performance.now(),gp=wdGap;if(peekBusy||cur<0||e.del
 var tSm=[],relV=null,tEndAt=0;document.addEventListener("touchstart",function(e){touching=e.touches.length;clearTimeout(idleT);tSm=[]},{passive:true});
 document.addEventListener("touchmove",function(e){if(e.touches.length!==1)return;var n=performance.now();tSm.push([n,e.touches[0].clientY]);while(tSm.length>2&&n-tSm[0][0]>90)tSm.shift()},{passive:true});
 function fingerV(){var n=performance.now();if(tSm.length<2||n-tSm[tSm.length-1][0]>70)return 0;var a=tSm[0],z=tSm[tSm.length-1];return Math.max(0,(a[1]-z[1])/Math.max(8,z[0]-a[0]))}
-function touchGo(v){if(peekBusy||cur<0||!armed()||!pullReady||flung||backing||performance.now()-shownAt<900)return false;clearTimeout(idleT);relV=v;document.documentElement.classList.add("nomo");lastUser=performance.now();crossSw();if(!peekBusy){relV=null;document.documentElement.classList.remove("nomo")}else frzY=scrollY;return true}
-var frzY=null;
+function touchGo(v){if(peekBusy||cur<0||!armed()||!pullReady||flung||backing||performance.now()-shownAt<900)return false;clearTimeout(idleT);relV=v;zeroRoom();lastUser=performance.now();crossSw();if(!peekBusy){relV=null;freeRoom()}return true}
+var roomRun=null;function zeroRoom(){var run=curRun();if(!run)return;mainEl.style.overflowY="clip";var extra=document.documentElement.scrollHeight-innerHeight-scrollY;if(extra>0){run.style.height=Math.max(0,run.offsetHeight-extra)+"px";roomRun=run}}
+function freeRoom(){if(roomRun){roomRun.style.height="";roomRun=null}mainEl.style.overflowY=""}
 function tEnd(e){touching=e.touches?e.touches.length:0;if(!touching){tEndAt=performance.now();if(touchGo(fingerV()))return;clearTimeout(idleT);idleT=setTimeout(onIdle,200)}}
 document.addEventListener("touchend",tEnd,{passive:true});document.addEventListener("touchcancel",tEnd,{passive:true});
 
