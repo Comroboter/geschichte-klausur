@@ -1698,6 +1698,162 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 @media (min-width:900px){#s-handwerk .content > .zit:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="handwerk"] .content > .zit:not([data-sid] [data-sid] *){align-self:stretch}}
 @media (max-width:759px){[data-look="akte"] .stage{grid-template-columns:minmax(0,1fr)}.quelltext .stelle{white-space:normal}}
 
+/* ===== Klarer Weg (mobil zuerst): Startbildschirm, Schritte, Mini-Quiz, Spickzettel, Handy-Leisten ===== */
+.js #resume,.js #startline{display:none}
+#s-start .home:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .home:not([data-sid] [data-sid] *){flex-basis:100%;max-width:640px}
+.h-what{font-size:19px;line-height:1.45;margin:0;color:var(--ink)}
+.h-time{font-size:16px;line-height:1.5;color:var(--muted);margin:10px 0 0}
+.h-time b{color:var(--ink);font-weight:600}
+
+/* Großer Knopf: genau eine Hauptaktion pro Bildschirm */
+.bigbtn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:66px;margin-top:22px;padding:12px 18px 12px 22px;
+  border:0;border-radius:18px;background:var(--st);color:var(--paper);font:inherit;text-align:left;cursor:pointer;
+  box-shadow:0 12px 30px -14px color-mix(in srgb,var(--st) calc(var(--nz) * 80%),transparent);-webkit-tap-highlight-color:transparent;transition:transform .15s var(--ease)}
+.bigbtn:active{transform:scale(.985)}
+.bigbtn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.bigbtn .bt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.bigbtn .bt b{font-family:var(--font-display);font-size:21px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.bigbtn .bt small{font-family:var(--font-display);font-size:15px;font-weight:500;opacity:.82;line-height:1.3}
+.bigbtn svg{flex:none}
+.bigbtn.sm{min-height:52px;margin-top:14px;border-radius:14px}
+.bigbtn.sm .bt b{font-size:17px}
+
+.h-prog{margin-top:18px}
+.hp-bar{height:8px;border-radius:8px;background:color-mix(in srgb,var(--st) 16%,var(--rule));overflow:hidden}
+.hp-bar i{display:block;height:100%;min-width:8px;background:var(--st);border-radius:8px;transition:width .6s var(--ease)}
+.h-prog span{display:block;margin-top:9px;font-size:15px;line-height:1.4;color:var(--muted)}
+.h-prog span b{color:var(--ink);font-weight:600}
+
+.h-list{margin-top:38px!important}
+.steplist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.steplist a{display:flex;align-items:center;gap:14px;min-height:58px;padding:8px 14px 8px 10px;border-radius:14px;color:inherit;text-decoration:none;
+  background:var(--sheet);border:1px solid var(--rule);-webkit-tap-highlight-color:transparent}
+.steplist .sn{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-variant-numeric:tabular-nums;
+  font-weight:600;font-size:15px;border:1.5px solid var(--rule);color:var(--muted)}
+.steplist .fin .sn{background:var(--ok);border-color:var(--ok);color:var(--paper)}
+.steplist .nx a{border-color:color-mix(in srgb,var(--st) 60%,var(--rule))}
+.steplist .nx .sn{border-color:var(--st);color:var(--st)}
+.steplist .stx{display:flex;flex-direction:column;min-width:0}
+.steplist .stx b{font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1.25}
+.steplist .stx small{font-size:14px;color:var(--muted);margin-top:1px}
+.steplist .fin .stx b{color:var(--muted)}
+
+/* Mini-Quiz in Schritt 1 */
+.miniq{margin-top:30px;padding:20px 20px 22px;border-radius:18px;background:var(--sheet);border:1px solid color-mix(in srgb,var(--st) 40%,var(--rule))}
+.mq-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.mq-h b{font-family:var(--font-display);font-size:20px;font-weight:700}
+.mq-h span{font-size:14px;color:var(--muted)}
+.mq-dots{display:flex;gap:6px;margin-top:12px}
+.mq-dots i{width:26px;height:6px;border-radius:6px;background:var(--rule)}
+.mq-dots i.d{background:var(--ok)}.mq-dots i.c{background:var(--st)}
+.mq-q{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.3;margin:16px 0 0}
+.mq-o{display:grid;gap:8px;margin-top:14px}
+.mq-b{min-height:54px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--rule);background:transparent;color:var(--ink);font-family:var(--font-display);font-size:17px;
+  text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mq-b.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent)}
+.mq-b.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.mq-f p{font-size:16px;line-height:1.5;margin:14px 0 0}
+.mq-end{display:flex;gap:14px;align-items:flex-start}
+.mq-ok{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--ok);color:var(--paper)}
+.mq-ok svg{width:22px;height:22px}
+.mq-end b{font-family:var(--font-display);font-size:22px;font-weight:700}
+.mq-end p{margin:6px 0 0;font-size:16px;line-height:1.5}
+.mq-end .mq-p{color:var(--muted)}
+.mq-again{margin-top:16px;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--font-display);font-size:15px;cursor:pointer}
+
+/* Spickzettel: Das Wichtigste auf einen Blick */
+.glance{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.gl-t{padding:16px 18px 18px;border-radius:16px;background:var(--sheet);border:1px solid var(--rule);border-top:3px solid var(--st)}
+.gl-t h3{margin:0;font-family:var(--font-display);font-size:19px;font-weight:700}
+.gl-t ul,.gl-t ol{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.gl-t li{font-size:16px;line-height:1.45}
+.gl-t li b{font-family:var(--font-display);font-weight:600;color:var(--ink)}
+.gl-t ul li span{display:block;color:var(--muted)}
+.gl-d li b{font-variant-numeric:tabular-nums;color:var(--st)}
+.gl-n{font-size:15px;line-height:1.45;color:var(--muted);margin:12px 0 0;font-style:italic}
+.gl-more{margin-top:40px!important}
+
+/* Schritt-Nummern im Lernpfad (Seitenleiste und Blatt), Häkchen bei erledigten Schritten */
+.path .ti .no{font-variant-numeric:tabular-nums;color:var(--muted);margin-right:7px;font-weight:500}
+.path li.st.fin .ti::after{content:"✓";color:var(--ok);margin-left:6px;font-weight:700}
+.pc-done{margin:-4px 0 10px;font-size:14px;color:var(--muted)}
+
+/* Außerhalb des Handys unsichtbar */
+.tabs,.tb-back,.more-l{display:none}
+
+@media (max-width:759px){
+  /* Fließtext mindestens 16 px */
+  .content p,.content li{font-size:max(16px,1em)}
+  .hero .lede{font-size:16px;line-height:1.5}
+
+  /* Kopf kompakt: der erste Bildschirm zeigt schon Inhalt */
+  .hero{padding-top:20px!important;padding-bottom:20px!important}
+  .hero .art{position:relative!important;display:block!important;width:72px!important;height:48px!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;margin:0 0 10px!important;transform:none!important}
+  .hero h1{font-size:clamp(30px,8.6vw,38px)!important;line-height:1.04!important}
+
+  /* Startbildschirm: Titel, ein Satz, Zeit, ein Knopf, Fortschritt */
+  #s-start:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"]:not([data-sid] [data-sid] *){min-height:0!important}
+  #s-start .hero:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero:not([data-sid] [data-sid] *){padding:26px 0 8px!important;flex:none!important}
+  #s-start .hero > .kicker:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero > .kicker:not([data-sid] [data-sid] *){display:none}
+  #s-start .hero h1:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero h1:not([data-sid] [data-sid] *){font-size:clamp(36px,10.5vw,46px)!important}
+
+  /* Abschnitte zum Aufklappen: ein Gedanke pro Bildschirm */
+  .content.secs > .sk-shut{display:none!important}
+  .content.secs > .sec-h{display:flex;align-items:center;gap:10px;min-height:58px;margin:10px 0 0!important;padding:12px 14px 12px 16px;border-radius:14px;
+    background:var(--sheet);border:1px solid var(--rule);cursor:pointer;font-size:19px;line-height:1.25;-webkit-tap-highlight-color:transparent}
+  .content.secs > .sec-h[aria-expanded="true"]{border-color:color-mix(in srgb,var(--st) 55%,var(--rule));margin-bottom:6px!important}
+  .content.secs > .sec-h::before{content:attr(data-n);order:2;margin-left:auto;padding-left:8px;font-family:var(--font-display);font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap;position:static;width:auto;height:auto;background:none;border:0}
+  .content.secs > .sec-h::after{content:"";order:3;flex:none;width:9px;height:9px;border-right:2px solid var(--st);border-bottom:2px solid var(--st);transform:rotate(45deg);margin:-5px 4px 0 6px;transition:transform .25s var(--ease);position:static;background:none}
+  .content.secs > .sec-h[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:5px}
+
+  /* Füllkästen hinter „Mehr dazu“ */
+  .fill.more:not(.open) > :not(.fill-h){display:none!important}
+  .fill.more > .fill-h{cursor:pointer;min-height:44px;flex-wrap:wrap;align-items:center;-webkit-tap-highlight-color:transparent}
+  .fill.more .more-l{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-style:normal;font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--st);padding:6px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--st) 45%,transparent)}
+  .fill.more.open .more-l{display:none}
+
+  /* Weiter am Ende jedes Schritts: die Schwelle wird zum großen Knopf */
+  .schwelle .sw-row{min-height:66px;padding:12px 18px 12px 22px!important;border-radius:18px;background:var(--st);color:var(--paper);gap:14px!important;justify-content:space-between}
+  .schwelle .sw-row .sw-txt{order:0}
+  .schwelle .sw-row .sw-ring{order:1;width:30px!important;height:30px!important;transform:none!important}
+  .schwelle .sw-ring .bg,.schwelle .sw-ring .fg{display:none}
+  .schwelle .sw-ring .ar{stroke:var(--paper)!important}
+  .schwelle .sw-txt small{color:inherit!important;opacity:.85;font-style:normal!important;font-family:var(--font-display);font-size:15px!important;text-shadow:none!important}
+  .schwelle .sw-txt b{color:inherit!important;font-size:20px!important}
+  .schwelle .sw-hint{display:none!important}
+
+  /* Obere Leiste: Zurück statt Menü */
+  #menu{display:none!important}
+  .tb-back{display:inline-grid}
+  .tb-back[disabled]{opacity:.28}
+
+  /* Untere Leiste: Lernpfad, Quiz, Spickzettel, Weiter */
+  #prev,#where,#narr{display:none!important}
+  .bb-in{display:flex!important;align-items:center;gap:4px}
+  .tabs{display:flex;flex:1;gap:2px;min-width:0}
+  .tab{flex:1;min-width:0;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:var(--muted);
+    font-family:var(--font-display);font-size:13px;font-weight:500;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .tab.on{color:var(--ink)}
+  .tab.on svg{color:var(--thread)}
+  #next{min-height:52px;padding:0 16px 0 20px}
+  #nt{display:none!important}
+
+  /* Daumenfreundlich: alles Antippbare mindestens 44 px, Text in Tabellen und Karten mindestens 16 px */
+  .chip{min-height:44px}
+  .item .chev{width:44px;height:44px}
+  .item .sum{min-height:44px;padding:0;display:flex;align-items:center;box-sizing:border-box}
+  .ck{width:44px;height:44px}
+  .stepper button.dotb{width:44px;height:44px}
+  .inline-in input{min-height:44px}
+  .gen-tabs button,.segctl button{min-height:44px}
+  table.cmp td,table.cmp th,.deck .def,.sitem span,.qz{font-size:16px!important}
+  footer.src{font-size:15px}
+
+  /* Lernpfad-Blatt: nur der Weg, keine Zusatzkarten */
+  .path .side-extra,.path .brand{display:none!important}
+  .path li.st a{min-height:46px}
+}
+
 
 /* ===== Farbsystem: eine Farbe pro Station (Licht, Zeichnung, Kopf, Muster, Bausteine) ===== */
 :root{--sd:#c43a2e;--sl:#f06a5c;--st:var(--sd)}
@@ -1728,10 +1884,10 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 <div class="shell">
 
 <header class="topbar">
-  <button class="iconbtn" id="menu" aria-label="Alle Stationen anzeigen" aria-controls="path" aria-expanded="false">
+  <button class="iconbtn" id="menu" aria-label="Lernpfad anzeigen" aria-controls="path" aria-expanded="false">
     <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
   </button>
-  <div class="tb-title"><span class="n" id="tbn">Station 1 von 13</span><span class="t" id="tbt">Start</span></div>
+  <div class="tb-title"><span class="n" id="tbn">Übersicht</span><span class="t" id="tbt">Start</span></div>
   <div class="tb-thread" aria-hidden="true"><i id="tbfill"></i></div>
 </header>
 <div class="scrim" id="scrim"></div>
@@ -1740,7 +1896,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
   <div class="grab" aria-hidden="true"></div>
   <div class="brand">Kaiserreich<br>und Kolonien<small><span class="dot" aria-hidden="true"></span>Geschichtsklausur</small></div>
   <h2>Roter Faden <span id="pathcount"></span></h2>
-  <div class="trk" id="pathtrk"><i class="rail" aria-hidden="true"></i><i class="thr" aria-hidden="true"></i><ol id="pathlist"><li class="st"><a href="#s-start"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Start</span></span><span class="m">1′</span></a></li><li class="st"><a href="#s-plan"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Der Plan</span></span><span class="m">4′</span></a></li><li class="st"><a href="#s-handwerk"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Handwerkszeug</span></span><span class="m">7′</span></a></li><li class="st"><a href="#s-einleitung"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Einleitung bauen</span><span class="u">Übung</span></span><span class="m">10′</span></a></li><li class="st"><a href="#s-gesellschaft"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Gesellschaft im Reich</span></span><span class="m">10′</span></a></li><li class="st"><a href="#s-industrie"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Industrialisierung</span></span><span class="m">14′</span></a></li><li class="st"><a href="#s-sortieren"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Zuckerbrot oder Peitsche?</span><span class="u">Übung</span></span><span class="m">5′</span></a></li><li class="st"><a href="#s-moderne"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Moderne und Vergangenheit</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kolonien"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Gründe für Kolonien</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kongo"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Die Kongokonferenz</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-quelle"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Platz an der Sonne</span><span class="u">Übung</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-rassismus"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Rassismus und Gewalt</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-urteilen"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Kolonialzeit beurteilen</span></span><span class="m">14′</span></a></li><li class="st"><a href="#s-quiz"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Generalprobe</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kurz-vorher"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Kurz vor der Klausur</span></span><span class="m">4′</span></a></li></ol></div>
+  <div class="trk" id="pathtrk"><i class="rail" aria-hidden="true"></i><i class="thr" aria-hidden="true"></i><ol id="pathlist"><li class="st"><a href="#s-start"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Start</span></span><span class="m">1′</span></a></li><li class="st"><a href="#s-plan"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Der Plan</span></span><span class="m">4′</span></a></li><li class="st"><a href="#s-handwerk"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Handwerkszeug</span></span><span class="m">7′</span></a></li><li class="st"><a href="#s-einleitung"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Einleitung bauen</span><span class="u">Übung</span></span><span class="m">10′</span></a></li><li class="st"><a href="#s-gesellschaft"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Gesellschaft im Reich</span></span><span class="m">10′</span></a></li><li class="st"><a href="#s-industrie"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Industrialisierung</span></span><span class="m">14′</span></a></li><li class="st"><a href="#s-sortieren"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Zuckerbrot oder Peitsche?</span><span class="u">Übung</span></span><span class="m">5′</span></a></li><li class="st"><a href="#s-moderne"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Moderne und Vergangenheit</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kolonien"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Gründe für Kolonien</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kongo"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Die Kongokonferenz</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-quelle"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Platz an der Sonne</span><span class="u">Übung</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-rassismus"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Rassismus und Gewalt</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-urteilen"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Kolonialzeit beurteilen</span></span><span class="m">14′</span></a></li><li class="st"><a href="#s-quiz"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Generalprobe</span></span><span class="m">12′</span></a></li><li class="st"><a href="#s-kurz-vorher"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">Spickzettel</span></span><span class="m">4′</span></a></li></ol></div>
   <div class="side-extra">
     <section class="sx-card sx-plan js-only" aria-label="Zeitplan für die Klausur">
       <div class="sx-h"><b>Deine Klausur</b><span id="sxmin">90 min</span></div>
@@ -1755,12 +1911,12 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
         <li><small class="lb">Stand</small><small>alles recherchiert, deine Unterlagen fehlen noch</small></li>
       </ul>
     </section>
-    <p class="buildtag">Stand: 19.11.2026, 15:10</p>
+    <p class="buildtag">Stand: 19.11.2026, 16:42</p>
   </div>
 </nav>
 
 <main id="main">
-<div class="nojs-banner"><b>Lesefassung</b> Ohne JavaScript, etwa in der Dateien-App: alle Stationen untereinander, Lösungen zum Aufklappen. Die interaktive Fassung gibt es im Browser über den Link.</div>
+<div class="nojs-banner"><b>Lesefassung</b> Ohne JavaScript, etwa in der Dateien-App: alle Schritte untereinander, Lösungen zum Aufklappen. Die interaktive Fassung gibt es im Browser über den Link.</div>
 
 <!-- 1 START -->
 <section class="station" id="s-start" data-look="buehne" data-title="Start" data-min="1">
@@ -1768,6 +1924,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
     <div class="kicker">Lernpfad zur Geschichtsklausur, 1871 bis 1918</div>
     <h1>Kaiserreich und Kolonien</h1></header>
   <div class="content">
+    <div class="home js-only" id="home"></div>
     <div class="resume" id="resume"><a class="nextcard" style="margin-top:0" href="#s-plan"><span><small>Beginnt mit dem Plan für die Klausur</small><b>Lernpfad starten</b></span></a></div>
     <p class="sub js-only" id="startline" style="margin-top:14px"></p>
   </div>
@@ -1778,7 +1935,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
   <header class="hero" data-n="2"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M18 36h40v74h-40z"/><path pathLength="1" class="d" style="--d:1" d="M68 36h116v74h-116z"/><path pathLength="1" class="d" style="--d:2" d="M194 36h40v74h-40z"/><path pathLength="1" class="d" style="--d:3" d="M18 132h216"/><path pathLength="1" class="d" style="--d:4" d="M18 125v14M234 125v14M58 125v14M194 125v14"/><path pathLength="1" class="d" style="--d:5" d="M30 58h16M30 70h12M84 58h80M84 70h64M84 82h72M206 58h16M206 70h10"/><g class="mvs"><circle class="mv" r="2.6" opacity="0"><animateMotion dur="5s" begin="1.4s" repeatCount="indefinite" path="M18 132h216"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.85;1" dur="5s" begin="1.4s" repeatCount="indefinite"/></circle></g></svg>
     <div class="kicker">Angenommen: 90 Minuten, Arbeit mit einer Quelle</div>
     <h1>Der Plan für die Klausur</h1>
-    <p class="lede">Der Stoff in vier Blöcken und wie du die Zeit aufteilst. Die einzelnen Punkte kommen in den nächsten Stationen, hier geht es um das Gesamtbild.</p></header>
+    <p class="lede">Der Stoff in vier Blöcken und wie du die Zeit aufteilst. Die einzelnen Punkte kommen in den nächsten Schritten, hier geht es um das Gesamtbild.</p></header>
   <div class="content">
     <div class="gl" id="gl"><div class="glb"><h3>Gesellschaft im Reich<span class="sub">6 Punkte</span></h3><div class="glbar"><i style="width:0%"></i></div><ol><li>Adel und Militär an der Spitze</li><li>Bürgertum zwischen Aufstieg und Anpassung</li><li>Arbeiterschaft als wachsende Gruppe</li><li>Frauen: rechtlich zurückgesetzt</li><li>Ausgrenzung der „Reichsfeinde“</li><li>Obrigkeitsstaat und Untertanengeist</li></ol></div><div class="glb"><h3>Industrialisierung<span class="sub">6 Punkte</span></h3><div class="glbar"><i style="width:0%"></i></div><ol><li>Bevölkerungswachstum und Landflucht</li><li>Verstädterung und Wohnungsnot</li><li>Arbeitsbedingungen in der Fabrik</li><li>Die soziale Frage</li><li>Antwort der Arbeiterbewegung</li><li>Antwort des Staates</li></ol></div><div class="glb"><h3>Gründe für Kolonien<span class="sub">6 Punkte</span></h3><div class="glbar"><i style="width:0%"></i></div><ol><li>Wirtschaftliche Motive</li><li>Innenpolitische Motive</li><li>Prestige und Weltgeltung</li><li>Siedlung und Auswanderung</li><li>Zivilisierungsmission und Mission</li><li>Druck von Kaufleuten und Verbänden</li></ol></div><div class="glb"><h3>Rassismus und Gewalt<span class="sub">6 Punkte</span></h3><div class="glbar"><i style="width:0%"></i></div><ol><li>Sozialdarwinismus und Rassenlehre</li><li>Zivilisierungsmission als Rechtfertigung</li><li>Rassismus im Alltag</li><li>Rassentrennung in den Kolonien</li><li>Krieg und Völkermord an Herero und Nama</li><li>Maji-Maji-Krieg in Ostafrika</li></ol></div></div>
     <div class="panel zeitplan" style="margin-top:22px">
@@ -1788,6 +1945,7 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
       <table class="plan" id="plantab"><tr><td><i style='background:var(--verdeckt)'></i>Quelle lesen, markieren</td><td>10 min</td><td>0–10</td></tr><tr><td><i style='background:var(--mint)'></i>Stichpunkte sammeln</td><td>5 min</td><td>10–15</td></tr><tr><td><i style='background:var(--offen)'></i>Aufgabe 1, Analyse</td><td>25 min</td><td>15–40</td></tr><tr><td><i style='background:var(--plum-t)'></i>Aufgabe 2, Einordnen</td><td>25 min</td><td>40–65</td></tr><tr><td><i style='background:var(--teal-t)'></i>Aufgabe 3, Urteil</td><td>20 min</td><td>65–85</td></tr><tr><td><i style='background:var(--rule)'></i>Korrektur</td><td>5 min</td><td>85–90</td></tr></table>
       <p class="note">Richtwerte von mir. Typisch sind drei Aufgaben nach den Anforderungsbereichen: wiedergeben und analysieren, erläutern und einordnen, beurteilen. Trag die echte Dauer ein, falls sie anders ist.</p>
     </div>
+    <div class="miniq js-only" id="miniq"></div>
   </div>
 </section>
 
@@ -2297,12 +2455,14 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 </section>
 
 <!-- 15 KURZ VORHER -->
-<section class="station" id="s-kurz-vorher" data-look="morgen" data-title="Kurz vor der Klausur" data-min="4">
+<section class="station" id="s-kurz-vorher" data-look="morgen" data-title="Spickzettel" data-min="4">
   <header class="hero" data-n="15"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M10 120h220"/><path pathLength="1" class="ghost d" style="--d:1" d="M76 120a44 44 0 0 1 88 0"/><path pathLength="1" class="ghost d" style="--d:2" d="M120 60v-22M154 72l15-15M86 72l-15-15M178 104h22M40 104h22"/><g class="inks"><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M76 120a44 44 0 0 1 88 0"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="5s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="5s" begin="0s" repeatCount="indefinite"/></path><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M120 60v-22M154 72l15-15M86 72l-15-15M178 104h22M40 104h22"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="3.2s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="3.2s" begin="0.8s" repeatCount="indefinite"/></path></g></svg>
-    <div class="kicker">Letzte Station</div>
-    <h1>Kurz vor der Klausur</h1>
-    <p class="lede">Alles auf einer Seite: der Stoff mit deinem Stand, die wichtigsten Regeln und was noch offen ist. Gut zum Durchlesen direkt vor dem Schreiben.</p></header>
+    <div class="kicker">Für kurz vor der Klausur, in zwei Minuten durch</div>
+    <h1>Das Wichtigste auf einen Blick</h1>
+    <p class="lede">Alle sechs Themen mit je einem Merkpunkt pro Zeile, dazu die wichtigsten Daten. Darunter dein Stand und sieben Regeln für die Klausur.</p></header>
   <div class="content">
+    <div class="glance" id="glance"><section class="gl-t"><h3>Gesellschaft im Reich</h3><ul><li><b>Adel und Militär an der Spitze</b> <span>Junker = adlige Gutsbesitzer östlich der Elbe.</span></li><li><b>Bürgertum zwischen Aufstieg und Anpassung</b> <span>Neu dazu: Angestellte als „neuer Mittelstand“.</span></li><li><b>Arbeiterschaft als wachsende Gruppe</b> <span>SPD 1912: 34,8 Prozent der Stimmen.</span></li><li><b>Frauen: rechtlich zurückgesetzt</b> <span>Frauenwahlrecht erst im November 1918.</span></li><li><b>Ausgrenzung der „Reichsfeinde“</b> <span>Kulturkampf ab 1871, Sozialistengesetz 1878.</span></li><li><b>Obrigkeitsstaat und Untertanengeist</b> <span>Köpenick 1906: Ein Schuster in Hauptmannsuniform verhaftet den Bürgermeister.</span></li></ul></section><section class="gl-t"><h3>Industrialisierung und soziale Frage</h3><ul><li><b>Bevölkerungswachstum und Landflucht</b> <span>1871: 41 Millionen, 1910: 65 Millionen.</span></li><li><b>Verstädterung und Wohnungsnot</b> <span>Großstädte: 8 im Jahr 1871, 48 im Jahr 1910.</span></li><li><b>Arbeitsbedingungen in der Fabrik</b> <span>Um 1870: 12 bis 14 Stunden am Tag.</span></li><li><b>Die soziale Frage</b> <span>Drei Antworten: Staat, Kirchen, Arbeiterbewegung.</span></li><li><b>Antwort der Arbeiterbewegung</b> <span>Reform oder Revolution: der große Streit in der SPD.</span></li><li><b>Antwort des Staates</b> <span>1883, 1884, 1889: Krankheit, Unfall, Alter.</span></li></ul></section><section class="gl-t"><h3>Moderne oder rückständig?</h3><ul><li><b>Janusgesicht</b> <span>Weltspitze in Technik und Wissenschaft, politisch und gesellschaftlich oft rückständig.</span></li><li><b>Wirtschaft</b> <span>„Bündnis von Roggen und Eisen“: Großagrarier und Schwerindustrie halten zusammen.</span></li><li><b>Politik</b> <span>Konstitutionelle, keine parlamentarische Monarchie.</span></li><li><b>Gesellschaft</b> <span>Feudalisierung des Bürgertums, Reserveoffizier als Statussymbol.</span></li><li><b>Militär</b> <span>Hauptmann von Köpenick 1906: Ein Schuster in Uniform besetzt ein Rathaus.</span></li><li><b>Wissenschaft und Kultur</b> <span>Röntgen erhält 1901 den ersten Nobelpreis für Physik.</span></li><li><b>Frauen</b> <span>Frauenwahlrecht erst im November 1918.</span></li><li><b>Alltag</b> <span>Heinrich Manns Roman „Der Untertan“ (1918) als Satire darauf.</span></li></ul><p class="gl-n">Im Urteil beide Seiten nennen und dann gewichten: Sonderweg-These (Wehler) gegen Nipperdeys „graue Grundfarben“.</p></section><section class="gl-t"><h3>Gründe für Kolonien</h3><ul><li><b>Wirtschaftliche Motive</b> <span>1880 wickelten Hamburger Kaufleute ein Drittel des westlichen Handels mit Westafrika ab.</span></li><li><b>Innenpolitische Motive</b> <span>Wehler: Sozialimperialismus.</span></li><li><b>Prestige und Weltgeltung</b> <span>„Platz an der Sonne“: Bülow 1897.</span></li><li><b>Siedlung und Auswanderung</b> <span>23.000 in die Kolonien, eine Million in die USA.</span></li><li><b>Zivilisierungsmission und Mission</b> <span>Fabri 1879: „Bedarf Deutschland der Colonien?“</span></li><li><b>Druck von Kaufleuten und Verbänden</b> <span>Kolonialverein 1882, Schutzbriefe 1884/85.</span></li></ul></section><section class="gl-t"><h3>Die Kongokonferenz</h3><ul><li><b>Wann und wo</b> <span>Berlin, 15. November 1884 bis 26. Februar 1885.</span></li><li><b>Wer</b> <span>14 Staaten, kein Afrikaner am Tisch.</span></li><li><b>Generalakte</b> <span>Freihandel im Kongobecken, freie Schifffahrt auf Kongo und Niger, effektive Besetzung, Anzeigepflicht.</span></li><li><b>Mythos</b> <span>Afrika wurde nicht mit dem Lineal aufgeteilt. Die Konferenz gab dem Wettlauf Regeln und beschleunigte ihn.</span></li><li><b>Kongo-Freistaat</b> <span>Privatbesitz Leopolds II., erst 1908 belgische Kolonie.</span></li></ul></section><section class="gl-t"><h3>Rassismus und Gewalt</h3><ul><li><b>Sozialdarwinismus und Rassenlehre</b> <span>Menschliche „Rassen“ gibt es biologisch nicht.</span></li><li><b>Zivilisierungsmission als Rechtfertigung</b> <span>„Erziehung zur Arbeit“ hieß in der Praxis Zwangsarbeit.</span></li><li><b>Rassismus im Alltag</b> <span>Hagenbeck ab 1875, Kolonialausstellung Berlin 1896.</span></li><li><b>Rassentrennung in den Kolonien</b> <span>Mischehenverbot 1905, Passmarke 1907.</span></li><li><b>Krieg und Völkermord an Herero und Nama</b> <span>Vernichtungsbefehl 2. Oktober 1904, gegen die Nama 22. April 1905.</span></li><li><b>Maji-Maji-Krieg in Ostafrika</b> <span>Schätzungen: 75.000 bis 300.000 Tote.</span></li></ul></section><section class="gl-t gl-d"><h3>Daten auf einen Blick</h3><ol><li><b>18. Januar 1871</b> <span>Kaiserproklamation in Versailles</span></li><li><b>1878</b> <span>Sozialistengesetz, 1883 bis 1889 Sozialversicherung</span></li><li><b>1884/85</b> <span>Schutzbriefe, Kongokonferenz in Berlin</span></li><li><b>1890</b> <span>Wilhelm II. entlässt Bismarck</span></li><li><b>1897</b> <span>Bülow: „Platz an der Sonne“</span></li><li><b>1904</b> <span>Krieg gegen Herero und Nama, Vernichtungsbefehl 2. Oktober</span></li><li><b>1905 bis 1907</b> <span>Maji-Maji-Krieg in Ostafrika</span></li><li><b>1912</b> <span>SPD stärkste Fraktion</span></li><li><b>1914</b> <span>Beginn des Ersten Weltkriegs</span></li></ol></section></div>
+    <h2 class="gl-more">Dein Stand bei allen Punkten</h2>
     <div class="spick" id="spick"><div class="glb"><h3>Gesellschaft im Reich<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Adel und Militär an der Spitze</li><li>Bürgertum zwischen Aufstieg und Anpassung</li><li>Arbeiterschaft als wachsende Gruppe</li><li>Frauen: rechtlich zurückgesetzt</li><li>Ausgrenzung der „Reichsfeinde“</li><li>Obrigkeitsstaat und Untertanengeist</li></ul></div><div class="glb"><h3>Industrialisierung<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Bevölkerungswachstum und Landflucht</li><li>Verstädterung und Wohnungsnot</li><li>Arbeitsbedingungen in der Fabrik</li><li>Die soziale Frage</li><li>Antwort der Arbeiterbewegung</li><li>Antwort des Staates</li></ul></div><div class="glb"><h3>Gründe für Kolonien<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Wirtschaftliche Motive</li><li>Innenpolitische Motive</li><li>Prestige und Weltgeltung</li><li>Siedlung und Auswanderung</li><li>Zivilisierungsmission und Mission</li><li>Druck von Kaufleuten und Verbänden</li></ul></div><div class="glb"><h3>Rassismus und Gewalt<span class="sub">6 Punkte</span></h3><ul style="margin-top:12px"><li>Sozialdarwinismus und Rassenlehre</li><li>Zivilisierungsmission als Rechtfertigung</li><li>Rassismus im Alltag</li><li>Rassentrennung in den Kolonien</li><li>Krieg und Völkermord an Herero und Nama</li><li>Maji-Maji-Krieg in Ostafrika</li></ul></div></div>
     <div id="todo"></div>
     <h2>Sieben Regeln, die Punkte bringen</h2>
@@ -2332,10 +2492,10 @@ details.s-sol p{margin:6px 0 4px;font-size:15px}
 <div class="narr-cap js-only" id="narrcap" aria-live="polite"><span class="nc-who">Erklärung</span><span class="nc-tx" id="narrtx"></span></div>
 <div class="bottombar">
   <div class="bb-in">
-    <button class="navbtn" id="prev" aria-label="Vorherige Station"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3L5 9l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button class="where" id="where" aria-label="Alle Stationen anzeigen">
+    <button class="navbtn" id="prev" aria-label="Ein Schritt zurück"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3L5 9l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="where" id="where" aria-label="Lernpfad anzeigen">
       <svg class="ring" viewBox="0 0 40 40" aria-hidden="true"><circle class="bg" cx="20" cy="20" r="16"/><circle class="fg" id="ringfg" cx="20" cy="20" r="16" stroke-dasharray="100.5" stroke-dashoffset="100.5"/><text x="20" y="20" id="ringtx">1</text></svg>
-      <span class="lbl"><small id="wsmall">Station 1 von 13</small><b id="wtitle">Start</b></span>
+      <span class="lbl"><small id="wsmall">Übersicht</small><b id="wtitle">Start</b></span>
     </button>
     <button class="navbtn narr-btn js-only" id="narr" aria-pressed="false" aria-label="Erklärung abspielen"><svg class="nr" viewBox="0 0 36 36" aria-hidden="true"><circle class="bg" cx="18" cy="18" r="15"/><circle class="fg" id="narrfg" cx="18" cy="18" r="15" pathLength="1"/></svg><svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path class="pl" d="M6 3.8v10.4L14.2 9z"/><path class="pa" d="M5.5 4v10M12.5 4v10"/></svg><span class="lb">Erklären</span></button>
     <button class="navbtn primary" id="next"><span id="nexttxt">Weiter</span><span class="nt" id="nt"></span><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 3l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -2697,7 +2857,7 @@ function startQuiz(list){deck=list.slice();for(var i=deck.length-1;i>0;i--){var 
 function dotsHtml(){return'<div class="dots" aria-hidden="true">'+deck.map(function(_,i){return'<i class="'+(res[i]===true?"r":res[i]===false?"w":i===pos?"cur":"")+'"></i>'}).join("")+'</div>'}
 function renderQ(){answered=false;
   if(pos>=deck.length){var pct=Math.round(right/deck.length*100);if(deck.length===Q.length)store.set("best",Math.max(store.get("best",0),right));
-    qb.innerHTML=dotsHtml()+'<div class="qcard"><div class="kicker">Ergebnis</div><div class="score"><span id="cu">0</span><small> / '+deck.length+'</small></div><p>'+(pct>=85?"Sitzt. In der Klausur vor allem auf Zeilenbelege und ein klares Urteil achten.":pct>=60?"Solide Basis. Die falschen nochmal durchgehen, dann die passenden Kartenstapel.":"Da fehlt noch einiges. Geh die Stationen 5 bis 13 nochmal durch und mach das Quiz danach erneut.")+'</p><div class="qnav"></div></div>';
+    qb.innerHTML=dotsHtml()+'<div class="qcard"><div class="kicker">Ergebnis</div><div class="score"><span id="cu">0</span><small> / '+deck.length+'</small></div><p>'+(pct>=85?"Sitzt. In der Klausur vor allem auf Zeilenbelege und ein klares Urteil achten.":pct>=60?"Solide Basis. Die falschen nochmal durchgehen, dann die passenden Kartenstapel.":"Da fehlt noch einiges. Geh die Schritte 4 bis 12 nochmal durch und mach das Quiz danach erneut.")+'</p><div class="qnav"></div></div>';
     var nav=qb.querySelector(".qnav"),a=el("button",{class:"btn"},"Neue Runde");a.addEventListener("click",function(){startQuiz(Q)});nav.appendChild(a);
     if(wrongs.length){var w=el("button",{class:"btn alt"},"Nur die "+wrongs.length+" falschen");w.addEventListener("click",function(){startQuiz(wrongs)});nav.appendChild(w)}
     countUp(document.getElementById("cu"),right);if(pct>=70)confetti(pct>=85?200:100);return}
@@ -2731,9 +2891,9 @@ var totalMin=0,MIN=stations.map(function(s){return +s.dataset.min||0});pathList.
 var ACTS={"start":["I","Vorspiel"],"gesellschaft":["II","Das Kaiserreich"],"kolonien":["III","Kolonien"],"quiz":["IV","Finale"]},pathTrk=document.getElementById("pathtrk");
 stations.forEach(function(s,i){var t=s.dataset.title,m=+s.dataset.min||0,type=s.dataset.type;totalMin+=m;
   if(ACTS[ids[i]]){var ac=el("li",{class:"act","aria-hidden":"true"});ac.innerHTML='<b>'+ACTS[ids[i]][0]+'</b><em>'+ACTS[ids[i]][1]+'</em><small></small>';ac.dataset.from=i;pathList.appendChild(ac)}
-  var li=el("li",{class:"st"});li.innerHTML='<a href="#'+ids[i]+'"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">'+esc(t)+'</span>'+(type?'<span class="u">'+type+'</span>':'')+'</span><span class="m">'+m+'′</span></a>';pathList.appendChild(li);
+  var li=el("li",{class:"st"});li.innerHTML='<a href="#'+ids[i]+'"><span class="d" aria-hidden="true"></span><span class="tx"><span class="ti">'+(i?'<span class="no">'+i+'</span>':'')+esc(t)+'</span>'+(type?'<span class="u">'+type+'</span>':'')+'</span><span class="m">'+m+'′</span></a>';pathList.appendChild(li);
   var c=s.querySelector(".content"),nc;
-  {var last=i===N-1,tt=last?"Zurück zum Start":stations[i+1].dataset.title,lab=last?"Ende des roten Fadens":"Als Nächstes, Station "+(i+2);
+  {var last=i===N-1,tt=last?"Zurück zur Übersicht":stations[i+1].dataset.title,lab=last?"Fertig, alle Schritte geschafft":i===0?"Los geht es mit Schritt 1":"Weiter mit Schritt "+(i+1);
     nc=el("div",{class:"schwelle",role:"button",tabindex:"0","aria-label":lab+": "+tt});
     nc.innerHTML='<div class="sw-line" aria-hidden="true"><i></i><b></b></div><div class="sw-row"><svg class="sw-ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="20"/><circle class="fg" cx="24" cy="24" r="20" pathLength="1"/><path class="ar" d="M16 24h15M25 17.5l6.5 6.5-6.5 6.5"/></svg><span class="sw-txt"><small>'+lab+'</small><b>'+esc(tt)+'</b><em class="sw-hint"></em></span></div>';
     (function(target){nc.addEventListener("click",function(){go(target)});nc.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go(target)}})})(last?0:i+1)}
@@ -2818,7 +2978,7 @@ function setBack(px){tPull=px;var st=stations[cur];if(!st)return;var k=Math.min(
   st.style.transform=px>0?"translate3d(0,"+px.toFixed(1)+"px,0)":"";
   bh.style.opacity=String(Math.min(1,px/40));bh.style.transform="translate3d(-50%,"+(Math.min(px,BTH)*.35-14).toFixed(1)+"px,0)";
   bh.style.setProperty("--k",k.toFixed(3));bh.classList.toggle("ready",k>=1)}
-function fillBack(){var t=cur-1;if(t<0)return false;bh.querySelector("small").textContent="Zurück zu Station "+(t+1);bh.querySelector("b").textContent=stations[t].dataset.title;return true}
+function fillBack(){var t=cur-1;if(t<0)return false;bh.querySelector("small").textContent=t?"Zurück zu Schritt "+t:"Zurück zur Übersicht";bh.querySelector("b").textContent=stations[t].dataset.title;return true}
 document.addEventListener("touchstart",function(e){tY0=null;if(peekBusy||cur<1||e.touches.length!==1)return;if(pathEl.classList.contains("open")||(e.target.closest&&e.target.closest(".deck-stage,textarea,input,select,.path")))return;if(scrollY<=0)tY0=e.touches[0].clientY},{passive:true});
 document.addEventListener("touchmove",function(e){if(peekBusy||cur<1||e.touches.length!==1)return;if(pathEl.classList.contains("open")||(e.target.closest&&e.target.closest(".deck-stage,textarea,input,select,.path")))return;var y=e.touches[0].clientY;
   if(tY0===null){if(scrollY<=0)tY0=y;return}
@@ -2858,7 +3018,7 @@ var NARR=/*NARRDATA*/null;
   /* Bei jedem Stationswechsel (auch von Hand) die passende Erklärung starten */
   window.narrOnStation=function(i){if(!on)return;clearHl();cap.classList.remove("on");au.pause();clearTimeout(adv);adv=setTimeout(function(){if(on&&cur===i)playFor(i)},450)};
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&on)stop()})})();
-function setRing(i){var fg=document.getElementById("ringfg"),C=100.5;fg.style.strokeDashoffset=String(C-C*(i+1)/N);document.getElementById("ringtx").textContent=i+1}
+function setRing(i){var fg=document.getElementById("ringfg"),C=100.5;fg.style.strokeDashoffset=String(C-C*i/(N-1));document.getElementById("ringtx").textContent=i?i:""}
 function scrollFrac(){var run=cur>=0?stations[cur].querySelector('.runway'):null,H=document.documentElement.scrollHeight-(run?run.offsetHeight:0),bb=document.querySelector('.bottombar').offsetHeight||0;return H<=innerHeight+4?1:Math.min(1,Math.max(0,(scrollY+innerHeight-bb)/(H-bb)))}
 function progF(){return .9*scrollFrac()+.1*Math.min(1,pull||0)}
 function setProg(i,f){if(!pathY)measurePath();if(pathY&&stLis[i]){f=Math.min(1,f);var y=pathY[i],y2=stLis[i+1]?pathY[i+1]:y;pathThr.style.height=Math.max(0,y+(y2-y)*f-pathY.y0)+"px";stLis[i].firstChild.style.setProperty("--f",f.toFixed(3))}document.getElementById("tbfill").style.width=((i+f)/N*100)+"%"}
@@ -2881,12 +3041,12 @@ function updateNav(i){
   var rem=0;for(var j=i;j<N;j++)rem+=MIN[j];document.getElementById("pathcount").textContent="noch "+rem+" min";
   try{var ac=stLis[i]&&stLis[i].style.getPropertyValue("--ac");if(ac&&BBAR)BBAR.style.setProperty("--ac-cur",ac)}catch(e){}
   var t=stations[i].dataset.title;
-  document.getElementById("tbn").textContent="Station "+(i+1)+" von "+N;document.getElementById("tbt").textContent=t;
-  document.getElementById("wsmall").textContent="Station "+(i+1)+" von "+N;document.getElementById("wtitle").textContent=t;setRing(i);
+  var _sl=i===0?"Übersicht":"Schritt "+i+" von "+(N-1);document.getElementById("tbn").textContent=_sl;document.getElementById("tbt").textContent=t;
+  document.getElementById("wsmall").textContent=_sl;document.getElementById("wtitle").textContent=t;setRing(i);
   var prev=document.getElementById("prev"),next=document.getElementById("next");prev.disabled=i===0;
-  document.getElementById("nexttxt").textContent=i===0?"Los":i<N-1?"Weiter":"Zum Start";
+  document.getElementById("nexttxt").textContent=i===0?"Starten":i<N-1?"Weiter":"Übersicht";
   document.getElementById("nt").textContent=i<N-1?stations[i+1].dataset.title:"";
-  next.classList.toggle("nudge",i===0);measurePath();setProg(i,0)}
+  next.classList.toggle("nudge",i===0);measurePath();setProg(i,0);try{updTabs(i)}catch(e){}}
 var leaveAnim=null,viaPeek=false;
 var BBAR=document.querySelector(".bottombar"),lastInput=0,pendFill=-1,FILLNOW=false;["wheel","touchstart","touchmove","keydown","pointerdown","scroll"].forEach(function(ty){window.addEventListener(ty,function(){lastInput=performance.now()},{passive:true,capture:true})});
 function quiet(ms){return !peekBusy&&!document.querySelector(".back-ov")&&performance.now()-lastInput>=(ms||800)}
@@ -2912,7 +3072,7 @@ function swapTo(i,dir,pk){var old=stations[cur];stations.forEach(function(x){x.c
   if(!pk){s.setAttribute("data-in",pick(["slide","blur","drop","wipe"]));s.setAttribute("data-anim",pick(["rise","zoom","drift","cascade"]));s.setAttribute("data-art",pick(["seq","together","reverse"]));
   s.querySelectorAll(".content > *").forEach(function(c,k){c.style.setProperty("--i",Math.min(k,5))})}
   (function(){function each(x,f){if(x)x.querySelectorAll("svg").forEach(function(v){try{f(v)}catch(e){}})}if(!old)stations.forEach(function(x,k){if(k!==i)each(x,function(v){v.pauseAnimations()})});else if(old!==s)each(old,function(v){v.pauseAnimations()});each(s,function(v){v.unpauseAnimations()})})();if(svgIO)setTimeout(function(){watchSvgs(stations[i])},0);
-  cur=i;visited[ids[i]]=1;store.set("visited",visited);if(i>0)store.set("last",ids[i]);
+  if(old&&i===cur+1){try{markDone(ids[cur])}catch(e){}}cur=i;visited[ids[i]]=1;store.set("visited",visited);if(i>0)store.set("last",ids[i]);
   updateNav(i);closeSheet();window.scrollTo(0,0);
   if(hooks[ids[i]])hooks[ids[i]]();
   stations.forEach(function(x){var rr=x.querySelector('.runway');if(rr)rr.classList.remove('armed')});resetSw();fixRest();lastSY=scrollY;lastT=performance.now();flung=false;buildMeander(stations[i]);var _rn=stations[i].querySelector(".runway"),_tp=_rn?_rn.getBoundingClientRect().top:0,_ri=_rn&&_rn.querySelector(".rw-in"),_sc=_ri&&_ri.children.length&&_ri.querySelector(":scope > .content"),_far=_tp>innerHeight+40,_soft=!_far&&!!_sc&&(!!_sc.querySelector(".schwelle")||_sc.getBoundingClientRect().bottom>innerHeight+40);if(!FILLNOW&&_rn&&(_far||_soft)){pendFill=i;var _ff=function(){if(pendFill===cur){pendFill=-1;refill(cur)}};if(_tp>innerHeight*1.6)quietIdle(_ff,300);else requestAnimationFrame(function(){setTimeout(_ff,0)})}else{pendFill=-1;fillPreview(i,true)}fixInk(stations[i]);shownAt=performance.now();if(restY()<=4)arm();else disarm();
@@ -3075,6 +3235,91 @@ document.getElementById("resetpath").addEventListener("click",function(){visited
   clearTimeout(tm);chk={};known={};store.set("chk",chk);store.set("known",known);store.set("best",0);location.reload()})})();
 
 if(DESK.addEventListener)DESK.addEventListener("change",function(){closeSheet();placeEpo();placeGen()});
+
+/* ================= KLARER WEG: Schritte, Startbildschirm, Mini-Quiz, Handy-Navigation =================
+   Schritt 0 ist die Übersicht, danach Schritt 1 bis N-1. Erledigt ist ein Schritt, wenn man ihn nach vorn verlässt
+   (Weiter-Knopf, Hochwischen, Mausrad) oder das Mini-Quiz beendet. Alles bleibt im Browser gespeichert (kr_done). */
+var DONE=store.get("done",{}),THEMEN=["gesellschaft","industrie","moderne","kolonien","kongo","rassismus"];
+function markDone(id){if(!id||id==="start"||DONE[id])return;DONE[id]=1;store.set("done",DONE);refreshDone()}
+function themesDone(){return THEMEN.filter(function(t){return DONE[t]}).length}
+function stepsDone(){var n=0;for(var k=1;k<N;k++)if(DONE[ids[k]])n++;return n}
+function nextOpen(){for(var k=1;k<N;k++)if(!DONE[ids[k]])return k;return 1}
+function fmtMin(m){m=Math.round(m/5)*5;var h=Math.floor(m/60),r=m%60;return h?h+" h"+(r?" "+r+" min":""):r+" min"}
+function goStep(k){if(k<0||k>=N)return;closeSheet();if(k===cur){window.scrollTo({top:0,behavior:RM?"auto":"smooth"});return}if(k===cur+1)go(k);else nav(k)}
+var ARR='<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var CHK='<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 7.4l2.6 2.6L11 4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* Startbildschirm: worum es geht, wie lange, ein Knopf, Fortschritt. Darunter der ganze Weg. */
+function renderHome(){var h=document.getElementById("home");if(!h)return;var tot=0;for(var k=1;k<N;k++)tot+=MIN[k];
+  var sd=stepsDone(),nx=nextOpen(),td=themesDone(),started=sd>0||store.get("last","start")!=="start";
+  var main=started?(sd>=N-1?"Alles geschafft":"Weitermachen"):"Jetzt starten",sub="Schritt "+nx+": "+esc(stations[nx].dataset.title);
+  var list="";for(var k2=1;k2<N;k2++){var d=!!DONE[ids[k2]],ty=stations[k2].dataset.type;
+    list+='<li class="'+(d?"fin":"")+(k2===nx&&!d?" nx":"")+'"><a href="#'+ids[k2]+'"><span class="sn" aria-hidden="true">'+(d?CHK:k2)+'</span><span class="stx"><b>'+esc(stations[k2].dataset.title)+'</b><small>'+MIN[k2]+' min'+(ty?", "+esc(ty):"")+(d?", erledigt":"")+'</small></span></a></li>'}
+  h.innerHTML='<p class="h-what">In '+(N-1)+' kurzen Schritten lernst du alles für die Geschichtsklausur: Kaiserreich, Industrialisierung, Kolonien und Kongokonferenz.</p>'+
+    '<p class="h-time"><b>Ungefähr '+fmtMin(tot)+' für alles.</b> Mach ruhig Pausen, dein Fortschritt bleibt auf diesem Gerät gespeichert.</p>'+
+    '<button class="bigbtn" id="homego"><span class="bt"><b>'+main+'</b><small>'+sub+'</small></span>'+ARR+'</button>'+
+    '<div class="h-prog"><div class="hp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="'+td+'"><i style="width:'+(td/6*100)+'%"></i></div><span><b>'+td+' von 6 Themen</b> geschafft, '+sd+' von '+(N-1)+' Schritten erledigt</span></div>'+
+    '<h2 class="h-list">Dein Lernpfad</h2><ol class="steplist">'+list+'</ol>';
+  document.getElementById("homego").addEventListener("click",function(){goStep(nx)})}
+var _hs=hooks.start;hooks.start=function(){if(_hs)_hs();renderHome()};
+
+/* Häkchen in der Seitenleiste und im Lernpfad-Blatt */
+function refreshDone(){stLis.forEach(function(li,k){li.classList.toggle("fin",!!DONE[ids[k]])});var pc=document.getElementById("pcdone");if(pc)pc.textContent=stepsDone()+" von "+(N-1)+" erledigt";if(cur===0)renderHome()}
+
+/* Mini-Quiz am Ende von Schritt 1: drei leichte Fragen zum Plan, ein schneller erster Erfolg */
+var MQ=[["Wie lange dauert die Klausur in diesem Plan?",["45 Minuten","90 Minuten","3 Stunden"],1,"Der Plan rechnet mit 90 Minuten. Ist es bei euch anders, trag die echte Dauer oben im Zeitplan ein."],
+  ["Womit arbeitest du in der Klausur?",["Mit einer Quelle","Nur aus dem Kopf, ohne Material","Mit einem Film"],0,"Du bekommst eine Quelle: einleiten, wiedergeben, einordnen, urteilen. Wie das geht, zeigt Schritt 2."],
+  ["In wie viele Blöcke ist der Stoff aufgeteilt?",["Zwei","Vier","Zehn"],1,"Vier Blöcke: Gesellschaft, Industrialisierung, Gründe für Kolonien, Rassismus und Gewalt."]];
+function renderMini(){var box=document.getElementById("miniq");if(!box)return;var pos=0,right=0;
+  function head(){return '<div class="mq-h"><b>Kurzer Check</b><span>3 leichte Fragen, ohne Punkte</span></div><div class="mq-dots" aria-hidden="true">'+MQ.map(function(_,k){return '<i class="'+(k<pos?"d":k===pos?"c":"")+'"></i>'}).join("")+'</div>'}
+  function ask(){var q=MQ[pos];box.innerHTML=head()+'<p class="mq-q">'+esc(q[0])+'</p><div class="mq-o"></div><div class="mq-f" aria-live="polite"></div>';
+    var o=box.querySelector(".mq-o");q[1].forEach(function(a,k){var b=el("button",{class:"mq-b"},esc(a));b.addEventListener("click",function(){
+      if(o.dataset.done)return;o.dataset.done=1;var ok=k===q[2];if(ok)right++;b.classList.add(ok?"ok":"no");if(!ok)o.children[q[2]].classList.add("ok");
+      var f=box.querySelector(".mq-f");f.innerHTML='<p><b>'+(ok?["Richtig!","Genau!","Stimmt!"][pos]:"Fast. Richtig ist „"+esc(q[1][q[2]])+"“.")+'</b> '+esc(q[3])+'</p>';
+      var n=el("button",{class:"bigbtn sm"},'<span class="bt"><b>'+(pos+1<MQ.length?"Nächste Frage":"Fertig")+'</b></span>'+ARR);n.addEventListener("click",function(){pos++;if(pos<MQ.length)ask();else end()});f.appendChild(n)});o.appendChild(b)})}
+  function end(){store.set("mini",right);markDone("plan");if(right===MQ.length)confetti(60);
+    box.innerHTML='<div class="mq-end"><span class="mq-ok" aria-hidden="true">'+CHK+'</span><div><b>'+(right===MQ.length?"Stark, 3 von 3!":right+" von 3, gut gemacht!")+'</b><p>Schritt 1 ist geschafft. Du weißt jetzt, was in der Klausur kommt und wie die Zeit reicht.</p><p class="mq-p">'+stepsDone()+" von "+(N-1)+' Schritten erledigt. Weiter geht es mit dem Handwerk.</p></div></div>'+
+      '<button class="mq-again">Nochmal versuchen</button>';box.querySelector(".mq-again").addEventListener("click",function(){pos=0;right=0;ask()});reqFit()}
+  function reqFit(){try{fixRest()}catch(e){}}
+  var prev=store.get("mini",null);if(prev!=null&&DONE.plan){right=prev;end()}else ask()}
+
+/* Kleine Happen auf dem Handy: Abschnitte mit Überschrift klappen auf, Füllkästen stehen hinter „Mehr dazu“ */
+stations.forEach(function(s,i){var c=s.querySelector(":scope > .content");if(!c)return;
+  var kids=[].slice.call(c.children).filter(function(x){return !x.matches(".schwelle,.runway")}),hs=kids.filter(function(x){return x.tagName==="H2"&&!x.classList.contains("gl-more")});
+  if(hs.length>=2&&ids[i]!=="kurz-vorher"){c.classList.add("secs");var k=-1,tot=hs.length;
+    kids.forEach(function(x){if(x.tagName==="H2"){k++;x.classList.add("sec-h");x.setAttribute("role","button");x.setAttribute("tabindex","0");x.dataset.k=k;x.dataset.n=(k+1)+" von "+tot;x.setAttribute("aria-expanded",k===0?"true":"false")}
+      else if(k>=0){x.dataset.sk=k;if(k>0)x.classList.add("sk-shut")}});
+    function tog(h){var kk=h.dataset.k,open=h.getAttribute("aria-expanded")!=="true";h.setAttribute("aria-expanded",open?"true":"false");
+      c.querySelectorAll(':scope > [data-sk="'+kk+'"]').forEach(function(x){x.classList.toggle("sk-shut",!open)});if(open&&PHONE.matches){var t=h.getBoundingClientRect().top;if(t>innerHeight*.5)h.scrollIntoView({block:"start",behavior:RM?"auto":"smooth"})}}
+    c.querySelectorAll(":scope > .sec-h").forEach(function(h){h.addEventListener("click",function(e){if(!PHONE.matches)return;tog(h)});h.addEventListener("keydown",function(e){if(PHONE.matches&&(e.key==="Enter"||e.key===" ")){e.preventDefault();tog(h)}})})}
+  c.querySelectorAll(".fill").forEach(function(f){var fh=f.querySelector(":scope > .fill-h");if(!fh)return;f.classList.add("more");fh.setAttribute("role","button");fh.setAttribute("tabindex","0");fh.setAttribute("aria-expanded","false");
+    fh.insertAdjacentHTML("beforeend",'<em class="more-l" aria-hidden="true">Mehr dazu</em>');
+    function t2(){if(!PHONE.matches)return;var o=!f.classList.contains("open");f.classList.toggle("open",o);fh.setAttribute("aria-expanded",o?"true":"false")}
+    fh.addEventListener("click",t2);fh.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();t2()}})})});
+
+/* Weiter-Knopf am Ende jedes Schritts: die Schwelle zählt den Schritt als erledigt */
+stations.forEach(function(s,i){var sw=s.querySelector(":scope > .content > .schwelle");if(sw)sw.addEventListener("click",function(){markDone(ids[i])},true)});
+
+/* Handy: obere Leiste mit Zurück statt Menü, untere Leiste mit Lernpfad, Quiz, Spickzettel und Weiter */
+var PHONE=window.matchMedia?matchMedia("(max-width:759px)"):{matches:false};
+(function(){var tb=document.querySelector(".topbar"),bk=el("button",{class:"iconbtn tb-back",id:"tbback","aria-label":"Ein Schritt zurück"},'<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M13.5 4.5L7 11l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  tb.insertBefore(bk,tb.firstChild);bk.addEventListener("click",function(){if(cur>0)backTo(cur-1,false)});
+  var tabs=el("div",{class:"tabs",role:"navigation","aria-label":"Bereiche"});
+  var T=[["tab-path","Lernpfad",'<path d="M4 5h3M4 10h3M4 15h3M10 5h7M10 10h7M10 15h7"/>'],["tab-quiz","Quiz",'<circle cx="10" cy="10" r="7"/><path d="M8 8a2 2 0 1 1 2.6 1.9c-.4.2-.6.5-.6 1v.6M10 14v.1"/>'],["tab-spick","Spickzettel",'<path d="M5 3h7l3 3v11H5z"/><path d="M8 9h5M8 12h5M8 6h2"/>']];
+  T.forEach(function(t){var b=el("button",{class:"tab",id:t[0]},'<svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+t[2]+'</svg><span>'+t[1]+'</span>');tabs.appendChild(b)});
+  var bb=document.querySelector(".bb-in"),nx=document.getElementById("next");bb.insertBefore(tabs,nx);
+  document.getElementById("tab-path").addEventListener("click",function(){openSheet()});
+  document.getElementById("tab-quiz").addEventListener("click",function(){goStep(ids.indexOf("quiz"))});
+  document.getElementById("tab-spick").addEventListener("click",function(){goStep(ids.indexOf("kurz-vorher"))});
+  var h2=pathEl.querySelector("h2");if(h2)h2.insertAdjacentHTML("afterend",'<p class="pc-done" id="pcdone"></p>')})();
+function updTabs(i){var q=ids.indexOf("quiz"),s=ids.indexOf("kurz-vorher");document.getElementById("tab-quiz").classList.toggle("on",i===q);document.getElementById("tab-spick").classList.toggle("on",i===s);
+  document.getElementById("tbback").disabled=i===0}
+
+/* Startbildschirm: auch „Weiter“ unten führt zum nächsten offenen Schritt; Blatt heißt auf dem Handy „Dein Lernpfad“ */
+document.getElementById("next").addEventListener("click",function(e){if(cur===0){var k=nextOpen();if(k!==1){e.stopImmediatePropagation();goStep(k)}}},true);
+(function(){var h=pathEl.querySelector("h2");if(!h||!h.firstChild||h.firstChild.nodeType!==3)return;function f(){h.firstChild.nodeValue=PHONE.matches?"Dein Lernpfad ":"Roter Faden "}f();if(PHONE.addEventListener)PHONE.addEventListener("change",f)})();
+var _un=updTabs;updTabs=function(i){_un(i);if(i===0&&stepsDone()>0)document.getElementById("nexttxt").textContent="Weiter"};
+refreshDone();renderMini();
 
 fromHash();
 /* Erstes Laden: Schriften abwarten, dann Schwelle und Vorschau einmal richtig setzen und erst dann zeigen */
