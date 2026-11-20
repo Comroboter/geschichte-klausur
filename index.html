@@ -2011,6 +2011,22 @@ html.bpull,html.bpull *{-webkit-user-select:none!important;user-select:none!impo
 .station:not(.on) .schwelle .ar{animation-play-state:paused!important}
 /* Geschlossenes Menü unten: Lichtpunkt und Puls im Faden anhalten */
 @media (max-width:1099px){.path:not(.open) .thr,.path:not(.open) .st .d{animation-play-state:paused!important}}
+/* Wenn der Viewport-Fix die Leisten doch einmal versetzt, gleiten sie hin statt zu springen */
+.bottombar,.bfade{transition:bottom .24s cubic-bezier(.25,.8,.3,1)}
+.topbar{transition:top .24s cubic-bezier(.25,.8,.3,1)}
+.morepill,.narr-cap{transition:opacity .35s var(--ease),transform .45s var(--ease),bottom .24s cubic-bezier(.25,.8,.3,1)}
+
+/* Touch-Geräte, auch iPad mit Trackpad (dort greift hover:none nicht): keine Hintergrund-Unschärfe unter festen Leisten */
+.touch .topbar,.touch .bottombar,.touch .narr-cap{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.touch .topbar,.touch .bottombar{background:rgba(241,242,238,.97)!important}
+:root.touch[data-theme="dark"] .topbar,:root.touch[data-theme="dark"] .bottombar{background:rgba(18,20,24,.97)!important}
+@media (prefers-color-scheme:dark){:root.touch:not([data-theme="light"]) .topbar,:root.touch:not([data-theme="light"]) .bottombar{background:rgba(18,20,24,.97)!important}}
+.touch .bfade i{display:none}
+.touch .bfade::after{background:linear-gradient(rgba(18,20,24,0),rgba(18,20,24,.3) 35%,rgba(18,20,24,.7) 75%,rgba(18,20,24,.94))}
+:root.touch[data-theme="light"] .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}
+@media (prefers-color-scheme:light){:root.touch:not([data-theme="dark"]) .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}}
+/* Während des Scrollens: Dauer-Animationen anhalten (nicht zurücksetzen) */
+.scrl .art *,.scrl .sw-ring .ar,.scrl .thr,.scrl .st .d,.scrl .fadenline path.glint{animation-play-state:paused!important}
 /* ===== Start-Intro „Zündung“ (gehört zu intro.js): Elemente zünden wie Leuchtröhren, sobald das Dunkel sie freigibt ===== */
 html.ig .ig-el{animation:igOn .56s cubic-bezier(.2,.7,.2,1) var(--igd,0s) both!important;animation-play-state:running!important}
 html.ig-soft .ig-el{animation:igSoft .45s ease-out var(--igd,0s) both!important}
@@ -2092,7 +2108,7 @@ html.ig-soft .ig-el{animation:igSoft .45s ease-out var(--igd,0s) both!important}
         <li><small class="lb">Stand</small><small>nach der Lernübersicht zur Klausur (ab Punkt 1c), wenige Lücken ergänzt</small></li>
       </ul>
     </section>
-    <p class="buildtag">Stand: 20.11.2026, 07:48</p>
+    <p class="buildtag">Stand: 20.11.2026, 08:14</p>
   </div>
 </nav>
 
@@ -3060,7 +3076,7 @@ var mainEl=document.getElementById("main");
 function prepStation(t){var id=ids[t];try{if(id==="einleitung"){var pa=compose();checks();render(pa)}else if((id==="kurz-vorher"||id==="start")&&hooks[id])hooks[id]()}catch(e){}
   stations[t].querySelectorAll(".schwelle .sw-hint").forEach(function(h){if(!h.closest(".rw-in"))h.textContent=hintTxt()})}
 /* Strich-Animationen laufen nur, solange sie zu sehen sind (pausieren statt neu starten) */
-var svgIO=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target,st=v.closest(".station"),ok=e.isIntersecting&&e.boundingClientRect.width>0&&(!st||st.classList.contains("on")||!!v.closest(".back-ov"))&&!(v.closest(".peek")&&!v.closest(".peek.on"));try{if(ok)v.unpauseAnimations();else v.pauseAnimations()}catch(x){}})},{rootMargin:"120px 0px"}):null;
+var svgIO=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target,st=v.closest(".station"),ok=e.isIntersecting&&e.boundingClientRect.width>0&&(!st||st.classList.contains("on")||!!v.closest(".back-ov"))&&!(v.closest(".peek")&&!v.closest(".peek.on"));v._io=ok;try{if(ok){if(!window.SCRL)v.unpauseAnimations()}else v.pauseAnimations()}catch(x){}})},{rootMargin:"120px 0px"}):null;
 try{new MutationObserver(function(){var on=peek.classList.contains("on");peek.querySelectorAll("svg").forEach(function(v){try{if(on)v.unpauseAnimations();else v.pauseAnimations()}catch(e){}})}).observe(peek,{attributes:true,attributeFilter:["class"]})}catch(e){}
 function watchSvgs(root){if(!svgIO||!root)return;root.querySelectorAll("svg").forEach(function(v){if(!v.querySelector("animate,animateTransform,animateMotion,set"))return;svgIO.unobserve(v);svgIO.observe(v)})}
 var FILLPART=null;function cloneStation(t,into,deep){var st=stations[t],part=FILLPART&&FILLPART.t===t?FILLPART.keep:null;prepStation(t);if(deep&&!part)fillPreview(t,false);into.innerHTML="";var h=st.querySelector(".hero"),c=st.querySelector(".content");
@@ -3322,6 +3338,12 @@ refreshDone();renderMini();
     function show(o){l.hidden=!o;b.textContent=o?"Musterlösung ausblenden":"Mit Musterlösung vergleichen";t.classList.toggle("open",o);try{fixRest()}catch(e){}}
     b.addEventListener("click",function(){if(!l.hidden){show(false);return}if(words()<15&&!warn){warn=true;b.textContent="Erst selbst schreiben? Nochmal tippen zeigt sie trotzdem";return}warn=false;show(true);if(PHONE.matches)setTimeout(function(){l.scrollIntoView({block:"start",behavior:RM?"auto":"smooth"})},60)});
     if(U[k+"_o"])show(true)})})();
+/* Touch-Geräte (auch iPad mit Tastatur oder Trackpad): Während gescrollt wird, halten Zeichnungen und Dauer-Animationen an.
+   Safari zeichnet sonst bei jedem Schritt einer Schleife die leuchtende Zeichnung samt Schein neu, das bremst das Scrollen. */
+(function(){if(!(navigator.maxTouchPoints>0))return;var R=document.documentElement,tm=0,held=[];R.classList.add("touch");window.SCRL=false;
+  function start(){if(window.SCRL)return;window.SCRL=true;R.classList.add("scrl");held=[];document.querySelectorAll(".station.on svg").forEach(function(v){try{if(!v.animationsPaused()){v.pauseAnimations();held.push(v)}}catch(e){}})}
+  function stop(){window.SCRL=false;R.classList.remove("scrl");document.querySelectorAll(".station.on svg").forEach(function(v){try{if(v._io&&v.animationsPaused())v.unpauseAnimations()}catch(e){}});held.forEach(function(v){try{if(v._io!==false&&v.animationsPaused())v.unpauseAnimations()}catch(e){}});held=[]}
+  window.addEventListener("scroll",function(){if(peekBusy||document.querySelector(".back-ov")){if(window.SCRL){clearTimeout(tm);stop()}return}start();clearTimeout(tm);tm=setTimeout(stop,220)},{passive:true})})();
 
 /* ================= START-INTRO „ZÜNDUNG“ (wiederverwendbar) =================
    Ablauf beim ersten Besuch pro Sitzung (html.vh):
@@ -3434,14 +3456,15 @@ fromHash();
   probe.setAttribute("aria-hidden","true");probe.style.cssText="position:fixed;top:0;bottom:0;left:0;width:1px;visibility:hidden;pointer-events:none;z-index:-1";document.body.appendChild(probe);
   function upd(){pend=false;var t=0,b=0;if(Math.abs((vv.scale||1)-1)<.01){var r=probe.getBoundingClientRect(),ae=document.activeElement,typing=ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName);
       t=typing?Math.round(vv.offsetTop-r.top):0;b=Math.round(r.bottom-(vv.offsetTop+vv.height));if(t<0||t>140)t=0;if(b<0||b>140||typing)b=0}
+    if(!typing&&performance.now()>vvF&&performance.now()-lastSc<600&&b!==0)b=lb<0?0:lb;
     if(t!==lt){lt=t;VVEL().forEach(function(x){x.style.setProperty("--vvt",t+"px")})}if(b!==lb){lb=b;VVEL().forEach(function(x){x.style.setProperty("--vvb",b+"px")})}}
   var _ve=null;function VVEL(){if(!_ve)_ve=[].slice.call(document.querySelectorAll(".topbar,.bottombar,.morepill,.narr-cap,.bfade,.path"));return _ve}
-  var lastSc=0,wt=0;window.addEventListener("scroll",function(){lastSc=performance.now()},{passive:true,capture:true});
+  var lastSc=0,wt=0,vvF=performance.now()+2500;window.addEventListener("orientationchange",function(){vvF=performance.now()+1500;req()});window.addEventListener("scroll",function(){lastSc=performance.now()},{passive:true,capture:true});
   function req(){var ae=document.activeElement,typing=ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName),w=150-(performance.now()-lastSc);
     if(!typing&&w>0){clearTimeout(wt);wt=setTimeout(req,w+10);return}if(!pend){pend=true;requestAnimationFrame(upd)}}
   vv.addEventListener("resize",req);vv.addEventListener("scroll",req);window.addEventListener("scroll",req,{passive:true});window.addEventListener("resize",req);
-  window.addEventListener("hashchange",function(){req();setTimeout(req,350);setTimeout(req,900)});document.addEventListener("focusout",function(){setTimeout(req,60)});
-  window.vvUpdate=function(){req();setTimeout(req,120);setTimeout(req,500)};req()})();
+  window.addEventListener("hashchange",function(){vvF=performance.now()+1000;req();setTimeout(req,350);setTimeout(req,900)});document.addEventListener("focusout",function(){setTimeout(req,60)});
+  window.vvUpdate=function(){vvF=performance.now()+1000;req();setTimeout(req,120);setTimeout(req,500)};req()})();
 /* Erster Auftritt: Vorhang auf (einmal pro Sitzung), dahinter baut sich die Seite in fester Reihenfolge auf */
 function openStage(){var d=document.documentElement;if(!d.classList.contains("hold")&&!d.classList.contains("vh"))return;
   var vh=d.classList.contains("vh"),w=vh?Math.max(0,((window.INTRO&&INTRO.litAt)||0)+480-performance.now()):0;
