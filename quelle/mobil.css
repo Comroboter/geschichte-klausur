@@ -1,0 +1,327 @@
+
+/* ===== Klarer Weg (mobil zuerst): Startbildschirm, Schritte, Mini-Quiz, Spickzettel, Handy-Leisten ===== */
+.js #resume,.js #startline{display:none}
+#s-start .home:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .home:not([data-sid] [data-sid] *){flex-basis:100%;max-width:640px}
+.h-what{font-size:19px;line-height:1.45;margin:0;color:var(--ink)}
+.h-time{font-size:16px;line-height:1.5;color:var(--muted);margin:10px 0 0}
+.h-time b{color:var(--ink);font-weight:600}
+
+/* Großer Knopf: genau eine Hauptaktion pro Bildschirm */
+.bigbtn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:66px;margin-top:22px;padding:12px 18px 12px 22px;
+  border:0;border-radius:18px;background:var(--st);color:var(--paper);font:inherit;text-align:left;cursor:pointer;
+  box-shadow:0 12px 30px -14px color-mix(in srgb,var(--st) calc(var(--nz) * 80%),transparent);-webkit-tap-highlight-color:transparent;transition:transform .15s var(--ease)}
+.bigbtn:active{transform:scale(.985)}
+.bigbtn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.bigbtn .bt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.bigbtn .bt b{font-family:var(--font-display);font-size:21px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.bigbtn .bt small{font-family:var(--font-display);font-size:15px;font-weight:500;opacity:.82;line-height:1.3}
+.bigbtn svg{flex:none}
+.bigbtn.sm{min-height:52px;margin-top:14px;border-radius:14px}
+.bigbtn.sm .bt b{font-size:17px}
+
+.h-prog{margin-top:18px}
+.hp-bar{height:8px;border-radius:8px;background:color-mix(in srgb,var(--st) 16%,var(--rule));overflow:hidden}
+.hp-bar i{display:block;height:100%;min-width:8px;background:var(--st);border-radius:8px;transition:width .6s var(--ease)}
+.h-prog span{display:block;margin-top:9px;font-size:15px;line-height:1.4;color:var(--muted)}
+.h-prog span b{color:var(--ink);font-weight:600}
+
+.h-list{margin-top:38px!important}
+.steplist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.steplist a{display:flex;align-items:center;gap:14px;min-height:58px;padding:8px 14px 8px 10px;border-radius:14px;color:inherit;text-decoration:none;
+  background:var(--sheet);border:1px solid var(--rule);-webkit-tap-highlight-color:transparent}
+.steplist .sn{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-variant-numeric:tabular-nums;
+  font-weight:600;font-size:15px;border:1.5px solid var(--rule);color:var(--muted)}
+.steplist .fin .sn{background:var(--ok);border-color:var(--ok);color:var(--paper)}
+.steplist .nx a{border-color:color-mix(in srgb,var(--st) 60%,var(--rule))}
+.steplist .nx .sn{border-color:var(--st);color:var(--st)}
+.steplist .stx{display:flex;flex-direction:column;min-width:0}
+.steplist .stx b{font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1.25}
+.steplist .stx small{font-size:14px;color:var(--muted);margin-top:1px}
+.steplist .fin .stx b{color:var(--muted)}
+
+/* Mini-Quiz in Schritt 1 */
+.miniq{margin-top:30px;padding:20px 20px 22px;border-radius:18px;background:var(--sheet);border:1px solid color-mix(in srgb,var(--st) 40%,var(--rule))}
+.mq-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.mq-h b{font-family:var(--font-display);font-size:20px;font-weight:700}
+.mq-h span{font-size:14px;color:var(--muted)}
+.mq-dots{display:flex;gap:6px;margin-top:12px}
+.mq-dots i{width:26px;height:6px;border-radius:6px;background:var(--rule)}
+.mq-dots i.d{background:var(--ok)}.mq-dots i.c{background:var(--st)}
+.mq-q{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.3;margin:16px 0 0}
+.mq-o{display:grid;gap:8px;margin-top:14px}
+.mq-b{min-height:54px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--rule);background:transparent;color:var(--ink);font-family:var(--font-display);font-size:17px;
+  text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mq-b.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent)}
+.mq-b.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.mq-f p{font-size:16px;line-height:1.5;margin:14px 0 0}
+.mq-end{display:flex;gap:14px;align-items:flex-start}
+.mq-ok{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--ok);color:var(--paper)}
+.mq-ok svg{width:22px;height:22px}
+.mq-end b{font-family:var(--font-display);font-size:22px;font-weight:700}
+.mq-end p{margin:6px 0 0;font-size:16px;line-height:1.5}
+.mq-end .mq-p{color:var(--muted)}
+.mq-again{margin-top:16px;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--font-display);font-size:15px;cursor:pointer}
+
+/* Spickzettel: Das Wichtigste auf einen Blick */
+.glance{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.gl-t{padding:16px 18px 18px;border-radius:16px;background:var(--sheet);border:1px solid var(--rule);border-top:3px solid var(--st)}
+.gl-t h3{margin:0;font-family:var(--font-display);font-size:19px;font-weight:700}
+.gl-t ul,.gl-t ol{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.gl-t li{font-size:16px;line-height:1.45}
+.gl-t li b{font-family:var(--font-display);font-weight:600;color:var(--ink)}
+.gl-t ul li span{display:block;color:var(--muted)}
+.gl-d li b{font-variant-numeric:tabular-nums;color:var(--st)}
+.gl-n{font-size:15px;line-height:1.45;color:var(--muted);margin:12px 0 0;font-style:italic}
+.gl-more{margin-top:40px!important}
+
+/* Schritt-Nummern im Lernpfad (Seitenleiste und Blatt), Häkchen bei erledigten Schritten */
+.path .ti .no{font-variant-numeric:tabular-nums;color:var(--muted);margin-right:7px;font-weight:500}
+.path li.st.fin .ti::after{content:"✓";color:var(--ok);margin-left:6px;font-weight:700}
+.pc-done{margin:-4px 0 10px;font-size:14px;color:var(--muted)}
+
+/* Außerhalb des Handys unsichtbar */
+.tabs,.tb-back,.more-l{display:none}
+
+@media (max-width:759px){
+  /* Fließtext mindestens 16 px */
+  .content p,.content li{font-size:max(16px,1em)}
+  .hero .lede{font-size:16px;line-height:1.5}
+
+  /* Kopf kompakt: der erste Bildschirm zeigt schon Inhalt */
+  .hero{padding-top:20px!important;padding-bottom:20px!important}
+  .hero .art{position:relative!important;display:block!important;width:72px!important;height:48px!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;margin:0 0 10px!important;transform:none!important}
+  .hero h1{font-size:clamp(30px,8.6vw,38px)!important;line-height:1.04!important}
+
+  /* Startbildschirm: Titel, ein Satz, Zeit, ein Knopf, Fortschritt */
+  #s-start:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"]:not([data-sid] [data-sid] *){min-height:0!important}
+  #s-start .hero:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero:not([data-sid] [data-sid] *){padding:26px 0 8px!important;flex:none!important}
+  #s-start .hero > .kicker:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero > .kicker:not([data-sid] [data-sid] *){display:none}
+  #s-start .hero h1:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="start"] .hero h1:not([data-sid] [data-sid] *){font-size:clamp(36px,10.5vw,46px)!important}
+
+  /* Abschnitte zum Aufklappen: ein Gedanke pro Bildschirm */
+  .content.secs > .sk-shut{display:none!important}
+  .content.secs > .sec-h{display:flex;align-items:center;gap:10px;min-height:58px;margin:10px 0 0!important;padding:12px 14px 12px 16px;border-radius:14px;
+    background:var(--sheet);border:1px solid var(--rule);cursor:pointer;font-size:19px;line-height:1.25;-webkit-tap-highlight-color:transparent}
+  .content.secs > .sec-h[aria-expanded="true"]{border-color:color-mix(in srgb,var(--st) 55%,var(--rule));margin-bottom:6px!important}
+  .content.secs > .sec-h::before{content:attr(data-n);order:2;margin-left:auto;padding-left:8px;font-family:var(--font-display);font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap;position:static;width:auto;height:auto;background:none;border:0}
+  .content.secs > .sec-h::after{content:"";order:3;flex:none;width:9px;height:9px;border-right:2px solid var(--st);border-bottom:2px solid var(--st);transform:rotate(45deg);margin:-5px 4px 0 6px;transition:transform .25s var(--ease);position:static;background:none}
+  .content.secs > .sec-h[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:5px}
+
+  /* Füllkästen hinter „Mehr dazu“ */
+  .fill.more:not(.open) > :not(.fill-h){display:none!important}
+  .fill.more > .fill-h{cursor:pointer;min-height:44px;flex-wrap:wrap;align-items:center;-webkit-tap-highlight-color:transparent}
+  .fill.more .more-l{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-style:normal;font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--st);padding:6px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--st) 45%,transparent)}
+  .fill.more.open .more-l{display:none}
+
+  /* Weiter am Ende jedes Schritts: großer Knopf im Stil der Seite.
+     Dunkle Fläche mit Haarlinie in Stationsfarbe, links der Ring, der sich beim Hochziehen rot füllt (roter Faden).
+     Keine Skalier-Animation am ganzen Knopf, nur Ring, Rand und Licht antworten auf den Finger. */
+  .schwelle{margin-top:36px;padding:8px 0 4px}
+  .schwelle .sw-line{display:none}
+  .schwelle .sw-row{position:relative;isolation:isolate;min-height:84px;padding:14px 18px 14px 14px!important;gap:14px!important;border-radius:20px;
+    background:color-mix(in srgb,var(--st) 7%,var(--sheet));
+    border:1px solid color-mix(in srgb,var(--st) calc(34% + var(--pull) * 50%),var(--rule));
+    box-shadow:0 14px 34px -22px color-mix(in srgb,var(--st) calc(var(--nz) * 70%),transparent);
+    transition:border-color .3s var(--ease),background-color .3s var(--ease),transform .2s var(--ease);-webkit-tap-highlight-color:transparent}
+  /* weiches Licht von oben in Stationsfarbe, wird beim Ziehen stärker */
+  .schwelle .sw-row::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%,color-mix(in srgb,var(--st) calc(var(--nz) * (10% + var(--pull) * 14%)),transparent),transparent 70%)}
+  .schwelle .sw-row .sw-ring{width:50px!important;height:50px!important}
+  .schwelle .sw-ring .bg{stroke:color-mix(in srgb,var(--st) 40%,var(--rule));fill:color-mix(in srgb,var(--st) 10%,transparent)}
+  .schwelle .sw-ring .fg{opacity:min(1,calc(var(--pull) * 25))}
+  .schwelle .sw-ring .ar{stroke:var(--st)!important;animation:none}
+  .schwelle .sw-txt{flex:1}
+  .schwelle .sw-txt small{color:var(--st)!important;font-family:var(--font-body)!important;font-style:italic!important;font-size:15px!important}
+  .schwelle .sw-txt b{color:var(--ink)!important;font-size:20px!important;line-height:1.2}
+  .schwelle .sw-hint{display:none!important}
+  .schwelle.ready .sw-row{animation:none;border-color:var(--st)}
+  .schwelle.ready .sw-ring .bg{fill:var(--thread);stroke:var(--thread)}
+  .schwelle.ready .sw-ring .ar{stroke:#fff!important}
+  .schwelle:active .sw-row{transform:scale(.985);background:color-mix(in srgb,var(--st) 13%,var(--sheet))}
+  .schwelle:active .sw-ring{transform:rotate(-90deg)}
+
+  /* Obere Leiste: Zurück statt Menü */
+  #menu{display:none!important}
+  .tb-back{display:inline-grid}
+  .tb-back[disabled]{opacity:.28}
+
+  /* Untere Leiste: Lernpfad, Quiz, Spickzettel, Weiter */
+  #prev,#where,#narr{display:none!important}
+  .bb-in{display:flex!important;align-items:center;gap:4px}
+  .tabs{display:flex;flex:1;gap:2px;min-width:0}
+  .tab{flex:1;min-width:0;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:var(--muted);
+    font-family:var(--font-display);font-size:13px;font-weight:500;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .tab.on{color:var(--ink)}
+  .tab.on svg{color:var(--thread)}
+  #next{min-height:52px;padding:0 16px 0 20px}
+  #nt{display:none!important}
+
+  /* Daumenfreundlich: alles Antippbare mindestens 44 px, Text in Tabellen und Karten mindestens 16 px */
+  .chip{min-height:44px}
+  .item .chev{width:44px;height:44px}
+  .item .sum{min-height:44px;padding:0;display:flex;align-items:center;box-sizing:border-box}
+  .ck{width:44px;height:44px}
+  .stepper button.dotb{width:44px;height:44px}
+  .inline-in input{min-height:44px}
+  .gen-tabs button,.segctl button{min-height:44px}
+  table.cmp td,table.cmp th,.deck .def,.sitem span,.qz{font-size:16px!important}
+  footer.src{font-size:15px}
+
+  /* Lernpfad-Blatt: nur der Weg, keine Zusatzkarten */
+  .path .side-extra,.path .brand{display:none!important}
+  .path li.st a{min-height:46px}
+}
+
+/* Zuschnitt auf die Lernansicht: Bausteine der Aufgaben-Schritte */
+.drei ol{margin:12px 0 0;padding-left:24px;display:grid;gap:12px}
+.drei li b{display:block;font-family:var(--font-display);font-weight:600;font-size:17px}
+.drei li span{display:block;color:var(--muted);font-size:16px;line-height:1.45}
+.eck{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.eck li{display:block;padding:10px 14px;border-left:3px solid var(--st);background:var(--sheet);border-radius:0 12px 12px 0}
+.eck b{display:block;font-family:var(--font-display);font-weight:600;font-size:17px}
+.eck span{display:block;color:var(--muted);font-size:16px;line-height:1.45}
+.panel.urt{margin-top:14px}
+.panel.urt p{margin:0;font-size:16px;line-height:1.5}
+.panel.urt p + p{margin-top:8px}
+.panel.urt b{color:var(--st)}
+#s-aufgaben .baustein:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="aufgaben"] .baustein:not([data-sid] [data-sid] *){margin-top:16px}
+#s-aufgaben .vs:not(:is(.rw-in,.peek-in,.back-ov) *),[data-sid="aufgaben"] .vs:not([data-sid] [data-sid] *){margin-top:14px}
+.spick[hidden]{display:none!important}
+/* Unter der unteren Leiste nie ein Spalt: Manche Android-WebViews (auch in der Claude-App) runden die Höhe
+   des Bildschirms anders als die feste Leiste, dann blitzt unten ein schmaler Streifen Inhalt durch. */
+.bottombar::after{content:"";position:absolute;left:0;right:0;top:100%;height:80px;background:inherit;pointer-events:none}
+/* Touch-Geräte: keine backdrop-filter-Ebenen über scrollendem Inhalt. Jede davon muss auf dem Handy pro Frame
+   den Hintergrund neu weichzeichnen (5 Ebenen inklusive Masken), das kostet beim Scrollen und bei den Wechseln
+   die meiste GPU-Zeit. Die Leisten werden fast deckend, der Auslauf unten bleibt als reiner Farbverlauf. */
+@media (hover:none){
+  .topbar,.bottombar,.narr-cap{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .topbar,.bottombar{background:rgba(241,242,238,.97)!important}
+  :root[data-theme="dark"] .topbar,:root[data-theme="dark"] .bottombar{background:rgba(18,20,24,.97)!important}
+  .bfade i{display:none}
+  .bfade::after{background:linear-gradient(rgba(18,20,24,0),rgba(18,20,24,.3) 35%,rgba(18,20,24,.7) 75%,rgba(18,20,24,.94))}
+  :root[data-theme="light"] .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}
+}
+@media (hover:none) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .topbar,:root:not([data-theme="light"]) .bottombar{background:rgba(18,20,24,.97)!important}}
+@media (hover:none) and (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}}
+/* Während man eine Seite oben zurückzieht: keine Textauswahl und kein Callout, sonst löst langes Festhalten einen Langdruck aus */
+html.bpull,html.bpull *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+
+/* ===== „Muss sitzen“: Knoten im roten Faden =====
+   Die wichtigsten Punkte hängen am roten Faden: eine leuchtende Linie am linken Rand mit einem Knoten,
+   dazu eine kursive Regieanweisung in Fadenrot. Kein Etikett in Großbuchstaben, kein eingefärbter Titel. */
+.item.knot{position:relative}
+.item.knot::before{content:"";position:absolute;left:-12px;top:12px;bottom:12px;width:2px;border-radius:2px;pointer-events:none;
+  background:linear-gradient(var(--thread),color-mix(in srgb,var(--thread) 25%,transparent));
+  box-shadow:0 0 10px color-mix(in srgb,var(--thread) calc(var(--nz) * 70%),transparent)}
+.item.knot::after{content:"";position:absolute;left:-16px;top:21px;width:10px;height:10px;border-radius:50%;pointer-events:none;background:var(--thread);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--thread) 20%,transparent),0 0 14px color-mix(in srgb,var(--thread) calc(var(--nz) * 90%),transparent)}
+.item.knot .sum{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
+.kn{display:inline-block;font-family:var(--font-body);font-style:italic;font-weight:400;font-size:14px;line-height:1.3;color:var(--thread);letter-spacing:0;
+  text-shadow:0 0 12px color-mix(in srgb,var(--thread) calc(var(--nz) * 45%),transparent)}
+.item.done.knot .sum .kn{opacity:.75}
+.kn-why{font-family:var(--font-body);font-style:italic;color:var(--thread);margin:0 0 10px;padding-left:12px;border-left:2px solid color-mix(in srgb,var(--thread) 55%,transparent)}
+/* Knoten zündet einmal kurz, wenn er zum ersten Mal ins Bild kommt (startet und endet im Ruhezustand, nichts ploppt) */
+.item.knot.kn-on::after{animation:knotIgnite .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes knotIgnite{0%{transform:none}25%{transform:scale(1.7);box-shadow:0 0 0 6px color-mix(in srgb,var(--thread) 30%,transparent),0 0 26px var(--thread)}40%{transform:scale(1.15)}100%{transform:none}}
+/* Sachurteil-Kasten und Spickzettel */
+.panel.knot-p{position:relative;border-color:color-mix(in srgb,var(--thread) 55%,var(--rule));
+  box-shadow:inset 2px 0 0 var(--thread),0 0 0 1px color-mix(in srgb,var(--thread) 12%,transparent),0 14px 34px -24px color-mix(in srgb,var(--thread) calc(var(--nz) * 80%),transparent)}
+.panel.knot-p > .kn{display:block;margin-bottom:8px}
+.glance li.kn{position:relative;font-style:normal;font-family:inherit;font-size:inherit;color:inherit;text-shadow:none;display:list-item}
+.glance li.kn::before{content:"";position:absolute;left:-14px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--thread);
+  box-shadow:0 0 10px color-mix(in srgb,var(--thread) calc(var(--nz) * 90%),transparent)}
+.glance li.kn > b{color:var(--thread)}
+@media (max-width:759px){.item.knot::before{left:0;top:8px;bottom:8px}.item.knot::after{left:-4px;top:23px}}
+.rw-in .item.knot::after,.peek-in .item.knot::after,.back-ov .item.knot::after{animation:none!important}
+/* auffälliger: zarter Lichtschein in Fadenrot hinter der ganzen Zeile, Label etwas größer */
+.item.knot > .row{background:linear-gradient(90deg,color-mix(in srgb,var(--thread) calc(4% + var(--nz) * 7%),transparent),transparent 75%);border-radius:10px}
+.item.knot .kn{font-size:15px}
+/* Abschnittsköpfe, in denen ein Knoten steckt */
+.sec-kn{display:none}
+@media (max-width:759px){
+  .content.secs > .sec-h.has-kn{box-shadow:inset 3px 0 0 var(--thread);padding-left:16px!important}
+  .sec-kn{display:inline-block;flex:none;width:8px;height:8px;border-radius:50%;margin-right:10px;background:var(--thread);
+    box-shadow:0 0 10px color-mix(in srgb,var(--thread) calc(var(--nz) * 90%),transparent)}
+}
+
+/* ===== Handy: schwebendes Dock statt Leiste =====
+   Lernpfad als Fortschrittsring (Zahl = aktueller Schritt, roter Bogen = erledigt), Quiz, Spickzettel und
+   ein Weiter-Knopf in der Sprache der Schwelle. Der aktive Bereich trägt einen kurzen roten Faden. */
+@media (max-width:759px){
+  :root{--bar:76px}
+  .bottombar{left:10px!important;right:10px!important;bottom:calc(8px + var(--sab) + var(--vvb))!important;padding:6px 6px 6px 6px!important;border-radius:22px;
+    border:1px solid color-mix(in srgb,var(--ink) 10%,var(--rule))!important;background:color-mix(in srgb,var(--sheet) 97%,transparent)!important;
+    box-shadow:0 20px 44px -16px rgba(0,0,0,.7),0 2px 10px -4px rgba(0,0,0,.35)}
+  .bottombar::after{display:none}
+  .bottombar::before{left:22px!important;right:22px!important;top:-1px!important}
+  .bfade{bottom:0!important;height:160px!important}
+  .tabs{gap:0}
+  .tab{position:relative;min-height:58px;font-size:12px;gap:4px;color:color-mix(in srgb,var(--ink) 62%,transparent);transition:background-color .2s,color .2s}
+  .tab svg{width:24px;height:24px;overflow:visible}
+  .tab:active{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+  .tab.on{color:var(--ink)}
+  .tab.on svg{color:var(--ink)}
+  .tab.on::before{content:"";position:absolute;top:1px;left:50%;width:18px;height:2px;margin-left:-9px;border-radius:2px;background:var(--thread);
+    box-shadow:0 0 10px color-mix(in srgb,var(--thread) calc(var(--nz) * 90%),transparent)}
+  #tab-path .rg-bg{stroke:color-mix(in srgb,var(--ink) 20%,transparent);stroke-width:1.7}
+  #tab-path .rg-fg{stroke:var(--thread);stroke-width:2.3;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease);
+    filter:drop-shadow(0 0 2.5px color-mix(in srgb,var(--thread) calc(var(--nz) * 85%),transparent))}
+  #tab-path .rg-tx{fill:var(--ink);stroke:none;font-family:var(--font-display);font-size:8.6px;font-weight:700;text-anchor:middle;dominant-baseline:middle;font-variant-numeric:tabular-nums}
+  .path.open ~ .bottombar #tab-path,#tab-path[aria-expanded="true"]{color:var(--ink)}
+  #next{min-height:54px!important;border-radius:17px!important;padding:0 7px 0 16px!important;gap:12px!important;font-weight:700;font-size:16px;
+    background:color-mix(in srgb,var(--ac-cur,var(--thread)) 15%,var(--sheet))!important;color:var(--ink)!important;
+    border:1px solid color-mix(in srgb,var(--ac-cur,var(--thread)) 55%,var(--rule))!important;
+    box-shadow:0 0 22px -8px color-mix(in srgb,var(--ac-cur,var(--thread)) calc(var(--nz) * 70%),transparent)!important;transition:transform .15s var(--ease),background-color .2s}
+  #next:active{transform:scale(.97)}
+  #next svg{width:32px;height:32px;padding:8px;border-radius:50%;box-sizing:border-box;flex:none;background:var(--ac-cur,var(--thread));color:#fff}
+}
+
+/* ===== Selbst üben: ein Text, drei Aufgaben, eigene Antworten ===== */
+.ueb{margin-top:16px}
+.q-doc{margin:0 0 8px;padding:18px 20px 16px;border:1px solid var(--rule);border-radius:16px;background:color-mix(in srgb,var(--st) 5%,var(--sheet))}
+.q-doc figcaption{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.q-doc figcaption b{font-family:var(--font-display);font-size:17px}
+.q-doc figcaption span{font-family:var(--font-body);font-style:italic;font-size:14px;color:var(--muted)}
+.q-lines{list-style:none;margin:0;padding:0;counter-reset:ql}
+.q-lines li{counter-increment:ql;position:relative;padding-left:30px;margin:0 0 6px;font-family:var(--font-body);font-size:16.5px;line-height:1.6}
+.q-lines li::before{content:counter(ql);position:absolute;left:0;top:.2em;width:20px;text-align:right;font-family:var(--font-display);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.q-meta{margin:10px 0 0;font-family:var(--font-body);font-style:italic;font-size:14px;color:var(--muted)}
+.ueb-t{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule)}
+.ueb-t h3{margin:0 0 4px;font-size:18px}
+.ueb-tip{margin:0 0 10px;font-family:var(--font-body);font-style:italic;font-size:15px;color:var(--st)}
+.ueb-t textarea{display:block;width:100%;box-sizing:border-box;min-height:120px;resize:vertical;padding:12px 14px;border-radius:12px;border:1px solid var(--rule);
+  background:var(--sheet);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;transition:border-color .2s}
+.ueb-t textarea:focus{outline:none;border-color:color-mix(in srgb,var(--st) 70%,var(--rule));box-shadow:0 0 0 3px color-mix(in srgb,var(--st) 18%,transparent)}
+.ueb-f{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
+.ueb-n{font-family:var(--font-display);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ueb-b{min-height:44px}
+.ueb-l{margin-top:14px}
+.ueb-c{list-style:none;margin:0 0 12px;padding:0}
+.ueb-c li{border-bottom:1px solid var(--rule)}
+.ueb-c label{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:10px 0;cursor:pointer;font-size:15.5px;line-height:1.45}
+.ueb-c input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--st)}
+.ueb-m{padding:12px 0 2px 16px;border-left:2px solid var(--st);font-family:var(--font-body);font-size:16px;line-height:1.65}
+.ueb-m small{display:block;margin-bottom:4px;font-family:var(--font-body);font-style:italic;font-size:14px;color:var(--st)}
+
+/* Der Lichtpunkt auf der Startlinie animiert stroke-dashoffset (kein Compositor). Nur auf der sichtbaren Startseite laufen lassen. */
+.station:not(.on) > .hero .fadenline path.glint{animation-play-state:paused}
+/* Pfeil im Ring der Schwelle ist ein SVG-Pfad (Transform läuft dort im Hauptthread): nur auf der sichtbaren Station */
+.station:not(.on) .schwelle .ar{animation-play-state:paused!important}
+/* Geschlossenes Menü unten: Lichtpunkt und Puls im Faden anhalten */
+@media (max-width:1099px){.path:not(.open) .thr,.path:not(.open) .st .d{animation-play-state:paused!important}}
+/* Wenn der Viewport-Fix die Leisten doch einmal versetzt, gleiten sie hin statt zu springen */
+.bottombar,.bfade{transition:bottom .24s cubic-bezier(.25,.8,.3,1)}
+.topbar{transition:top .24s cubic-bezier(.25,.8,.3,1)}
+.morepill,.narr-cap{transition:opacity .35s var(--ease),transform .45s var(--ease),bottom .24s cubic-bezier(.25,.8,.3,1)}
+
+/* Touch-Geräte, auch iPad mit Trackpad (dort greift hover:none nicht): keine Hintergrund-Unschärfe unter festen Leisten */
+.touch .topbar,.touch .bottombar,.touch .narr-cap{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.touch .topbar,.touch .bottombar{background:rgba(241,242,238,.97)!important}
+:root.touch[data-theme="dark"] .topbar,:root.touch[data-theme="dark"] .bottombar{background:rgba(18,20,24,.97)!important}
+@media (prefers-color-scheme:dark){:root.touch:not([data-theme="light"]) .topbar,:root.touch:not([data-theme="light"]) .bottombar{background:rgba(18,20,24,.97)!important}}
+.touch .bfade i{display:none}
+.touch .bfade::after{background:linear-gradient(rgba(18,20,24,0),rgba(18,20,24,.3) 35%,rgba(18,20,24,.7) 75%,rgba(18,20,24,.94))}
+:root.touch[data-theme="light"] .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}
+@media (prefers-color-scheme:light){:root.touch:not([data-theme="dark"]) .bfade::after{background:linear-gradient(rgba(241,242,238,0),rgba(241,242,238,.32) 35%,rgba(241,242,238,.72) 75%,rgba(241,242,238,.95))}}
+/* Während des Scrollens: Dauer-Animationen anhalten (nicht zurücksetzen) */
+.scrl .art *,.scrl .sw-ring .ar,.scrl .thr,.scrl .st .d,.scrl .fadenline path.glint{animation-play-state:paused!important}

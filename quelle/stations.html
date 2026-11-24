@@ -1,0 +1,328 @@
+<!-- 1 START -->
+<section class="station" id="s-start" data-look="buehne" data-title="Start" data-min="1">
+  <header class="hero" data-n="1">{{STARTDECO}}
+    <div class="kicker">Lernpfad zur Geschichtsklausur, 1871 bis 1918</div>
+    <h1>Kaiserreich und Kolonien</h1></header>
+  <div class="content">
+    <div class="home js-only" id="home"></div>
+    <div class="resume" id="resume"><!--S:resume--></div>
+    <p class="sub js-only" id="startline" style="margin-top:14px"></p>
+  </div>
+</section>
+
+<!-- 2 PLAN -->
+<section class="station" id="s-plan" data-look="bauplan" data-title="Der Plan" data-min="4">
+  <header class="hero" data-n="2"><div class="deco" aria-hidden="true"></div>{{ART:plan}}
+    <div class="kicker">Ein Text, drei Aufgaben</div>
+    <h1>Der Plan für die Klausur</h1>
+    <p class="lede">In der Klausur bekommst du einen Text und schreibst drei Aufgaben: Eckdaten, Zusammenfassung, Sachurteil. Dazu der Stoff in sechs Blöcken und wie du die Zeit aufteilst.</p></header>
+  <div class="content">
+    <div class="panel drei">
+      <h3>Die drei Aufgaben</h3>
+      <ol>
+        <li><b>Eckdaten des Textes</b><span>Autor, Textart, Ort und Datum, Adressat, Anlass und Thema</span></li>
+        <li><b>Text zusammenfassen</b><span>Kernaussage, dann die Argumente, in eigenen Worten</span></li>
+        <li><b>Sachurteil schreiben</b><span>Nach den Maßstäben der damaligen Zeit urteilen</span></li>
+      </ol>
+    </div>
+    <div class="gl" id="gl" style="margin-top:22px"><!--S:gl--></div>
+    <div class="panel zeitplan" style="margin-top:22px">
+      <h3>Zeitplan für die Klausur</h3>
+      <div class="inline-in js-only"><label for="mins">Dauer in Minuten</label><input id="mins" type="number" inputmode="numeric" min="45" max="300" step="5" value="90"></div>
+      <div class="stack" id="stack" aria-hidden="true"></div>
+      <table class="plan" id="plantab"><!--S:plan--></table>
+      <p class="note">Angenommen sind 90 Minuten, weil die Dauer nicht auf dem Blatt steht. Trag die echte Dauer ein, dann rechnet der Plan um. Die Anteile sind Richtwerte von mir.</p>
+    </div>
+    <div class="miniq js-only" id="miniq"></div>
+  </div>
+</section>
+
+<!-- REVOLUTION 1848 UND REICHSGRÜNDUNG -->
+<section class="station" id="s-revolution" data-look="epochen" data-title="Revolution 1848 und Reichsgründung" data-min="9">
+  <header class="hero" data-n="3"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="ghost d" style="--d:0" d="M10 112h220"/><path pathLength="1" class="d" style="--d:1" d="M50 112m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0M120 112m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0M190 112m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0"/><path pathLength="1" class="ghost d" style="--d:2" d="M40 88v-50M60 88v-50M34 38h32M34 88h32M37 32h26"/><g><path pathLength="1" class="d" style="--d:3" d="M108 38h24l-24 36h24z"/><animateTransform attributeName="transform" type="rotate" values="0 120 56;0 120 56;180 120 56;180 120 56;360 120 56" keyTimes="0;.35;.5;.85;1" dur="5s" repeatCount="indefinite"/></g><path pathLength="1" class="d" style="--d:4" d="M184 70a13 13 0 1 1 12 0v8h-12zM185 84h10"/><path pathLength="1" class="ghost d" style="--d:5" d="M190 36v-10M171 44l-7-6M209 44l7-6M166 58h-9M214 58h9"/><g class="inks"><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M10 112h220"><animate attributeName="stroke-dashoffset" values="1;0;-1" keyTimes="0;.5;1" dur="6s" begin="0s" repeatCount="indefinite"/></path><circle class="nib" r="2.6" opacity="0"><animateMotion path="M10 112h220" keyPoints="0;1;1" keyTimes="0;.5;1" calcMode="linear" dur="6s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.48;.54;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M40 88v-50M60 88v-50M34 38h32M34 88h32M37 32h26"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="4.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="4.4s" begin="0.6s" repeatCount="indefinite"/></path><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M190 36v-10M171 44l-7-6M209 44l7-6M166 58h-9M214 58h9"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.3;.7;1" dur="2.4s" begin="1.5s" repeatCount="indefinite"/></path></g></svg>
+    <div class="kicker">1848 bis 1871</div>
+    <h1>Von der Revolution zum Reich</h1>
+    <p class="lede">1848 wollten viele Einheit und Freiheit von unten, 1871 kam die Einheit von oben. Aufklappen zeigt Erklärung, Satzbaustein und einen Merksatz. Abhaken, wenn du den Punkt ohne Spicken erklären kannst.</p></header>
+  <div class="content">
+    <div data-items="0" data-range="0-5"><!--S:items:0:0-5--></div>
+    <aside class="fill fe"><div class="fill-h"><b>Die Verfassung von 1871</b><span>Wer hatte welche Macht?</span></div>
+      <div class="feg">
+        <div><b style="--c:var(--sh1)">Kaiser</b><span>Der preußische König, ernennt den Kanzler, führt das Heer</span></div>
+        <div><b style="--c:var(--sh1)">Kanzler</b><span>Leitet die Politik, nur dem Kaiser verantwortlich</span></div>
+        <div><b style="--c:var(--sh2)">Bundesrat</b><span>Vertreter der Fürsten und freien Städte</span></div>
+        <div><b style="--c:var(--sh3)">Reichstag</b><span>Allgemeines Männerwahlrecht, beschließt Gesetze mit, kann den Kanzler nicht stürzen</span></div>
+      </div>
+    </aside>
+    <h2>Kartenstapel</h2>
+    <div class="deck" data-cats="Reichsgründung"><!--S:deck:Reichsgründung--></div>
+  </div>
+</section>
+
+<!-- 5 GESELLSCHAFT -->
+<section class="station" id="s-gesellschaft" data-look="pyramide" data-title="Gesellschaft im Kaiserreich" data-min="10">
+  <header class="hero" data-n="5"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M30 140L120 22L210 140Z"/><path pathLength="1" class="ghost d" style="--d:1" d="M53 110h134M76 80h88M97 52h46"/><path pathLength="1" class="d" style="--d:2" d="M110 16l3-9 7 6 7-6 3 9z"/><g class="inks"><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M53 110h134"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.3;.82;1" dur="4.8s" begin="0s" repeatCount="indefinite"/></path><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M76 80h88"><animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;.12;.4;.82;1" dur="4.8s" begin="0s" repeatCount="indefinite"/></path><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M97 52h46"><animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;.24;.5;.82;1" dur="4.8s" begin="0s" repeatCount="indefinite"/></path><circle class="nib" r="3" opacity="0"><animateMotion path="M48 130L73 97" keyPoints="0;1;1;0;0" keyTimes="0;.42;.56;.72;1" calcMode="spline" keySplines=".4 0 .2 1;0 0 1 1;.6 0 .9 .4;0 0 1 1" dur="4.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.7;.76;1" dur="4.8s" begin="0s" repeatCount="indefinite"/></circle></g></svg>
+    <div class="kicker">Deutsches Reich, 1871 bis 1918</div>
+    <h1>Gesellschaft im Kaiserreich</h1>
+    <p class="lede">Wer oben stand, wer unten und wo die Gesellschaft gespalten war. Aufklappen zeigt Erklärung, Satzbaustein und einen Merksatz. Abhaken, wenn du den Punkt ohne Spicken erklären kannst.</p></header>
+  <div class="content">
+    <div data-items="1" data-range="0-6"><!--S:items:1:0-6--></div>
+    <h2>Kartenstapel</h2>
+    <div class="deck" data-cats="Gesellschaft"><!--S:deck:Gesellschaft--></div>
+  </div>
+</section>
+
+<!-- 6 INDUSTRIE -->
+<section class="station" id="s-industrie" data-look="zeitraum" data-title="Industrialisierung und soziale Frage" data-min="14">
+  <header class="hero" data-n="6"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M8 140h176"/><path pathLength="1" class="d" style="--d:1" d="M20 140V96L44 78V96L68 78V96L92 78V96L116 78V140"/><path pathLength="1" class="ghost d" style="--d:2" d="M32 112h10v12h-10zM58 112h10v12h-10zM84 112h10v12h-10z"/><path pathLength="1" class="d" style="--d:2" d="M128 140V44h14v96"/><path pathLength="1" class="d" style="--d:3" d="M214 28a18 18 0 1 1-.1 0"/><g><path pathLength="1" class="d" style="--d:4" d="M214 46v-12"/><animateTransform attributeName="transform" type="rotate" from="0 214 46" to="360 214 46" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="d" style="--d:4" d="M214 46l7 4"/><animateTransform attributeName="transform" type="rotate" from="0 214 46" to="360 214 46" dur="48s" repeatCount="indefinite"/></g><circle cx="214" cy="46" r="1.8" class="hub"/><g class="inks"><path class="ink" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M20 96L44 78V96L68 78V96L92 78V96L116 78"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.45;.86;1" dur="4.2s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.68;.84;1" dur="4.2s" begin="0s" repeatCount="indefinite"/></path><circle class="nib" r="2.6" opacity="0"><animateMotion path="M20 96L44 78V96L68 78V96L92 78V96L116 78" keyPoints="0;1;1" keyTimes="0;.45;1" calcMode="linear" dur="4.2s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.44;.5;1" dur="4.2s" begin="0s" repeatCount="indefinite"/></circle><circle class="ring" r="3" opacity="0"><animateMotion path="M135 38c2-10 12-14 10-28" dur="3s" begin="0s" repeatCount="indefinite"/><animate attributeName="r" values="3;9" dur="3s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" keyTimes="0;.2;1" dur="3s" begin="0s" repeatCount="indefinite"/></circle><circle class="ring" r="3" opacity="0"><animateMotion path="M135 38c2-10 12-14 10-28" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="r" values="3;9" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" keyTimes="0;.2;1" dur="3s" begin="1s" repeatCount="indefinite"/></circle><circle class="ring" r="3" opacity="0"><animateMotion path="M135 38c2-10 12-14 10-28" dur="3s" begin="2s" repeatCount="indefinite"/><animate attributeName="r" values="3;9" dur="3s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" keyTimes="0;.2;1" dur="3s" begin="2s" repeatCount="indefinite"/></circle></g></svg>
+    <div class="kicker">1871 bis 1918</div>
+    <h1>Industrialisierung und soziale Frage</h1>
+    <p class="lede">Was die Industrie antrieb, welche Probleme sie brachte und wer auf die soziale Frage antwortete. Danach der Kartenstapel: antippen dreht um, nach rechts heißt „sitzt“, nach links „nochmal“.</p></header>
+  <div class="content">
+    <div class="lcol"><div data-items="2" data-range="0-7"><!--S:items:2:0-7--></div></div>
+    <h2>Kartenstapel</h2>
+    <div class="deck" data-cats="Industrialisierung,Soziale Frage"><!--S:deck:Industrialisierung,Soziale Frage--></div>
+    <aside class="fill fs fx"><div class="fill-h"><b>Wer antwortet auf die soziale Frage?</b><span>Drei Antworten im Vergleich</span></div>
+      <div class="fsr"><i style="background:var(--sh1)"></i><p><b>Arbeiterbewegung</b>: Gewerkschaften und SPD, die Arbeiter helfen sich selbst.</p></div>
+      <div class="fsr"><i style="background:var(--sh3)"></i><p><b>Kirchen und Unternehmer</b>: Wohltätigkeit und Werkswohnungen.</p></div>
+      <div class="fsr"><i style="background:var(--sh2)"></i><p><b>Staat</b>: Bismarcks Sozialversicherung 1883, 1884, 1889, zugleich das Sozialistengesetz von 1878 bis 1890.</p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- 7 SORTIEREN -->
+<section class="station" id="s-sortieren" data-look="split" data-title="Zuckerbrot oder Peitsche?" data-min="5" data-type="Übung">
+  <header class="hero" data-n="7"><div class="deco" aria-hidden="true"></div>{{ART:sortieren}}
+    <div class="kicker">Übung zu Bismarcks Innenpolitik</div>
+    <h1>Zuckerbrot oder Peitsche?</h1>
+    <p class="lede">Bismarck bekämpfte die Sozialdemokratie und wollte zugleich die Arbeiter mit Sozialgesetzen an den Staat binden. Ordne jede Maßnahme zu, die Karte fliegt danach in den richtigen Kasten.</p></header>
+  <div class="content">
+    <div class="pool" id="pool"><!--S:pool--></div>
+    <div class="buckets js-only">
+      <div class="bucket" id="b-o"><h3><i class="sw" style="background:var(--offen)"></i>Zuckerbrot</h3></div>
+      <div class="bucket" id="b-v"><h3><i class="sw" style="background:var(--verdeckt)"></i>Peitsche</h3></div>
+    </div>
+    <div class="sortfoot js-only"><span class="sub" id="sortscore"></span><button class="chip ghost" id="sortreset">Nochmal</button></div>
+    <aside class="fill fs"><div class="fill-h"><b>Faustregel</b><span>Bismarcks Doppelstrategie</span></div>
+      <div class="fsr"><i style="background:var(--offen)"></i><p><b>Zuckerbrot</b> heißt Sozialpolitik: Arbeiter sollen spüren, dass der Staat für sie sorgt, und sich von der SPD abwenden.</p></div>
+      <div class="fsr"><i style="background:var(--verdeckt)"></i><p><b>Peitsche</b> heißt Unterdrückung: das Sozialistengesetz von 1878 bis 1890 mit seinen Verboten.</p></div>
+      <div class="fst"><span><b>Ziel</b> Die Arbeiter an den Staat binden und die SPD schwächen.</span><span><b>Begriff</b> „Zuckerbrot und Peitsche“ ist eine Formel aus der Rückschau für diese Doppelstrategie.</span></div>
+    </aside>
+  </div>
+</section>
+
+<!-- 9 KOLONIEN -->
+<section class="station" id="s-kolonien" data-look="dialog" data-title="Gründe für Kolonialismus" data-min="12">
+  <header class="hero" data-n="9"><div class="deco" aria-hidden="true"></div>{{ART:figuren}}
+    <div class="kicker">Ab 1884</div>
+    <h1>Gründe für Kolonialismus</h1>
+    <p class="lede">Warum Kolonien? Die Gründe, der Rassismus dahinter und welche Kolonien das Reich besaß. Danach der Kartenstapel mit den Begriffen.</p></header>
+  <div class="content">
+    <div class="lcol"><div data-items="3" data-range="0-6"><!--S:items:3:0-6--></div>
+    <aside class="fill fe"><div class="fill-h"><b>Die Kolonien auf einen Blick</b><span>Wo sie lagen</span></div>
+      <div class="feg">
+        <div><b style="--c:var(--sh1)">Deutsch-Südwestafrika</b><span>heute Namibia</span></div>
+        <div><b style="--c:var(--sh1)">Togo</b><span>heute Togo und Teile Ghanas</span></div>
+        <div><b style="--c:var(--sh1)">Kamerun</b><span>heute Kamerun und Teile Nigerias</span></div>
+        <div><b style="--c:var(--sh1)">Deutsch-Ostafrika</b><span>heute Tansania, Ruanda, Burundi</span></div>
+        <div><b style="--c:var(--sh2)">Kiautschou</b><span>an der Küste Chinas</span></div>
+        <div><b style="--c:var(--sh3)">Pazifik</b><span>Neuguinea, Samoa und Inselgruppen</span></div>
+      </div>
+    </aside></div>
+    <h2>Kartenstapel</h2>
+    <div class="deck" data-cats="Kolonialismus"><!--S:deck:Kolonialismus--></div>
+  </div>
+</section>
+
+<!-- 10 KONGOKONFERENZ -->
+<section class="station" id="s-kongo" data-look="zwei" data-title="Die Kongokonferenz" data-min="12">
+  <header class="hero" data-n="10"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M44 62h152a18 18 0 0 1 0 36h-152a18 18 0 0 1 0-36z"/><path pathLength="1" class="ghost d" style="--d:1" d="M50 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M74 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M98 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M122 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M146 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M170 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M194 46m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M50 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M74 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M98 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M122 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M146 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M170 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M194 114m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0"/><path pathLength="1" class="ghost d" style="--d:2" d="M96 72c8-4 18 2 24-2s14-6 22 0M100 86c10 4 20-4 30 0s10 2 14-2"/><circle class="seat0" cx="230" cy="80" r="6" stroke-dasharray="2.4 3.2"><animate attributeName="opacity" values=".35;.9;.35" dur="3s" begin="0s" repeatCount="indefinite"/></circle><g class="inks"><circle class="nib" cx="50" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="74" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.04;.1;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="98" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.08;.14;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="122" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.12;.18;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="146" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.16;.22;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="170" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.2;.26;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="194" cy="46" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.24;.3;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="194" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.28;.34;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="170" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.32;.38;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="146" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.36;.42;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="122" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.4;.46;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="98" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.44;.5;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="74" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.48;.54;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="nib" cx="50" cy="114" r="2.6" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.52;.58;.8;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle></g></svg>
+    <div class="kicker">Berlin, November 1884 bis Februar 1885</div>
+    <h1>Die Kongokonferenz</h1>
+    <p class="lede">Bismarck lud 14 Staaten nach Berlin ein, kein Afrikaner saß mit am Tisch. Worum es ging, was beschlossen wurde und was daraus folgte.</p></header>
+  <div class="content">
+    <h2 style="margin-top:0">Wer saß am Tisch?</h2>
+    <div class="chips seats">
+      <span class="chip host">Deutsches Reich, Gastgeber</span><span class="chip">Frankreich</span><span class="chip">Großbritannien</span><span class="chip">Portugal</span><span class="chip">Belgien</span><span class="chip">Niederlande</span><span class="chip">Spanien</span><span class="chip">Italien</span><span class="chip">Österreich-Ungarn</span><span class="chip">Russland</span><span class="chip">Dänemark</span><span class="chip">Schweden-Norwegen</span><span class="chip">Osmanisches Reich</span><span class="chip">USA</span><span class="chip empty">Afrikanische Vertreter: keine</span>
+    </div>
+    <div data-items="4" data-range="0-5"><!--S:items:4:0-5--></div>
+    <h2>Kartenstapel</h2>
+    <div class="deck" data-cats="Kongokonferenz"><!--S:deck:Kongokonferenz--></div>
+  </div>
+</section>
+
+<!-- PERSONEN -->
+<section class="station" id="s-personen" data-look="akte" data-title="Bismarck und die Kaiser" data-min="8">
+  <header class="hero" data-n="9"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M60 14h100l22 22v112h-122z"/><path pathLength="1" class="d" style="--d:1" d="M160 14v22h22"/><path pathLength="1" class="ghost d" style="--d:2" d="M76 54h86M76 70h94M76 86h80M76 102h90M76 118h68M76 134h82"/><path pathLength="1" class="d" style="--d:3" d="M48 54v4M48 102v4"/><g class="inks"><path class="hlt" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M76 86h70"><animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;.25;.85;1" dur="5s" begin="0s" repeatCount="indefinite"/></path><path class="hlt" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" d="M76 118h56"><animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;.35;.55;.85;1" dur="5s" begin="0s" repeatCount="indefinite"/></path><circle class="nib" r="3" opacity="0"><animateMotion path="M76 86h70M76 118h56" keyPoints="0;.56;.56;1;1" keyTimes="0;.25;.35;.55;1" calcMode="linear" dur="5s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.55;.6;1" dur="5s" begin="0s" repeatCount="indefinite"/></circle></g></svg>
+    <div class="kicker">1862 bis 1918</div>
+    <h1>Bismarck und die beiden Kaiser</h1>
+    <p class="lede">Wer regierte wann, wer wollte was, und warum Bismarck doch Kolonien erwarb, obwohl er erst dagegen war.</p></header>
+  <div class="content">
+    <div data-items="5" data-range="0-5"><!--S:items:5:0-5--></div>
+    <aside class="fill fe"><div class="fill-h"><b>Wer regierte wann?</b><span>Kaiser und Kanzler</span></div>
+      <div class="feg">
+        <div><b style="--c:var(--sh1)">Wilhelm I.</b><span>König ab 1861, Kaiser 1871 bis 1888</span></div>
+        <div><b style="--c:var(--sh3)">Friedrich III.</b><span>1888, nur 99 Tage</span></div>
+        <div><b style="--c:var(--sh1)">Wilhelm II.</b><span>Kaiser 1888 bis 1918, dann Exil in den Niederlanden</span></div>
+        <div><b style="--c:var(--sh2)">Bismarck</b><span>Ministerpräsident ab 1862, Reichskanzler 1871 bis 1890</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- KLAUSURAUFGABEN -->
+<section class="station" id="s-aufgaben" data-look="tragik" data-title="Die drei Klausuraufgaben" data-min="10">
+  <header class="hero" data-n="10"><div class="deco" aria-hidden="true"></div><svg class="art" viewBox="0 0 240 160" aria-hidden="true"><path pathLength="1" class="d" style="--d:0" d="M120 146V32M90 146h60"/><path pathLength="1" class="d" style="--d:1" d="M114 32h12"/><g><path pathLength="1" class="d" style="--d:2" d="M60 40h120"/><circle cx="120" cy="40" r="3" class="hub"/><animateTransform attributeName="transform" type="rotate" values="0 120 40;-7 120 40;0 120 40;5 120 40;0 120 40" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M60 40l-16 40M60 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M42 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 7.3;0 0;0 -5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g><g><path pathLength="1" class="ghost d" style="--d:3" d="M180 40l-16 40M180 40l16 40"/><path pathLength="1" class="d" style="--d:4" d="M162 80q18 14 36 0z"/><animateTransform attributeName="transform" type="translate" values="0 0;0 -7.3;0 0;0 5.2;0 0" keyTimes="0;.25;.5;.75;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" dur="6s" repeatCount="indefinite"/></g></svg>
+    <div class="kicker">Eckdaten, Zusammenfassung, Sachurteil</div>
+    <h1>So schreibst du die drei Aufgaben</h1>
+    <p class="lede">Für jede Aufgabe: was hineingehört, wie du vorgehst und Satzanfänge, die du übernehmen kannst. Die Beispiele beziehen sich auf Bülows Rede vom „Platz an der Sonne“ von 1897.</p></header>
+  <div class="content">
+    <h2 style="margin-top:0">Aufgabe 1: Eckdaten des Textes</h2>
+    <ul class="eck">
+      <li><b>Autor und Rolle</b><span>Wer schreibt, und in welcher Funktion?</span></li>
+      <li><b>Titel und Textart</b><span>Rede, Brief, Zeitungsartikel …</span></li>
+      <li><b>Ort und Datum</b><span>Wo und wann erschienen oder gehalten?</span></li>
+      <li><b>Adressat</b><span>An wen richtet sich der Text?</span></li>
+      <li><b>Anlass und Thema</b><span>Warum entstand er, worum geht es?</span></li>
+    </ul>
+    <div class="baustein"><b>Satzstart</b>Der Text „…“ stammt von … und wurde am … in … veröffentlicht. Er richtet sich an …</div>
+    <div class="vs">
+      <div class="good"><small>Beispiel</small>Die Rede stammt von Bernhard von Bülow, damals Staatssekretär des Auswärtigen Amtes, und wurde am 6. Dezember 1897 im Reichstag in Berlin gehalten. Sie richtet sich an die Abgeordneten. Anlass ist die Besetzung der Kiautschou-Bucht in China, Thema der Anspruch Deutschlands auf Kolonien.</div>
+    </div>
+
+    <h2>Aufgabe 2: Text zusammenfassen</h2>
+    <ol class="ladder">
+      <li><b>Kernaussage</b><span>Erst die Hauptaussage des Textes in einem Satz.</span></li>
+      <li><b>Argumente</b><span>Dann die Argumente in der Reihenfolge des Textes.</span></li>
+      <li><b>Sprache</b><span>Eigene Worte, Präsens, keine Zitate, keine eigene Meinung.</span></li>
+    </ol>
+    <div class="baustein"><b>Wendungen</b>Der Autor betont, …<br>Er begründet dies mit …<br>Abschließend fordert er …</div>
+    <div class="vs">
+      <div class="bad"><small>Bringt kaum Punkte</small>Bülow sagt: „Wir verlangen auch unseren Platz an der Sonne.“ Ich finde das ziemlich arrogant.</div>
+      <div class="good"><small>So ist es richtig</small>Bülow betont, Deutschland wolle sich nicht überall einmischen, dürfe aber vom Wettbewerb um zukunftsreiche Länder nicht ausgeschlossen werden. Er begründet dies damit, dass die Zeit vorbei sei, in der die Deutschen anderen Völkern Land und Meer überließen. Abschließend fordert er für Deutschland den gleichen Rang wie die anderen Mächte.</div>
+    </div>
+
+    <h2>Aufgabe 3: Sachurteil schreiben</h2>
+    <div class="panel urt knot-p">
+      <span class="kn">Muss sitzen: Hier verwechseln die meisten etwas.</span>
+      <p><b>Sachurteil</b>: Du beurteilst nach den Maßstäben und Möglichkeiten der damaligen Zeit.</p>
+      <p><b>Werturteil</b>: Du beurteilst nach heutigen Maßstäben. Nicht verwechseln.</p>
+    </div>
+    <ol class="ladder">
+      <li><b>Einordnen</b><span>Wie war die Lage, welche Interessen gab es damals?</span></li>
+      <li><b>Prüfen</b><span>Stimmen die Aussagen des Textes mit deinem Wissen überein?</span></li>
+      <li><b>Abwägen</b><span>Stärken, Schwächen, Absicht, Folgen.</span></li>
+      <li><b>Urteil</b><span>Eine klare Aussage mit Begründung.</span></li>
+    </ol>
+    <div class="baustein"><b>Wendungen</b>Aus damaliger Sicht war … nachvollziehbar, weil …<br>Der Autor übersieht jedoch …<br>Insgesamt zeigt der Text …</div>
+    <div class="vs">
+      <div class="good"><small>Beispiel</small>Aus damaliger Sicht war Bülows Forderung nachvollziehbar, weil England und Frankreich große Kolonialreiche besaßen und das junge Reich als Weltmacht gelten wollte. Der Autor übersieht jedoch, dass diese Weltpolitik zusammen mit dem Flottenbau die Rivalität mit England verschärfte. Insgesamt zeigt der Text den Anspruch des Kaiserreichs, mit den anderen Großmächten gleichzuziehen.</div>
+    </div>
+
+    <h2>Selbst üben: eine Klausur im Kleinen</h2>
+    <p class="sub" style="margin-top:6px">Ein neuer Text, die drei Aufgaben, deine eigenen Antworten. Erst schreiben, dann mit der Musterlösung vergleichen und abhaken, was du drin hast. Deine Texte bleiben auf diesem Gerät gespeichert.</p>
+    <div class="ueb js-only" id="ueb">
+      <figure class="q-doc">
+        <figcaption><b>Kaiserliche Botschaft vom 17. November 1881</b><span>Vereinfachte, sinngemäße Fassung in heutigem Deutsch, kein Originalwortlaut. Das Original steht in den Stenographischen Berichten des Reichstags.</span></figcaption>
+        <ol class="q-lines">
+        <li>Schon im Februar haben Wir erklären lassen, dass sich die sozialen Schäden nicht allein dadurch heilen lassen, dass man sozialdemokratische Ausschreitungen unterdrückt.</li>
+        <li>Ebenso nötig ist es, das Wohl der Arbeiter aktiv zu fördern.</li>
+        <li>Wir halten es für Unsere kaiserliche Pflicht, dem Reichstag diese Aufgabe erneut ans Herz zu legen.</li>
+        <li>Mit Genugtuung würden Wir auf Unsere Regierung zurückblicken, wenn es gelänge, dem Vaterland dauerhaften inneren Frieden und den Hilfsbedürftigen mehr Sicherheit und Hilfe zu hinterlassen, auf die sie Anspruch haben.</li>
+        <li>Dazu legen Wir den Entwurf eines Gesetzes über die Unfallversicherung der Arbeiter überarbeitet erneut vor.</li>
+        <li>Ergänzend sollen die Krankenkassen der Arbeiter einheitlich geordnet werden.</li>
+        <li>Auch wer durch Alter oder Invalidität erwerbsunfähig wird, hat einen begründeten Anspruch auf mehr staatliche Fürsorge als bisher.</li>
+        <li>Die richtigen Wege dafür zu finden ist schwierig, und es wird erhebliche Mittel kosten.</li>
+        <li>Es gehört aber zu den höchsten Aufgaben eines Gemeinwesens, das auf den sittlichen Grundlagen des Christentums steht.</li>
+        <li>Dabei sollen sich die Betroffenen in Genossenschaften zusammenschließen, unter dem Schutz und mit der Förderung des Staates.</li>
+        </ol>
+        <p class="q-meta">Unterzeichnet von Kaiser Wilhelm I. und Reichskanzler Otto von Bismarck. Bismarck verlas die Botschaft bei der Eröffnung des neuen Reichstags im Weißen Saal des Berliner Schlosses.</p>
+      </figure>
+      <div class="ueb-t" data-k="eck">
+        <h3>Aufgabe 1: Nenne die Eckdaten des Textes.</h3>
+        <p class="ueb-tip">Autor und Rolle, Textart, Ort und Datum, Adressat, Anlass und Thema. In ganzen Sätzen.</p>
+        <textarea rows="5" placeholder="Bei dem Text handelt es sich um …" aria-label="Deine Antwort zu Aufgabe 1"></textarea>
+        <div class="ueb-f"><span class="ueb-n">0 Wörter</span><button class="chip ueb-b" type="button">Mit Musterlösung vergleichen</button></div>
+        <div class="ueb-l" hidden>
+          <ul class="ueb-c">
+            <li><label><input type="checkbox"> Autor und Rolle: Kaiser Wilhelm I., unterzeichnet mit Kanzler Bismarck</label></li>
+            <li><label><input type="checkbox"> Textart: kaiserliche Botschaft, also eine offizielle Erklärung</label></li>
+            <li><label><input type="checkbox"> Ort und Datum: Berlin, 17. November 1881</label></li>
+            <li><label><input type="checkbox"> Adressat: der Reichstag, darüber hinaus die Öffentlichkeit</label></li>
+            <li><label><input type="checkbox"> Anlass und Thema: Eröffnung des Reichstags, geplante Sozialversicherung</label></li>
+          </ul>
+          <div class="ueb-m"><small>Musterlösung</small>Bei dem Text handelt es sich um eine kaiserliche Botschaft vom 17. November 1881. Unterzeichnet haben sie Kaiser Wilhelm I. und Reichskanzler Otto von Bismarck, der sie bei der Eröffnung des Reichstags im Berliner Schloss verlas. Sie richtet sich an den Reichstag und darüber hinaus an die Öffentlichkeit. Anlass ist der Beginn der neuen Sitzungsperiode, Thema ist eine staatliche Absicherung der Arbeiter gegen Unfall, Krankheit, Alter und Invalidität.</div>
+        </div>
+      </div>
+      <div class="ueb-t" data-k="zus">
+        <h3>Aufgabe 2: Fasse den Text zusammen.</h3>
+        <p class="ueb-tip">Erst die Kernaussage in einem Satz, dann die Gedanken in der Reihenfolge des Textes. Eigene Worte, Präsens, keine Zitate, keine Meinung.</p>
+        <textarea rows="8" placeholder="In seiner Botschaft vom 17. November 1881 fordert Kaiser Wilhelm I., …" aria-label="Deine Antwort zu Aufgabe 2"></textarea>
+        <div class="ueb-f"><span class="ueb-n">0 Wörter</span><button class="chip ueb-b" type="button">Mit Musterlösung vergleichen</button></div>
+        <div class="ueb-l" hidden>
+          <ul class="ueb-c">
+            <li><label><input type="checkbox"> Kernaussage im ersten Satz: nicht nur Unterdrückung der Sozialdemokratie, sondern auch Hilfe für die Arbeiter</label></li>
+            <li><label><input type="checkbox"> Die drei Vorhaben genannt: Unfallversicherung, Krankenkassen, Fürsorge bei Alter und Invalidität</label></li>
+            <li><label><input type="checkbox"> Begründung genannt: kaiserliche Pflicht, christliche Grundlagen, innerer Frieden</label></li>
+            <li><label><input type="checkbox"> Reihenfolge des Textes eingehalten</label></li>
+            <li><label><input type="checkbox"> Präsens, eigene Worte, kein Zitat, keine eigene Meinung</label></li>
+          </ul>
+          <div class="ueb-m"><small>Musterlösung</small>In seiner Botschaft vom 17. November 1881 erklärt Kaiser Wilhelm I., dass der Staat die sozialen Probleme nicht nur durch die Unterdrückung der Sozialdemokratie lösen will, sondern auch durch aktive Hilfe für die Arbeiter. Er sieht es als seine Pflicht an, den Reichstag dafür zu gewinnen, und hofft, so den inneren Frieden dauerhaft zu sichern. Konkret kündigt er eine Unfallversicherung, eine einheitliche Ordnung der Krankenkassen und mehr staatliche Fürsorge für alte und invalide Arbeiter an. Er räumt ein, dass dies schwierig und teuer wird, begründet es aber mit der Verantwortung eines christlichen Gemeinwesens. Umgesetzt werden soll es über Genossenschaften, die der Staat schützt und fördert.</div>
+        </div>
+      </div>
+      <div class="ueb-t" data-k="urt">
+        <h3>Aufgabe 3: Beurteile die Botschaft aus damaliger Sicht.</h3>
+        <p class="ueb-tip">Einordnen, prüfen, abwägen, urteilen. Denk an das Sozialistengesetz, das gleichzeitig galt.</p>
+        <textarea rows="9" placeholder="Aus damaliger Sicht war die Botschaft …" aria-label="Deine Antwort zu Aufgabe 3"></textarea>
+        <div class="ueb-f"><span class="ueb-n">0 Wörter</span><button class="chip ueb-b" type="button">Mit Musterlösung vergleichen</button></div>
+        <div class="ueb-l" hidden>
+          <ul class="ueb-c">
+            <li><label><input type="checkbox"> Eingeordnet: Not der Arbeiter ohne Absicherung, SPD wächst trotz Sozialistengesetz</label></li>
+            <li><label><input type="checkbox"> Absicht erkannt: Arbeiter an den Staat binden, SPD schwächen</label></li>
+            <li><label><input type="checkbox"> Was der Text verschweigt: das Sozialistengesetz, also die „Peitsche“</label></li>
+            <li><label><input type="checkbox"> Abgewogen: für die Zeit fortschrittlich, aber Leistungen anfangs gering, keine politische Mitsprache</label></li>
+            <li><label><input type="checkbox"> Klares Urteil mit Begründung am Schluss, nach damaligen Maßstäben</label></li>
+          </ul>
+          <div class="ueb-m"><small>Musterlösung</small>Aus damaliger Sicht ist die Botschaft gut nachvollziehbar. Die Arbeiter lebten ohne Absicherung bei Krankheit, Unfall und im Alter, und trotz des Sozialistengesetzes von 1878 gewann die Sozialdemokratie weiter Anhänger. Mit der Sozialversicherung wollte die Regierung die Arbeiter an den Staat binden und der SPD den Zulauf nehmen. Die Botschaft stellt dabei nur das „Zuckerbrot“ dar und verschweigt die „Peitsche“, also das gleichzeitige Verbot sozialdemokratischer Vereine und Zeitungen. Außerdem waren die Leistungen anfangs gering, und politisch mitbestimmen durften die Arbeiter weiterhin kaum. Insgesamt war die Botschaft für ihre Zeit ein fortschrittlicher Schritt, denn kein anderer Staat sicherte Arbeiter damals so ab. Sie diente aber vor allem dazu, den Obrigkeitsstaat zu sichern. Dieses Ziel verfehlte sie: Die SPD wuchs weiter.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 QUIZ -->
+<section class="station" id="s-quiz" data-look="probe" data-title="Generalprobe" data-min="12">
+  <header class="hero" data-n="14"><div class="deco" aria-hidden="true"></div>{{ART:quiz}}
+    <div class="kicker">Quiz quer durch alle sechs Themen</div>
+    <h1>Generalprobe</h1>
+    <p class="lede">25 Fragen in zufälliger Reihenfolge, nach jeder Antwort die Erklärung. Was du falsch hattest, kannst du am Ende einzeln wiederholen.</p></header>
+  <div class="content">
+    <div class="quiz" id="quizbox"><!--S:quiz--></div>
+  </div>
+</section>
+
+<!-- 15 KURZ VORHER -->
+<section class="station" id="s-kurz-vorher" data-look="morgen" data-title="Spickzettel" data-min="4">
+  <header class="hero" data-n="15"><div class="deco" aria-hidden="true"></div>{{ART:kurz-vorher}}
+    <div class="kicker">Für kurz vor der Klausur, in zwei Minuten durch</div>
+    <h1>Das Wichtigste auf einen Blick</h1>
+    <p class="lede">Pro Thema die drei Sachen, die du sicher wissen solltest, dazu die drei Aufgaben und die wichtigsten Daten. Die roten Knoten markieren, was auf jeden Fall sitzen muss.</p></header>
+  <div class="content">
+    <div class="glance" id="glance"><section class="gl-t"><h3>Revolution 1848 und Reichsgründung</h3><ul><li><b>1848/49</b> <span>Bürger fordern Einheit und Freiheit, die Paulskirche schreibt eine Verfassung.</span></li><li><b>Scheitern</b> <span>1849 lehnt Friedrich Wilhelm IV. die Kaiserkrone ab.</span></li><li class="kn"><b>Einheit von oben</b> <span>Bismarck führt drei Kriege, am 18. Januar 1871 wird in Versailles das Reich gegründet.</span></li></ul></section><section class="gl-t"><h3>Gesellschaft im Kaiserreich</h3><ul><li><b>Oben und unten</b> <span>Adel und Militär geben den Ton an, Bürger streben nach oben, Arbeiter organisieren sich in Gewerkschaften und SPD.</span></li><li class="kn"><b>Obrigkeitsstaat</b> <span>Kaiser und Kanzler stehen über dem Parlament, in Preußen gilt das Dreiklassenwahlrecht.</span></li><li><b>„Reichsfeinde“</b> <span>Kulturkampf gegen die Katholiken, Sozialistengesetz 1878 bis 1890 gegen die SPD.</span></li></ul></section><section class="gl-t"><h3>Industrialisierung und soziale Frage</h3><ul><li><b>Antreiber</b> <span>Eisenbahn ab 1835, Kohle und Eisen im Ruhrgebiet, viele Arbeitskräfte.</span></li><li><b>Soziale Frage</b> <span>Landflucht, Mietskasernen, lange Fabriktage (meist 11 bis 12 Stunden).</span></li><li class="kn"><b>Antworten</b> <span>Gewerkschaften, SPD, Werkswohnungen und Bismarcks Sozialversicherung 1883 bis 1889.</span></li></ul></section><section class="gl-t"><h3>Gründe für Kolonialismus</h3><ul><li class="kn"><b>Gründe</b> <span>Rohstoffe und Absatzmärkte, Prestige („Platz an der Sonne“, Bülow 1897), Konkurrenz mit England.</span></li><li><b>Rechtfertigung</b> <span>Rassismus und Sozialdarwinismus, dabei gibt es menschliche „Rassen“ biologisch nicht.</span></li><li><b>Folgen</b> <span>Ausbeutung und Gewalt, Völkermord an Herero und Nama 1904 bis 1908.</span></li></ul></section><section class="gl-t"><h3>Kongokonferenz 1884/85</h3><ul><li><b>Wer</b> <span>14 Staaten in Berlin, kein Afrikaner am Tisch, Anlass ist der Streit um das Kongobecken.</span></li><li class="kn"><b>Beschlüsse</b> <span>Freihandel und freie Schifffahrt auf Kongo und Niger, Anspruch nur bei effektiver Besetzung.</span></li><li><b>Folgen</b> <span>Der Kongo wird Privatbesitz Leopolds II., der Wettlauf um Afrika beschleunigt sich. Die Grenzen ziehen die Mächte meist erst danach in Einzelverträgen.</span></li></ul></section><section class="gl-t"><h3>Bismarck und die Kaiser</h3><ul><li class="kn"><b>Bismarck</b> <span>Kanzler 1871 bis 1890, erst gegen Kolonien, ab 1884 doch Schutzgebiete.</span></li><li><b>Die Kaiser</b> <span>Wilhelm I. regiert 1871 bis 1888, Wilhelm II. 1888 bis 1918.</span></li><li><b>Warum doch Kolonien</b> <span>Kaufleute wie Lüderitz drängen, dazu Prestige, Schutzbriefe statt teurer Staatskolonien.</span></li></ul></section><section class="gl-t"><h3>Die drei Aufgaben</h3><ul><li><b>Aufgabe 1, Eckdaten</b> <span>Autor und Rolle, Titel und Textart, Ort und Datum, Adressat, Anlass und Thema.</span></li><li><b>Aufgabe 2, Zusammenfassung</b> <span>Kernaussage in einem Satz, dann die Argumente in Textreihenfolge, eigene Worte, Präsens.</span></li><li class="kn"><b>Aufgabe 3, Sachurteil</b> <span>Nach damaligen Maßstäben einordnen, prüfen, abwägen, klar urteilen.</span></li></ul></section><section class="gl-t gl-d"><h3>Die wichtigsten Daten</h3><ol><li><b>1848/49</b> <span>Revolution und Paulskirche</span></li><li><b>1862</b> <span>Bismarck wird preußischer Ministerpräsident</span></li><li><b>1864 bis 1871</b> <span>Drei Einigungskriege</span></li><li><b>18. Januar 1871</b> <span>Reichsgründung in Versailles</span></li><li><b>1878 bis 1890</b> <span>Sozialistengesetz</span></li><li><b>1883 bis 1889</b> <span>Sozialversicherung</span></li><li><b>1884/85</b> <span>Kongokonferenz, erste Schutzgebiete</span></li><li><b>1888</b> <span>Wilhelm II. wird Kaiser</span></li><li><b>1890</b> <span>Bismarck wird entlassen</span></li><li><b>1897</b> <span>Bülow: „Platz an der Sonne“</span></li><li><b>1904 bis 1908</b> <span>Völkermord an Herero und Nama</span></li></ol></section></div>
+    <div class="spick" id="spick" hidden><!--S:spick--></div>
+    <div id="todo"></div>
+    <h2>Vier Regeln für die Klausur</h2>
+    <ol class="rules" style="margin-top:14px">
+      <li>Erst die Aufgaben lesen, dann den Text zweimal, dann markieren.</li>
+      <li>Zusammenfassung ohne Zitate und ohne eigene Meinung, die gehört erst in Aufgabe 3.</li>
+      <li>Daten und Namen nur nennen, wenn du sie sicher weißt, sonst lieber allgemein bleiben.</li>
+      <li>Begriffe wie „weiße Rasse“ oder „Reichsfeinde“ in Anführungszeichen, nie als eigene Wörter.</li>
+      <li class="luck" aria-label="Viel Erfolg"><svg viewBox="0 0 60 40" aria-hidden="true"><path d="M4 34h52M16 34a14 14 0 0 1 28 0M30 12V4M44 18l5-5M16 18l-5-5"/></svg><span><b id="luckt">Viel Erfolg!</b><small id="lucks">Behalte die Uhr im Blick, der Zeitplan steht in Schritt 1.</small></span></li>
+    </ol>
+    <p class="sub js-only" id="stats2" style="margin-top:26px"></p>
+    <div class="chips js-only" style="margin-top:18px">
+      <button class="chip" id="resetpath">Fortschritt zurücksetzen</button>
+      <button class="chip ghost" id="resetall">Häkchen und Stempel löschen</button>
+    </div>
+    <footer class="src">Inoffizielle Lernhilfe zur Geschichtsklausur, ohne Gewähr. Grundlage ist eine selbst erstellte Lernübersicht zur Klausur ab Punkt 1c, wenige Lücken sind mit gängigem Schulstoff gefüllt. Im Zweifel gilt, was im Unterricht besprochen wurde. Der Fortschritt bleibt nur auf deinem Gerät.</footer>
+  </div>
+</section>

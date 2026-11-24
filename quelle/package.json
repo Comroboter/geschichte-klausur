@@ -1,0 +1,10 @@
+{
+  "name": "kaiserreich-quelle",
+  "private": true,
+  "description": "Schriften für build.py (werden als base64 in die HTML eingebettet)",
+  "dependencies": {
+    "@fontsource/bricolage-grotesque": "5.3.0",
+    "@fontsource/caveat": "5.3.0",
+    "@fontsource/literata": "5.3.0"
+  }
+}

@@ -1,0 +1,24 @@
+/* ===== Start-Intro „Zündung“ (gehört zu intro.js): Elemente zünden wie Leuchtröhren, sobald das Dunkel sie freigibt ===== */
+html.ig .ig-el{animation:igOn .56s cubic-bezier(.2,.7,.2,1) var(--igd,0s) both!important;animation-play-state:running!important}
+html.ig-soft .ig-el{animation:igSoft .45s ease-out var(--igd,0s) both!important}
+@keyframes igOn{0%{opacity:0;filter:brightness(1.9) blur(3px)}22%{opacity:.85}30%{opacity:.5}46%{opacity:1;filter:brightness(1.25) blur(.5px)}100%{opacity:1;filter:none}}
+@keyframes igSoft{from{opacity:0;filter:blur(2px)}to{opacity:1;filter:none}}
+/* JS übernimmt Vorhang, Linie und Lichthof: CSS-Animationen dafür aus, Startzustand wie nach dem Zünden */
+.curtain.hand .hz{animation:none!important;transform:scaleX(1);opacity:1}
+.curtain.hand .nc-top,.curtain.hand .nc-bot{animation:none!important}
+.curtain.hand .bloom{animation:none!important;opacity:1}
+/* weiche Kanten des Dunkels, liegen außerhalb der Hälften und überdecken sich, solange der Vorhang zu ist */
+.curtain .nf{position:absolute;left:0;right:0;height:170px;pointer-events:none}
+.curtain .nc-top .nf{top:100%;background:linear-gradient(#120a0c,rgba(18,10,12,.82) 30%,rgba(18,10,12,.38) 65%,rgba(18,10,12,0))}
+.curtain .nc-bot .nf{bottom:100%;background:linear-gradient(rgba(18,10,12,0),rgba(18,10,12,.38) 35%,rgba(18,10,12,.82) 70%,#120a0c)}
+/* Der Faden wird nach dem Intro nicht noch einmal gezeichnet */
+.fadenline.ig-thr path:not(.glint){animation:none!important;stroke-dashoffset:0!important}
+@media (prefers-reduced-motion:reduce){html.ig .ig-el{animation:none!important}}
+/* Lichtkanten: laufen an der Innenkante der beiden Hälften mit */
+.curtain .ne{position:absolute;left:6%;right:6%;height:2px;z-index:3;pointer-events:none;opacity:0;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,106,90,0),#ff6a5a 16%,#ffd9d2 50%,#ff6a5a 84%,rgba(255,106,90,0));
+  box-shadow:0 0 10px #ff6a5a,0 0 28px rgba(255,106,90,.55)}
+.curtain .nc-top .ne{bottom:-1px}
+.curtain .nc-bot .ne{top:-1px}
+/* Linie und Lichthof warten mit dem Zünden, bis introPrime sie auf die Fadenhöhe gesetzt hat */
+.vh .curtain:not(.lit) .hz,.vh .curtain:not(.lit) .bloom{animation-play-state:paused!important}
